@@ -161,11 +161,11 @@ extension=amqp.so
 Change ```/etc/apache2/apache2.conf```
 
 ```bash
-\<Directory /var/www\>
+<Directory /var/www>
   ...
   AllowOverride **All** # modify here from None to All
   ...
-\</Directory\>
+</Directory>
 ```
 
 Enable ```rewrite``` module in ```apache2```:
