@@ -11,6 +11,7 @@ KitOJ has the following features:
 3. Easy to distribute judge task: Work queue is used to distribute task, which can make the judgment persistent. If there are more than one computer in the network, we can make the use of them by running judges on every computer. Tasks are distribute automatically and smartly.
 4. Contest Module: Contest module has been added to this project to support On-line Contest.
 5. Sandbox System: A sandbox is used to run the judge task, which prevent the computer from being attack by spiteful code, even in compilation phase.
+6. WebSocket-based Dynamic Refreshing: A WebSocket-based method is used to dynamically refresh the status.
 
 ## Installation
 
