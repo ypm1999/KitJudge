@@ -40,7 +40,8 @@ sudo apt-get install apache2
 ```bash
 sudo apt-get install php
 sudo apt-get install php7.0-dev
-sudo apt install libapache2-mod-php7.0
+sudo apt-get install libapache2-mod-php7.0
+sudo apt-get install composer
 ```
 
 ### MySQL
@@ -120,6 +121,7 @@ sudo pip install socketIO_client
 wget https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
 sudo apt-key add rabbitmq-signing-key-public.asc
 rm rabbitmq-signing-key-public.asc
+sudo apt-get install php7.0-bcmath
 sudo apt-get install rabbitmq-server
 sudo apt-get install librabbitmq-dev
 sudo pip install pika
@@ -142,8 +144,6 @@ git add .
 git config user.name "<your name>"
 git config user.email "<your email>"
 git commit -m "Initial commit."
-git remote add origin /path/to/files/probfile
-git push origin master
 cd ~
 ln -s /path/to/files/probfile probfile
 ```
@@ -215,6 +215,17 @@ Last, modify the MySQL ```conf``` file (Usually, that is ```/etc/mysql/mysql.con
 
 You should subsitute all of the double starts(namely ```**```) in the file ```judger.py``` (In the folder ```tools/server/judger```) and in the file ```Strategy.py``` (In the folder ```tools/server/judger/Strategy/```)
 
-#### deamon.py On Judge Server
+#### deamon.py On Main Server
 
 You should subsitute all the double starts(namely ```**```) in the file ```deamon.py``` (In the folder ```tools/deamon/```).
+
+#### setup.py On Main Server
+
+```setup.py``` is a tool to initialize the database of KitOJ. ```**``` are needed to be replaced by the actual value.
+
+## Problem Configuration
+
+
+
+## Contest Configuration
+
