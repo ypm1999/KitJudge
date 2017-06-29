@@ -33,9 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <td class="col-md-2"><?= $contest->kitContestSource ?></td>
                 <td class="col-md-2"><?= $contest->kitContestStart ?></td>
                 <td class="col-md-2"><?= date('Y-m-d H:i:s', strtotime($contest->kitContestStart) + $contest->kitContestDuration) ?></td>
-                <td class="col-md-1"><?= floor($contest->kitContestDuration / 3600) ?>
-                    :<?= floor($contest->kitContestDuration % 3600 / 60) ?>
-                    :<?= floor($contest->kitContestDuration % 60) ?></td>
+                <td class="col-md-1"><?= floor($contest->kitContestDuration / 3600) ?>:<?= floor($contest->kitContestDuration % 3600 / 60) ?>:<?= floor($contest->kitContestDuration % 60) ?></td>
                 <td class="col-md-2"><strong>
                         <?php
                         $curTime = time();
