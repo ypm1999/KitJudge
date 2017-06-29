@@ -61,9 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 ?>
                 <?php foreach ($kitStatus->result() as $status) { ?>
                     <tr id="status<?= $status->kitStatusId ?>">
-                        <td>
-                            <a href="<?= $kitBasePath ?>/status/details/<?= $status->kitStatusId ?>"><?= $status->kitStatusId ?></a>
-                        </td>
+                        <td><a href="<?= $kitBasePath ?>/status/details/<?= $status->kitStatusId ?>"><?= $status->kitStatusId ?></a></td>
                         <td><?= $status->kitStatusTime ?></td>
                         <td><?= $status->kitStatusUser ?></td>
                         <td><?= isset($status->kitStatusContestId) ? "<a href='$kitBasePath/contests/show/$status->kitStatusContestId'>$status->kitStatusContestId</a>" : '' ?></td>

@@ -74,9 +74,7 @@
                 ?>
                 <?php foreach ($kitStatus->result() as $status) { ?>
                     <tr id="status<?= $status->kitStatusId ?>">
-                        <td>
-                            <a href="<?= $kitBasePath ?>/status/details/<?= $status->kitStatusId ?>"><?= $status->kitStatusId ?></a>
-                        </td>
+                        <td><a href="<?= $kitBasePath ?>/status/details/<?= $status->kitStatusId ?>"><?= $status->kitStatusId ?></a></td>
                         <td><?= $status->kitStatusTime ?></td>
                         <td><?= floor($status->kitStatusContestTime / 60) ?> Minutes</td>
                         <td><?= $status->kitStatusUser ?></td>
