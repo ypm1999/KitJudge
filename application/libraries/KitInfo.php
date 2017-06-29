@@ -107,10 +107,10 @@ class KitInfo
         'kitBasePath' => '/KitJudge',
         'kitAdminEmail' => 'kipsora@gmail.com',
         'kitDatabase' => array(
-                'hostname' => '**',
-                'username' => '**',
-                'password' => '**',
-                'database' => '**',
+                'hostname' => 'localhost',
+                'username' => 'kitJudge',
+                'password' => 'acmclass_mysql',
+                'database' => 'KitJudge',
                 'dbdriver' => 'mysqli',
                 'dbprefix' => '',
                 'pconnect' => false,
@@ -119,35 +119,35 @@ class KitInfo
                 'cachedir' => '',
                 'char_set' => 'utf8',
                 'dbcollat' => 'utf8_general_ci',
-                'port' => **,
+                'port' => 3306,
         ),
         'kitMQ' => array(
             'connection' => array(
-                'host' => '**', // To be deterimed
-                'port' => **,
-                'login' => '**',
-                'password' => '**'
+                'host' => 'localhost', // To be deterimed
+                'port' => 5672,
+                'login' => 'kitJudge',
+                'password' => 'acmclass_rabbitmq'
             ),
             'exchange' => 'kitMQ',
             'route' => 'kitMQ',
             'queue' => 'kitMQ',
-            'admin_port' => **
+            'admin_port' => 15672
         ),
         'kitCompileMQ' => array(
             'connection' => array(
-                'host' => '**',
-                'port' => **,
-                'login' => '**',
-                'password' => '**'
+                'host' => 'localhost',
+                'port' => 5672,
+                'login' => 'kitJudge',
+                'password' => 'acmclass_rabbitmq'
             ),
             'exchange' => 'kitCompileMQ',
             'route' => 'kitCompileMQ',
             'queue' => 'kitCompileMQ',
-            'admin_port' => **
+            'admin_port' => 15672
         ),
         'kitSocket' => array(
-            'host' => '**',
-            'port' => **
+            'host' => 'localhost',
+            'port' => 15485
         )
     );
 

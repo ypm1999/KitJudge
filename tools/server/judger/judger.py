@@ -7,7 +7,7 @@ import socketIO_client
 import json
 
 kitSocketHost = '**'
-kitSocketPort = **
+kitSocketPort = 15485
 kitMQHost = '**'
 kitMQPort = **
 kitMQUsername = '**'

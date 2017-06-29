@@ -7,19 +7,19 @@ import datetime
 import socketIO_client
 import json
 
-kitSocketHost = '**'
-kitSocketPort = **
-kitMQHost = '**'
-kitMQPort = **
-kitMQUsername = '**'
-kitMQPassword = '**'
-kitMQQueueName = '**'
+kitSocketHost = 'localhost'
+kitSocketPort = 15485
+kitMQHost = 'localhost'
+kitMQPort = 5672
+kitMQUsername = 'kitJudge'
+kitMQPassword = 'acmclass_rabbitmq'
+kitMQQueueName = 'kitMQ'
 kitMQHeartBeat = None
-kitDBHost = '**'
-kitDBPort = **
-kitDBUsername = '**'
-kitDBPassword = '**'
-kitDBName = '**'
+kitDBHost = 'localhost'
+kitDBPort = 3306
+kitDBUsername = 'kitJudge'
+kitDBPassword = 'acmclass_mysql'
+kitDBName = 'KitJudge'
 
 
 def kitConsole(message):

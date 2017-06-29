@@ -1,0 +1,1 @@
+For each case, output $A + B$ in one line.

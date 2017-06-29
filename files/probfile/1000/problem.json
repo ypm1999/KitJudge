@@ -1,0 +1,46 @@
+{
+	"files": {
+	},
+	"Module": {
+		"Problem Statement": {
+            "loader": "markdown",
+            "style": "default",
+            "content": "problem_statement.txt"
+        },
+        "Input Description": {
+            "loader": "markdown",
+            "style": "default",
+            "content": "input_description.txt"
+        },
+        "Output Description": {
+            "loader": "markdown",
+            "style": "default",
+            "content": "output_description.txt"
+        },
+        "Examples": {
+            "style": "sample",
+			"content": {
+				"Input 1": {
+					"path": "data/sample1.in"
+				},
+				"Output 1": {
+					"path": "data/sample1.out"
+				},
+				"Input 2": {
+					"path": "data/sample2.in"
+				},
+				"Output 2": {
+					"path": "data/sample2.in"
+				}
+			}
+        },
+        "Hints": {
+            "loader": "markdown",
+            "style": "default",
+            "content": "hints.txt"
+        },
+        "Limit": {
+            "style": "limit"
+        }
+	}
+}

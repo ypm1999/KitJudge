@@ -435,7 +435,7 @@ class Problems extends CI_Controller
         $this->load->library('KitInfo');
         $this->load->model('KitProblem');
         $this->load->database(KitInfo::$kitInfo['kitDatabase']);
-        $message = $this->isProblemIdValid($problemId);
+        $message = $this->isProblemIdValid($problemId, $_SESSION['kitUser']['priority']);
         if ($message != null) {
             exit(json_encode(array(
                 'verdict' => false,
