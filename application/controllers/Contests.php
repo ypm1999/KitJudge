@@ -80,9 +80,9 @@ class Contests extends CI_Controller
                     time(),
                     $_SESSION['kitUser'],
                     $_SESSION['kitUser']['name'],
-                    isset($_SESSION['status-filter']['prob']) ? $_SESSION['status-filter']['prob'] : null,
-                    isset($_SESSION['status-filter']['lang']) ? $_SESSION['status-filter']['lang'] : null,
-                    isset($_SESSION['status-filter']['verdict']) ? $_SESSION['status-filter']['verdict'] : null,
+                    null,
+                    null,
+                    null,
                     isset($_GET['page']) ? (int)($_GET['page']) : 1,
                     KitInfo::$kitInfo['kitStatusPERPage'],
                     $contestId
