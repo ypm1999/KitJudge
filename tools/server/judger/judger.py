@@ -13,7 +13,7 @@ kitMQPort = **
 kitMQUsername = '**'
 kitMQPassword = '**'
 kitMQQueueName = '**'
-kitMQHeartBeat = 0
+kitMQHeartBeat = 20
 
 
 def kitConsole(message):
