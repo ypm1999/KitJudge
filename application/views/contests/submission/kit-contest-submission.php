@@ -114,7 +114,7 @@
                             function (data) {
                                 console.log(data);
                                 $('#kit-status-form').find('tr').each(function (index) {
-                                    if ($(this).children('td').eq(0).text() === data['runid'].toString()) {
+                                    if ($(this).children('td').eq(0).children('a').text() === data['runid'].toString()) {
                                         if (data['case'] === 'COMPILING') {
                                             $(this).children('td').eq(6).html('<span class="kit-ing">Compiling</span><img src="<?=$kitBasePath?>/utility/img/ajax-loader.gif">');
                                         } else if (data['case'] !== 'END') {
