@@ -142,7 +142,7 @@ class Status extends CI_Controller
                     isset($_GET['page']) ? (int)($_GET['page']) : 1,
                     KitInfo::$kitInfo['kitStatusPERPage']
                 ),
-                'kitStatusTotalPages' => max((int)ceil(
+                'kitStatusTotalPages' => max((int)floor(
                     (
                         $this->KitStatus->kitCountStatus(
                             time(),
