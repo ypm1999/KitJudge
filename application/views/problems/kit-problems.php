@@ -36,8 +36,7 @@
                     <div class="progress" style="text-align: center; margin-bottom: 0 !important;">
                         <div class="progress-bar progress-bar-info" style="width: <?= $ratio ?>%;">
                                 <span class="progress-value" style="position: absolute; color: #0f0f0f;">
-                                    <?php echo sprintf("%.2f", $ratio); ?>%(<?= $problem->kitProbAccepted ?>
-                                    /<?= $problem->kitProbSubmitted ?>)
+                                    <?php echo sprintf("%.2f", $ratio); ?>%(<?= $problem->kitProbAccepted ?>/<?= $problem->kitProbSubmitted ?>)
                                 </span>
                         </div>
                     </div>
