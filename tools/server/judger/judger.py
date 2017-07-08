@@ -6,6 +6,7 @@ import sys
 import datetime
 import socketIO_client
 import json
+import time
 
 kitSocketHost = '**'
 kitSocketPort = **
@@ -43,15 +44,41 @@ def kitConnectRabbitMQ(host, port, username, password, heartbeat):
     kitConsole('RabbitMQ connected.')
     return connection
 
-
-def kitMQListen(connection, queue_name):
+def kitGetRabbitMQChannel(connection, queue_name):
     kitConsole('creating RabbitMQ.Channel(queue={})'.format(queue_name))
     channel = connection.channel()
     channel.queue_declare(queue=queue_name, durable=True)
-    kitConsole('channel connected.')
     channel.basic_qos(prefetch_count=1)
     channel.basic_consume(kitConsumer, queue=queue_name)
-    channel.start_consuming()
+    kitConsole('channel created.')
+    return channel
+
+def kitTaskEnded(channel, method):
+    kitConsole('telling server the task is processed...')
+    while True:
+        try:
+            channel.basic_ack(delivery_tag=method.delivery_tag)
+            kitConsole('told.')
+            break
+        except:
+            kitConsole('failed to execute channel.basic_ack, trying to recreate channel...')
+            while True:
+                try:
+                    channel = kitGetRabbitMQChannel(rabbitMQ, kitMQQueueName)
+                    kitConsole('channel recreated.')
+                    break
+                except:
+                    kitConsole('failed to recreate channel, trying to reconnect server...')
+                    while True:
+                        try:
+                            global rabbitMQ
+                            rabbitMQ = kitMQConnector()
+                            kitConsole('server reconnected.')
+                            break
+                        except:
+                            kitConsole('failed to reconnect server, waiting to reconnect again in 5 second(s)...')
+                            time.sleep(5)
+
 
 def kitConsumer(channel, method, properites, body):
     data = json.loads(body)
@@ -65,10 +92,12 @@ def kitConsumer(channel, method, properites, body):
         strategy.start(period=20.0)
         strategy.process(data)
         strategy.end()
-    channel.basic_ack(delivery_tag=method.delivery_tag)
+    kitTaskEnded(channel, method)
+
 
 def kitMQConnector():
     return kitConnectRabbitMQ(kitMQHost, kitMQPort, kitMQUsername, kitMQPassword, kitMQHeartBeat)
+
 
 def kitSocketConnector():
     return kitConnectSocket(kitSocketHost, kitSocketPort, {'author': 'judger'})
@@ -76,4 +105,5 @@ def kitSocketConnector():
 if __name__ == '__main__':
     socket = kitSocketConnector()
     rabbitMQ = kitMQConnector()
-    kitMQListen(rabbitMQ, kitMQQueueName)
+    channel = kitGetRabbitMQChannel(rabbitMQ, kitMQQueueName)
+    channel.start_consuming()
