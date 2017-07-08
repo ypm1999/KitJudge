@@ -80,7 +80,7 @@
                 e.preventDefault();
                 var data = "session=<?=$kitSessionId?><?=isset($kitContest) ? '&contest=' . $kitContest['kitContestId'] : ''?>&title="
                     + encodeURIComponent($('#kit-edit-contest-title').val())
-                    + "&type=" + encodeURIComponent($('#kit-edit-contest-type'))
+                    + "&type=" + encodeURIComponent($('#kit-edit-contest-type').val())
                     + "&source=" + encodeURIComponent($('#kit-edit-contest-source').val())
                     + "&start=" + encodeURIComponent($('#kit-edit-contest-start').val())
                     + "&duration=" + encodeURIComponent($('#kit-edit-contest-duration').val());
