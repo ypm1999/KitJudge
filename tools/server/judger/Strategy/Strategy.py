@@ -8,6 +8,7 @@ import commands
 import shutil
 import pika
 import git
+import stat
 
 from threading import Timer
 
@@ -74,6 +75,7 @@ class Strategy:
             shutil.copy(pre_judge_path + '/__judger', run_path + '/__judger')
         else:
             shutil.copy(pre_judge_path + '/' + judge_conf['path'], run_path + '/__judger')
+        os.system('chmod 777 ' + run_path + '/__judger')
 
     def _compile(self, command, lang, tmpdir, verbose=True):
         rtype = None

@@ -1,10 +1,7 @@
+import shutil
 import traceback
 
 from Strategy import Strategy
-
-import shutil
-import os
-import stat
 
 
 class OIStrategy(Strategy):
@@ -36,7 +33,7 @@ class OIStrategy(Strategy):
             used_memo = 0
             case_id = 0
             verdict = 0
-            score = 0
+            score = 0.0
 
             for tid, test in enumerate(self._conf['tests']):
                 for index in xrange(test['repeat']):
@@ -70,8 +67,8 @@ class OIStrategy(Strategy):
                         self._buffer.setdefault('verdict', runcode)
                         continue
                     self._move_judger(case_id, test['judger'], run_path)
-                    os.chmod(run_path + '/__judger', stat.S_IXUSR)
-                    result = self._execute(runcmd='./__judger ' + test['stdout'] + ' ' + test['output'],
+                    open(run_path + '/score.in', 'w').write(str(test['score']))
+                    result = self._execute(runcmd='./__judger ' + test['stdout'] + ' ' + test['output'] + ' score.in score.out',
                                            sout="__judge.out",
                                            work_path=run_path,
                                            tl=10,
@@ -115,8 +112,7 @@ class OIStrategy(Strategy):
                         self._buffer.update({'report-' + str(case_id): self._readfile(run_path + '/__judge.out')})
                     else:
                         self._buffer.update({'report-' + str(case_id): self._readfile(run_path + '/__judge.out')})
-                    if verdict == 0:
-                        score += test['score']
+                    score += float(open(run_path + '/score.out', 'r').read())
             self._buffer.setdefault('score', score)
             self._buffer.setdefault('verdict', verdict)
             if verdict == 0:
