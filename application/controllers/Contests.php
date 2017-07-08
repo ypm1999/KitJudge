@@ -310,7 +310,7 @@ class Contests extends CI_Controller
             if (empty($result) || $data == null) {
                 show_404();
             }
-            if (time() < strtotime($result['kitContestStart'])) {
+            if (time() < strtotime($result->row()->kitContestStart)) {
                 show_404();
             }
             $this->load->model('KitContestProblem');
