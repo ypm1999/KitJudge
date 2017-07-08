@@ -146,7 +146,7 @@ class KitInfo
             'admin_port' => 15672
         ),
         'kitSocket' => array(
-            'host' => 'localhost',
+            'host' => 'oj.kipsora.com',
             'port' => 15485
         )
     );

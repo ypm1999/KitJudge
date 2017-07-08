@@ -1,6 +1,40 @@
 {
-	"files": {
+	"include": {
 	},
+	"tests": [{
+		"repeat": 10,
+		"judger": {
+			"type": "default",
+			"path": "spjInt",
+			"lang": "exec"
+		},
+		"require": {
+			"data/data[$INDEX].in": {
+				"stage": 0,
+				"target": "input.txt"
+			},
+			"data/data[$INDEX].out": {
+				"stage": 1,
+				"target": "output_std.txt"
+			}
+		},
+		"input": "input.txt",
+		"stdout": "output_std.txt",
+		"output": "output.txt",
+		"limit": {
+			"C++": {
+				"time": 1000,
+				"memory": 65536
+			}
+		}
+	}],
+	"files": {
+		"Code": {
+			"name": "code.cpp",
+			"lang": ["C++"]
+		}
+	},
+	"main": "Code",
 	"Module": {
 		"Problem Statement": {
             "loader": "markdown",
@@ -39,8 +73,8 @@
             "style": "default",
             "content": "hints.txt"
         },
-        "Limit": {
-            "style": "limit"
+        "Limits": {
+            "style": "limits"
         }
 	}
 }
