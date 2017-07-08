@@ -29,11 +29,12 @@ kitDBName = '**'
 
 
 class Strategy:
-    def __init__(self, socket, connection, console):
+    def __init__(self, socket, connection, console, connector):
         self.__last_emit_case = 0
         self.__connection = connection
         self.__socket = socket
         self.__console = console
+        self.__connector = connector
         self._buffer = {}
 
     @staticmethod
@@ -241,7 +242,22 @@ class Strategy:
     def __periodACK(self, period):
         self.__timer = Timer(period, self.__periodACK, [period])
         self.__timer.daemon = True
-        self.__connection.process_data_events()
+        while True:
+            try:
+                self.__connection.process_data_events()
+                self.__console('client has processed an heart beat with server.')
+                break
+            except:
+                self.__console('connection lost, trying to re-connect...')
+                while True:
+                    try:
+                        self.__connection = self.__connector()
+                        break
+                    except:
+                        self.__console('failed to connect with server, retried in 5 seconds.')
+                        time.sleep(5)
+                self.__console('re-connected.')
+        self.__timer.start()
 
     def start(self, period):
         self.__periodACK(period)
@@ -250,21 +266,29 @@ class Strategy:
         self.__timer.cancel()
 
     def __send_report(self):
-        connection = pika.BlockingConnection(pika.ConnectionParameters(
-            host=kitReportMQHost,
-            port=kitReportMQPort,
-            credentials=pika.PlainCredentials(
-                username=kitReportMQUsername,
-                password=kitReportMQPassword
-            ),
-            heartbeat_interval=kitReportMQHeartBeat
-        ))
-        channel = connection.channel()
-        channel.queue_declare(queue=kitReportMQQueueName, durable=True)
-        channel.basic_publish(
-            exchange='',
-            routing_key=kitReportMQQueueName,
-            body=json.dumps(self._buffer),
-            properties=pika.BasicProperties(delivery_mode=2)
-        )
-        connection.close()
+        while True:
+            try:
+                self._console("sending report to server...")
+                connection = pika.BlockingConnection(pika.ConnectionParameters(
+                    host=kitReportMQHost,
+                    port=kitReportMQPort,
+                    credentials=pika.PlainCredentials(
+                        username=kitReportMQUsername,
+                        password=kitReportMQPassword
+                    ),
+                    heartbeat_interval=kitReportMQHeartBeat
+                ))
+                channel = connection.channel()
+                channel.queue_declare(queue=kitReportMQQueueName, durable=True)
+                channel.basic_publish(
+                    exchange='',
+                    routing_key=kitReportMQQueueName,
+                    body=json.dumps(self._buffer),
+                    properties=pika.BasicProperties(delivery_mode=2)
+                )
+                connection.close()
+                self._console("report sended.")
+                break
+            except:
+                self._console("failed to send report, retried in {} second(s).".format(5))
+                time.sleep(5)

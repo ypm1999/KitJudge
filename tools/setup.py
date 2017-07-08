@@ -82,6 +82,7 @@ def kitInitDBStatus(cursor) :
 		  `kitStatusTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\
 		  `kitStatusContestTag` VARCHAR(4) NULL,\
 		  `kitStatusContestTime` INT NULL,\
+		  `kitStatusScore` INT NULL,\
 		  `kitStatusExtraMessage` VARCHAR(64) NULL,\
 		  PRIMARY KEY (`kitStatusId`));\
 		"

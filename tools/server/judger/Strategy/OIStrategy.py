@@ -7,7 +7,7 @@ import os
 import stat
 
 
-class DefaultStrategy(Strategy):
+class OIStrategy(Strategy):
     def __init__(self, socket, connection, console, connector):
         Strategy.__init__(self, socket, connection, console, connector)
 
@@ -35,6 +35,8 @@ class DefaultStrategy(Strategy):
             used_time = 0
             used_memo = 0
             case_id = 0
+            verdict = 0
+            score = 0
 
             for tid, test in enumerate(self._conf['tests']):
                 for index in xrange(test['repeat']):
@@ -107,15 +109,19 @@ class DefaultStrategy(Strategy):
                         self._buffer.setdefault('report', 'Judge failure: Cannot execute the judger')
                         return
                     elif exitcode != 0:
-                        self._buffer.update({'verdict': 7})
+                        if verdict == 0:
+                            verdict = 7
                         self._buffer.update({'verdict-' + str(case_id): 7})
                         self._buffer.update({'report-' + str(case_id): self._readfile(run_path + '/__judge.out')})
-                        return
                     else:
                         self._buffer.update({'report-' + str(case_id): self._readfile(run_path + '/__judge.out')})
-            self._buffer.setdefault('verdict', 0)
-            self._buffer.setdefault('time', used_time)
-            self._buffer.setdefault('memo', used_memo)
+                    if verdict == 0:
+                        score += test['score']
+            self._buffer.setdefault('score', score)
+            self._buffer.setdefault('verdict', verdict)
+            if verdict == 0:
+                self._buffer.setdefault('time', used_time)
+                self._buffer.setdefault('memo', used_memo)
         except Exception as e:
             self._buffer = {'verdict': 6, 'report': 'invalid problem configuration.'}
             self._console(e.__doc__)

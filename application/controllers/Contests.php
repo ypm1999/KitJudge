@@ -157,7 +157,11 @@ class Contests extends CI_Controller
         $this->load->view('kit-navbar');
         $this->load->view('kit-modal', $info);
         $this->load->view('contests/board/kit-board-contest-preload', $info);
-        $this->load->view('contests/board/kit-board-contest', $info);
+        if ($result->kitContestType == 'ICPC') {
+            $this->load->view('contests/board/icpc/kit-board-contest', $info);
+        } else if ($result->kitContestType == 'ICPC/OI') {
+            $this->load->view('contests/board/icpc-oi/kit-board-contest', $info);
+        }
         $this->load->view('kit-common-bottom');
         $this->load->view('contests/board/kit-board-contest-footage');
         $this->load->view('kit-common-footage');

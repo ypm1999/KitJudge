@@ -1,4 +1,5 @@
 from Strategy.DefaultStrategy import DefaultStrategy
+from Strategy.OIStrategy import OIStrategy
 
 import pika
 import sys
@@ -52,11 +53,12 @@ def kitMQListen(connection, queue_name):
     channel.basic_consume(kitConsumer, queue=queue_name)
     channel.start_consuming()
 
-
 def kitConsumer(channel, method, properites, body):
     data = json.loads(body)
     if data['type'] == 'default':
-        strategy = DefaultStrategy(socket, rabbitMQ, kitConsole)
+        strategy = DefaultStrategy(socket, rabbitMQ, kitConsole, kitMQConnector)
+    elif data['type'] == 'OI':
+        strategy = OIStrategy(socket, rabbitMQ, kitConsole, kitMQConnector)
     else:
         strategy = None
     if strategy is not None:
@@ -65,8 +67,13 @@ def kitConsumer(channel, method, properites, body):
         strategy.end()
     channel.basic_ack(delivery_tag=method.delivery_tag)
 
+def kitMQConnector():
+    return kitConnectRabbitMQ(kitMQHost, kitMQPort, kitMQUsername, kitMQPassword, kitMQHeartBeat)
+
+def kitSocketConnector():
+    return kitConnectSocket(kitSocketHost, kitSocketPort, {'author': 'judger'})
 
 if __name__ == '__main__':
-    socket = kitConnectSocket(kitSocketHost, kitSocketPort, {'author': 'judger'})
-    rabbitMQ = kitConnectRabbitMQ(kitMQHost, kitMQPort, kitMQUsername, kitMQPassword, kitMQHeartBeat)
+    socket = kitSocketConnector()
+    rabbitMQ = kitMQConnector()
     kitMQListen(rabbitMQ, kitMQQueueName)

@@ -68,11 +68,24 @@ def kitConsumer(channel, method, properites, body):
     try:
         kitConsole('[{}] verdict={}'.format(runid, data['verdict']))
         if data['verdict'] == 0:
-            cursor.execute("UPDATE KitStatus SET kitStatusExtraMessage='',kitStatusVerdict=" + str(data['verdict']) + ",kitStatusUsedTime=" + str(data['time']) + ",kitStatusUsedMemory=" + str(data['memo']) + " WHERE kitStatusId='" + str(data['runid']) + "'")
+            if data.has_key('score'):
+                cursor.execute("UPDATE KitStatus SET kitStatusExtraMessage='',kitStatusVerdict=" + str(
+                    data['verdict']) + ",kitStatusUsedTime=" + str(data['time']) + ",kitStatusUsedMemory=" + str(
+                    data['memo']) + ",kitStatusScore=" + str(data['score']) + " WHERE kitStatusId='" + str(
+                    data['runid']) + "'")
+            else:
+                cursor.execute("UPDATE KitStatus SET kitStatusExtraMessage='',kitStatusVerdict=" + str(
+                    data['verdict']) + ",kitStatusUsedTime=" + str(data['time']) + ",kitStatusUsedMemory=" + str(
+                    data['memo']) + " WHERE kitStatusId='" + str(data['runid']) + "'")
             cursor.execute("UPDATE KitProblem SET kitProbAccepted=kitProbAccepted+1 WHERE kitProbId=" + str(data['probid']))
             socket.emit('pub', {'runid': runid, 'case': 'END', 'verdict': data['verdict'], 't': data['time'], 'm': data['memo']})
         else:
-            cursor.execute("UPDATE KitStatus SET kitStatusExtraMessage='',kitStatusVerdict=" + str(data['verdict']) + " WHERE kitStatusId='" + str(data['runid']) + "'")
+            if data.has_key('score'):
+                cursor.execute("UPDATE KitStatus SET kitStatusExtraMessage='',kitStatusVerdict=" + str(
+                    data['verdict']) + ",kitStatusScore=" + str(data['score']) + " WHERE kitStatusId='" + str(data['runid']) + "'")
+            else:
+                cursor.execute("UPDATE KitStatus SET kitStatusExtraMessage='',kitStatusVerdict=" + str(
+                    data['verdict']) + " WHERE kitStatusId='" + str(data['runid']) + "'")
             socket.emit('pub', {'runid': runid, 'case': 'END', 'verdict': data['verdict']})
         json.dump(data, open('../../../files/userfile/' + data['user'] + '/code/' + str(runid) + '/report', 'w'))
     except Exception as e:
