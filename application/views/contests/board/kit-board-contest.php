@@ -128,6 +128,9 @@
                 <?php } ?>
                 <th style="width: 8%"><strong>Total</strong></th>
                 <th style="width: 8%"><strong>Penalty</strong></th>
+                <?php if ($kitContest->kitContestType == 'ICPC/OI') {?>
+                    <th style="width: 8%"><strong>Score</strong></th>
+                <?php }?>
             </tr>
             </thead>
             <tbody id="kit-board-tbody" valign="middle" style="font-size: 120%">
