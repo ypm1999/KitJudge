@@ -70,7 +70,7 @@ class KitContest extends CI_Model
         return ((array)$this->db->query('SELECT count(*) FROM KitContest')->row())['count(*)'];
     }
 
-    public function kitInsertContest($name, $src, $start, $duration, $type, $hidden)
+    public function kitInsertContest($name, $type, $src, $start, $duration, $hidden)
     {
         $sqlstr = $this->db->insert_string('KitContest', array(
             'kitContestName' => $name,
@@ -99,7 +99,11 @@ class KitContest extends CI_Model
         return ((array)$this->db->query($sql)->row())['count(*)'] > 0;
     }
 
+<<<<<<< HEAD
     public function kitUpdateContest($cid, $name, $src, $start, $duration, $type, $hidden)
+=======
+    public function kitUpdateContest($cid, $name, $type, $src, $start, $duration, $hidden)
+>>>>>>> worker
     {
         $sqlstr = $this->db->update_string('KitContest',
             array(

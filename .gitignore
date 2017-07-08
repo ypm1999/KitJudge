@@ -30,3 +30,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 files/*
 files/probfile/*
+tools/server/judger/.idea/*

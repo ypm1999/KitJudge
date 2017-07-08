@@ -7,7 +7,7 @@ class Contests extends CI_Controller
     {
         if (!isset($_POST) || !isset($_POST['title']) || !isset($_POST['start'])
             || !isset($_POST['source']) || !isset($_POST['hidden'])
-            || !isset($_POST['type']) || !isset($_POST['duration'])
+            || !isset($_POST['duration']) || !isset($_POST['type'])
             || !isset($_POST['session'])
         ) {
             exit(json_encode(array(
@@ -34,7 +34,7 @@ class Contests extends CI_Controller
         $this->load->database(KitInfo::$kitInfo['kitDatabase']);
         $isHidden = ($_POST['hidden'] == '1');
         if (!isset($_POST['contest'])) {
-            if (($contestId = $this->KitContest->kitInsertContest($_POST['title'], $_POST['source'], $_POST['start'], $_POST['duration'], $_POST['type'], $isHidden)) < 0) {
+            if (($contestId = $this->KitContest->kitInsertContest($_POST['title'], $_POST['type'], $_POST['source'], $_POST['start'], $_POST['duration'], $isHidden)) < 0) {
                 exit(json_encode(array(
                     'verdict' => false,
                     'message' => 'Cannot insert such contest.'
@@ -48,7 +48,7 @@ class Contests extends CI_Controller
                     'message' => 'Invalid request.'
                 )));
             }
-            $this->KitContest->kitUpdateContest($contestId, $_POST['title'], $_POST['source'], $_POST['start'], $_POST['duration'], $_POST['type'], $isHidden);
+            $this->KitContest->kitUpdateContest($contestId, $_POST['title'], $_POST['type'], $_POST['source'], $_POST['start'], $_POST['duration'], $isHidden);
         }
         echo json_encode(array('verdict' => true));
     }
@@ -157,7 +157,11 @@ class Contests extends CI_Controller
         $this->load->view('kit-navbar');
         $this->load->view('kit-modal', $info);
         $this->load->view('contests/board/kit-board-contest-preload', $info);
-        $this->load->view('contests/board/kit-board-contest', $info);
+        if ($result->kitContestType == 'ICPC') {
+            $this->load->view('contests/board/icpc/kit-board-contest', $info);
+        } else if ($result->kitContestType == 'ICPC/OI') {
+            $this->load->view('contests/board/icpc-oi/kit-board-contest', $info);
+        }
         $this->load->view('kit-common-bottom');
         $this->load->view('contests/board/kit-board-contest-footage');
         $this->load->view('kit-common-footage');

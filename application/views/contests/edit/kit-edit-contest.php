@@ -23,7 +23,7 @@
                 <label class="col-sm-2 control-label">Type</label>
                 <div class="col-sm-4">
                     <input type="text" class="form-control" id="kit-edit-contest-type"
-                           placeholder="Enter contest type here"
+                           placeholder="Enter contest title here"
                            value="<?= isset($kitContest) ? $kitContest['kitContestType'] : '' ?>">
                 </div>
             </div>

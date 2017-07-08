@@ -4,7 +4,7 @@
 #include "spjbase.hpp"
 
 int main(int argc, char *argv[]) {	
-	if (argc != 3) {
+	if (argc < 3) {
 		printf("spjInt: A tool to compare file integer by integer.\n");
 		printf("Usage: spjInt [stdfile] [srcfile]\n");
 	} else {
@@ -42,12 +42,14 @@ int main(int argc, char *argv[]) {
 					}
 					fclose(instd);
 					fclose(insrc);
+					putScore(argc, argv, 0.0, SPJ_SCR_IO_ERROR);
 					return SPJ_WA;
 				}
 			}
 			printf("OK, %d tokens.\n", size);
 			fclose(instd);
 			fclose(insrc);
+			putScore(argc, argv, getScore(argc, argv, SPJ_SCR_IO_ERROR), SPJ_SCR_IO_ERROR);
 			return SPJ_OK;
 		} catch(SPJException e) {
 			e.print();

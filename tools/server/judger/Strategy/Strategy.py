@@ -8,6 +8,7 @@ import commands
 import shutil
 import pika
 import git
+import stat
 
 from threading import Timer
 
@@ -74,6 +75,7 @@ class Strategy:
             shutil.copy(pre_judge_path + '/__judger', run_path + '/__judger')
         else:
             shutil.copy(pre_judge_path + '/' + judge_conf['path'], run_path + '/__judger')
+        os.system('chmod 777 ' + run_path + '/__judger')
 
     def _compile(self, command, lang, tmpdir, verbose=True):
         rtype = None
@@ -138,15 +140,33 @@ class Strategy:
         self._console('running command ' + command)
         return commands.getoutput(command).split('\n')
 
+    def __database_execute(self, sql):
+        while True:
+            try:
+                connection = MySQLdb.connect(kitDBHost, kitDBUsername, kitDBPassword, kitDBName)
+                connection.cursor().execute(sql)
+                connection.commit()
+                connection.close()
+                break
+            except:
+                self._console('cannot connect to database, waiting to reconnect in 5 second(s)')
+                time.sleep(5)
+
+    def __socket_emit(self, message):
+        while True:
+            try:
+                self.__socket.emit('pub', message)
+                break
+            except:
+                self._console('cannot connect to socket, waiting to reconnect in 5 second(s)')
+                time.sleep(5)
+
     def _emit_case(self, case):
         if case == 'RESET':
             self.__last_emit_case = 0
         if case == 'COMPILING':
-            connection = MySQLdb.connect(kitDBHost, kitDBUsername, kitDBPassword, kitDBName)
-            connection.cursor().execute("UPDATE KitStatus SET kitStatusVerdict=12 WHERE kitStatusId=" + str(self._kitRunId))
-            connection.commit()
-            connection.close()
-            self.__socket.emit('pub', {'runid': self._kitRunId, 'case': 'COMPILING'})
+            self.__database_execute("UPDATE KitStatus SET kitStatusVerdict=12 WHERE kitStatusId=" + str(self._kitRunId))
+            self.__socket_emit({'runid': self._kitRunId, 'case': 'COMPILING'})
             return
         if self.__last_emit_case == 0:
             self.__last_emit_stamp = time.time()
@@ -155,11 +175,8 @@ class Strategy:
             if now_time - self.__last_emit_stamp <= 3.0 or case - self.__last_emit_case < 5:
                 return
             self.__last_emit_stamp = now_time
-        connection = MySQLdb.connect(kitDBHost, kitDBUsername, kitDBPassword, kitDBName)
-        connection.cursor().execute("UPDATE KitStatus SET kitStatusVerdict=9,kitStatusExtraMessage='" + str(case) + "' WHERE kitStatusId=" + str(self._kitRunId))
-        connection.commit()
-        connection.close()
-        self.__socket.emit('pub', {'runid': self._kitRunId, 'case': case})
+        self.__database_execute("UPDATE KitStatus SET kitStatusVerdict=9,kitStatusExtraMessage='" + str(case) + "' WHERE kitStatusId=" + str(self._kitRunId))
+        self.__socket_emit({'runid': self._kitRunId, 'case': case})
         self.__last_emit_case = case
 
     def _consume(self, data):
@@ -238,33 +255,30 @@ class Strategy:
         self.__send_report()
         self.__console('Data consumed.')
 
-    def __periodACK(self, period):
-        self.__timer = Timer(period, self.__periodACK, [period])
-        self.__timer.daemon = True
-        self.__connection.process_data_events()
-
-    def start(self, period):
-        self.__periodACK(period)
-
-    def end(self):
-        self.__timer.cancel()
-
     def __send_report(self):
-        connection = pika.BlockingConnection(pika.ConnectionParameters(
-            host=kitReportMQHost,
-            port=kitReportMQPort,
-            credentials=pika.PlainCredentials(
-                username=kitReportMQUsername,
-                password=kitReportMQPassword
-            ),
-            heartbeat_interval=kitReportMQHeartBeat
-        ))
-        channel = connection.channel()
-        channel.queue_declare(queue=kitReportMQQueueName, durable=True)
-        channel.basic_publish(
-            exchange='',
-            routing_key=kitReportMQQueueName,
-            body=json.dumps(self._buffer),
-            properties=pika.BasicProperties(delivery_mode=2)
-        )
-        connection.close()
+        while True:
+            try:
+                self._console("sending report to server...")
+                connection = pika.BlockingConnection(pika.ConnectionParameters(
+                    host=kitReportMQHost,
+                    port=kitReportMQPort,
+                    credentials=pika.PlainCredentials(
+                        username=kitReportMQUsername,
+                        password=kitReportMQPassword
+                    ),
+                    heartbeat_interval=kitReportMQHeartBeat
+                ))
+                channel = connection.channel()
+                channel.queue_declare(queue=kitReportMQQueueName, durable=True)
+                channel.basic_publish(
+                    exchange='',
+                    routing_key=kitReportMQQueueName,
+                    body=json.dumps(self._buffer),
+                    properties=pika.BasicProperties(delivery_mode=2)
+                )
+                connection.close()
+                self._console("report sended.")
+                break
+            except:
+                self._console("failed to send report, retried in {} second(s).".format(5))
+                time.sleep(5)

@@ -2,7 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34fd5892-acf7-4df3-99f9-1a9fbc4b8d25" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../application/views/contests/board/icpc-oi/kit-board-contest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Strategy/OIStrategy.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dataSources/551ab67e-e20d-4510-a428-1cd102b62d5b.xml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../../application/views/contests/board/kit-board-contest.php" afterPath="$PROJECT_DIR$/../../../application/views/contests/board/icpc/kit-board-contest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/comparator/spjByte" afterPath="$PROJECT_DIR$/comparator/spjByte" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/comparator/spjInt" afterPath="$PROJECT_DIR$/comparator/spjInt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../.gitignore" afterPath="$PROJECT_DIR$/../../../.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../application/controllers/Contests.php" afterPath="$PROJECT_DIR$/../../../application/controllers/Contests.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../application/models/KitContest.php" afterPath="$PROJECT_DIR$/../../../application/models/KitContest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../application/models/KitStatus.php" afterPath="$PROJECT_DIR$/../../../application/models/KitStatus.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../application/views/contests/edit/kit-edit-contest.php" afterPath="$PROJECT_DIR$/../../../application/views/contests/edit/kit-edit-contest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../application/views/contests/kit-contests.php" afterPath="$PROJECT_DIR$/../../../application/views/contests/kit-contests.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../deamon/deamon.py" afterPath="$PROJECT_DIR$/../deamon/deamon.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Strategy/Strategy.py" afterPath="$PROJECT_DIR$/Strategy/Strategy.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/comparator/spjByte.cpp" afterPath="$PROJECT_DIR$/comparator/spjByte.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/comparator/spjInt.cpp" afterPath="$PROJECT_DIR$/comparator/spjInt.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/comparator/spjbase.hpp" afterPath="$PROJECT_DIR$/comparator/spjbase.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judger.py" afterPath="$PROJECT_DIR$/judger.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../setup.py" afterPath="$PROJECT_DIR$/../../setup.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,7 +46,7 @@
         <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
       </PATH_ELEMENT>
       <PATH_ELEMENT>
-        <option name="myItemId" value="KitJudge@localhost" />
+        <option name="myItemId" value="KitJudge@oj.kipsora.com" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
@@ -35,7 +56,7 @@
         <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
       </PATH_ELEMENT>
       <PATH_ELEMENT>
-        <option name="myItemId" value="KitJudge@localhost" />
+        <option name="myItemId" value="KitJudge@oj.kipsora.com" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
       <PATH_ELEMENT>
@@ -43,65 +64,81 @@
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="KitJudge@oj.kipsora.com" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="KitJudge" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="KitStatus" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Strategy.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Strategy/Strategy.py">
+      <file leaf-file-name="deamon.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../deamon/deamon.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="16" column="17" lean-forward="false" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+            <state relative-caret-position="325">
+              <caret line="70" column="37" lean-forward="false" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
               <folding>
-                <element signature="e#0#16#0" expanded="true" />
-                <marker date="1498713615948" expanded="true" signature="5959:6018" ph="UPDATE KitSt... " />
-                <marker date="1498713615948" expanded="true" signature="6636:6736" ph="UPDATE KitSt... " />
+                <marker date="1499535003870" expanded="true" signature="465:596" ph="..." />
+                <marker date="1499535003870" expanded="true" signature="638:862" ph="..." />
+                <marker date="1499535003870" expanded="true" signature="931:1375" ph="..." />
+                <marker date="1499535003870" expanded="true" signature="1418:1748" ph="..." />
+                <marker date="1499535003870" expanded="true" signature="1802:4173" ph="..." />
+                <marker date="1499535003870" expanded="true" signature="2048:3840" ph="..." />
+                <marker date="1499535003870" expanded="true" signature="2150:3134" ph="..." />
+                <marker date="1499535003870" expanded="true" signature="2188:2556" ph="..." />
+                <marker date="1499535003870" expanded="true" signature="2221:2554" ph="UPDATE KitSt... " />
+                <marker date="1499535003870" expanded="true" signature="2574:2879" ph="..." />
+                <marker date="1499535003870" expanded="true" signature="2607:2877" ph="UPDATE KitSt... " />
+                <marker date="1499535003870" expanded="true" signature="2908:2980" ph="UPDATE KitPr... " />
+                <marker date="1499535003870" expanded="true" signature="3148:3726" ph="..." />
+                <marker date="1499535003870" expanded="true" signature="3186:3422" ph="..." />
+                <marker date="1499535003870" expanded="true" signature="3219:3420" ph="UPDATE KitSt... " />
+                <marker date="1499535003870" expanded="true" signature="3440:3634" ph="..." />
+                <marker date="1499535003870" expanded="true" signature="3473:3632" ph="UPDATE KitSt... " />
+                <marker date="1499535003870" expanded="true" signature="3565:3632" ph="UPDATE KitSt... " />
+                <marker date="1499535003870" expanded="true" signature="3867:4070" ph="..." />
+                <marker date="1499535003870" expanded="true" signature="3952:4038" ph="UPDATE KitSt... " />
+                <marker date="1499535003870" expanded="true" signature="4202:4448" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="judger.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/judger.py">
+      <file leaf-file-name="OIStrategy.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Strategy/OIStrategy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="-1465">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DefaultStrategy.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Strategy/DefaultStrategy.py">
+      <file leaf-file-name="Strategy.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Strategy/Strategy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1746">
-              <caret line="103" column="20" lean-forward="false" selection-start-line="103" selection-start-column="20" selection-end-line="103" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="deamon.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../deamon/deamon.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1062">
-              <caret line="66" column="32" lean-forward="false" selection-start-line="66" selection-start-column="32" selection-end-line="66" selection-end-column="32" />
+            <state relative-caret-position="692">
+              <caret line="77" column="56" lean-forward="false" selection-start-line="77" selection-start-column="56" selection-end-line="77" selection-end-column="56" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
-                <marker date="1498659036000" expanded="true" signature="383:514" ph="..." />
-                <marker date="1498659036000" expanded="true" signature="556:780" ph="..." />
-                <marker date="1498659036000" expanded="true" signature="849:1293" ph="..." />
-                <marker date="1498659036000" expanded="true" signature="1336:1666" ph="..." />
-                <marker date="1498659036000" expanded="true" signature="1720:3304" ph="..." />
-                <marker date="1498659036000" expanded="true" signature="1966:2971" ph="..." />
-                <marker date="1498659036000" expanded="true" signature="2068:2582" ph="..." />
-                <marker date="1498659036000" expanded="true" signature="2097:2325" ph="UPDATE KitSt... " />
-                <marker date="1498659036000" expanded="true" signature="2356:2428" ph="UPDATE KitPr... " />
-                <marker date="1498659036000" expanded="true" signature="2596:2857" ph="..." />
-                <marker date="1498659036000" expanded="true" signature="2625:2763" ph="UPDATE KitSt... " />
-                <marker date="1498659036000" expanded="true" signature="2998:3201" ph="..." />
-                <marker date="1498659036000" expanded="true" signature="3083:3169" ph="UPDATE KitSt... " />
-                <marker date="1498659036000" expanded="true" signature="3333:3559" ph="..." />
+                <marker date="1499535003862" expanded="true" signature="6688:6747" ph="UPDATE KitSt... " />
+                <marker date="1499535003862" expanded="true" signature="7202:7302" ph="UPDATE KitSt... " />
               </folding>
             </state>
           </provider>
@@ -118,36 +155,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>json.load</find>
-      <find>_buffer</find>
-      <find>write</find>
-      <find>.wr</find>
-      <find>copy_inclu</find>
-      <find>conf</find>
-      <find>_copy_includes</find>
-      <find>main</find>
-      <find>git</find>
-      <find>update</find>
-      <find>includ</find>
-      <find>data['lang']</find>
-      <find>verdict</find>
-      <find>probid</find>
-      <find>runid</find>
-      <find>end</find>
-      <find>tid</find>
-      <find>index</find>
-      <find>copy_at</find>
-      <find>emit</find>
-      <find>copy_at_sta</find>
-      <find>report</find>
-      <find>input</find>
-      <find>7</find>
-      <find>compile</find>
-      <find>print</find>
-      <find>time-</find>
-      <find>shutil.rm</find>
-      <find>shutil</find>
-      <find>_gen</find>
+      <find>kitConnectRabbitMQ</find>
+      <find>timer</find>
+      <find>self.__connection</find>
+      <find>channel</find>
+      <find>rabbitMQ</find>
+      <find>connection lost, trying to re-connect...</find>
+      <find>RabbitMQ connected.</find>
+      <find>kitConsumer</find>
+      <find>channel created.</find>
+      <find>selectBLo</find>
+      <find>start</find>
+      <find>connector</find>
+      <find>connection lost, waiting to reconnect in 5 second(s)...</find>
+      <find>Too Many Missed Heartbeats,</find>
+      <find>Too Many Missed Heartbeats</find>
+      <find>BlockingChannel</find>
+      <find>HeartbeatChecker</find>
+      <find>stop_consuming</find>
+      <find>_on_disconnect</find>
+      <find>_STALE_CONNECTION</find>
+      <find>_flush_output</find>
+      <find>SelectConnec</find>
+      <find>basic</find>
+      <find>basic_ack</find>
+      <find>connection</find>
+      <find>kitGetRabbitMQChannel</find>
+      <find>move_jud</find>
+      <find>stat.</find>
+      <find>stat</find>
+      <find>chmod</find>
     </findStrings>
     <replaceStrings>
       <replace>None</replace>
@@ -162,10 +199,11 @@
         <option value="$PROJECT_DIR$/strategy/strategy.py" />
         <option value="$PROJECT_DIR$/strategy/dshomework.py" />
         <option value="$PROJECT_DIR$/strategy/DefaultStrategy.py" />
-        <option value="$PROJECT_DIR$/judger.py" />
         <option value="$PROJECT_DIR$/../deamon/deamon.py" />
-        <option value="$PROJECT_DIR$/Strategy/Strategy.py" />
         <option value="$PROJECT_DIR$/Strategy/DefaultStrategy.py" />
+        <option value="$PROJECT_DIR$/judger.py" />
+        <option value="$PROJECT_DIR$/Strategy/OIStrategy.py" />
+        <option value="$PROJECT_DIR$/Strategy/Strategy.py" />
       </list>
     </option>
   </component>
@@ -219,10 +257,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="judger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="judger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Strategy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -410,25 +462,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1537" height="912" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2495114" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26393554" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296417" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.050369374" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277635" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958803" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -450,12 +503,64 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Strategy/Strategy.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="16" column="17" lean-forward="false" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Strategy/DefaultStrategy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1746">
+          <caret line="103" column="20" lean-forward="false" selection-start-line="103" selection-start-column="20" selection-end-line="103" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../deamon/deamon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1062">
+          <caret line="66" column="32" lean-forward="false" selection-start-line="66" selection-start-column="32" selection-end-line="66" selection-end-column="32" />
+          <folding>
+            <marker date="1499535003870" expanded="true" signature="465:596" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="638:862" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="931:1375" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="1418:1748" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="1802:4173" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2048:3840" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2150:3134" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2188:2556" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2221:2554" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="2574:2879" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2607:2877" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="2908:2980" ph="UPDATE KitPr... " />
+            <marker date="1499535003870" expanded="true" signature="3148:3726" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3186:3422" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3219:3420" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3440:3634" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3473:3632" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3565:3632" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3867:4070" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3952:4038" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="4202:4448" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Strategy/Strategy.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4356">
           <caret line="242" column="50" lean-forward="false" selection-start-line="242" selection-start-column="50" selection-end-line="242" selection-end-column="50" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <marker date="1498713615948" expanded="true" signature="5959:6018" ph="UPDATE KitSt... " />
-            <marker date="1498713615948" expanded="true" signature="6636:6736" ph="UPDATE KitSt... " />
           </folding>
         </state>
       </provider>
@@ -465,21 +570,27 @@
         <state relative-caret-position="1062">
           <caret line="66" column="32" lean-forward="false" selection-start-line="66" selection-start-column="32" selection-end-line="66" selection-end-column="32" />
           <folding>
-            <element signature="e#0#16#0" expanded="true" />
-            <marker date="1498659036000" expanded="true" signature="383:514" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="556:780" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="849:1293" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1336:1666" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1720:3304" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1966:2971" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2068:2582" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2097:2325" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="2356:2428" ph="UPDATE KitPr... " />
-            <marker date="1498659036000" expanded="true" signature="2596:2857" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2625:2763" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="2998:3201" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="3083:3169" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="3333:3559" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="465:596" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="638:862" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="931:1375" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="1418:1748" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="1802:4173" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2048:3840" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2150:3134" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2188:2556" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2221:2554" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="2574:2879" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2607:2877" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="2908:2980" ph="UPDATE KitPr... " />
+            <marker date="1499535003870" expanded="true" signature="3148:3726" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3186:3422" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3219:3420" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3440:3634" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3473:3632" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3565:3632" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3867:4070" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3952:4038" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="4202:4448" ph="..." />
           </folding>
         </state>
       </provider>
@@ -488,7 +599,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1890">
           <caret line="105" column="49" lean-forward="false" selection-start-line="105" selection-start-column="49" selection-end-line="105" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -496,7 +606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -506,8 +615,6 @@
           <caret line="192" column="31" lean-forward="false" selection-start-line="192" selection-start-column="26" selection-end-line="192" selection-end-column="31" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <marker date="1498713615948" expanded="true" signature="5959:6018" ph="UPDATE KitSt... " />
-            <marker date="1498713615948" expanded="true" signature="6636:6736" ph="UPDATE KitSt... " />
           </folding>
         </state>
       </provider>
@@ -516,7 +623,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="22" column="98" lean-forward="false" selection-start-line="22" selection-start-column="98" selection-end-line="22" selection-end-column="98" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -525,21 +631,27 @@
         <state relative-caret-position="1224">
           <caret line="75" column="30" lean-forward="false" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
           <folding>
-            <element signature="e#0#16#0" expanded="true" />
-            <marker date="1498659036000" expanded="true" signature="383:514" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="556:780" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="849:1293" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1336:1666" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1720:3304" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1966:2971" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2068:2582" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2097:2325" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="2356:2428" ph="UPDATE KitPr... " />
-            <marker date="1498659036000" expanded="true" signature="2596:2857" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2625:2763" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="2998:3201" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="3083:3169" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="3333:3559" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="465:596" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="638:862" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="931:1375" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="1418:1748" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="1802:4173" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2048:3840" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2150:3134" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2188:2556" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2221:2554" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="2574:2879" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2607:2877" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="2908:2980" ph="UPDATE KitPr... " />
+            <marker date="1499535003870" expanded="true" signature="3148:3726" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3186:3422" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3219:3420" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3440:3634" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3473:3632" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3565:3632" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3867:4070" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3952:4038" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="4202:4448" ph="..." />
           </folding>
         </state>
       </provider>
@@ -548,7 +660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="41" column="37" lean-forward="false" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -558,8 +669,6 @@
           <caret line="132" column="31" lean-forward="false" selection-start-line="132" selection-start-column="31" selection-end-line="132" selection-end-column="31" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <marker date="1498713615948" expanded="true" signature="5959:6018" ph="UPDATE KitSt... " />
-            <marker date="1498713615948" expanded="true" signature="6636:6736" ph="UPDATE KitSt... " />
           </folding>
         </state>
       </provider>
@@ -568,7 +677,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
           <caret line="59" column="20" lean-forward="false" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -577,21 +685,27 @@
         <state relative-caret-position="1170">
           <caret line="72" column="96" lean-forward="false" selection-start-line="72" selection-start-column="96" selection-end-line="72" selection-end-column="96" />
           <folding>
-            <element signature="e#0#16#0" expanded="true" />
-            <marker date="1498659036000" expanded="true" signature="383:514" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="556:780" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="849:1293" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1336:1666" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1720:3304" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1966:2971" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2068:2582" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2097:2325" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="2356:2428" ph="UPDATE KitPr... " />
-            <marker date="1498659036000" expanded="true" signature="2596:2857" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2625:2763" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="2998:3201" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="3083:3169" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="3333:3559" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="465:596" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="638:862" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="931:1375" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="1418:1748" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="1802:4173" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2048:3840" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2150:3134" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2188:2556" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2221:2554" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="2574:2879" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2607:2877" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="2908:2980" ph="UPDATE KitPr... " />
+            <marker date="1499535003870" expanded="true" signature="3148:3726" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3186:3422" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3219:3420" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3440:3634" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3473:3632" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3565:3632" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3867:4070" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3952:4038" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="4202:4448" ph="..." />
           </folding>
         </state>
       </provider>
@@ -600,7 +714,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
           <caret line="42" column="21" lean-forward="false" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -608,7 +721,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
           <caret line="59" column="123" lean-forward="false" selection-start-line="59" selection-start-column="123" selection-end-line="59" selection-end-column="123" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -617,21 +729,27 @@
         <state relative-caret-position="1152">
           <caret line="71" column="93" lean-forward="false" selection-start-line="71" selection-start-column="93" selection-end-line="71" selection-end-column="93" />
           <folding>
-            <element signature="e#0#16#0" expanded="true" />
-            <marker date="1498659036000" expanded="true" signature="383:514" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="556:780" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="849:1293" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1336:1666" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1720:3304" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1966:2971" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2068:2582" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2097:2325" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="2356:2428" ph="UPDATE KitPr... " />
-            <marker date="1498659036000" expanded="true" signature="2596:2857" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2625:2763" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="2998:3201" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="3083:3169" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="3333:3559" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="465:596" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="638:862" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="931:1375" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="1418:1748" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="1802:4173" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2048:3840" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2150:3134" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2188:2556" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2221:2554" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="2574:2879" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2607:2877" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="2908:2980" ph="UPDATE KitPr... " />
+            <marker date="1499535003870" expanded="true" signature="3148:3726" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3186:3422" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3219:3420" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3440:3634" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3473:3632" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3565:3632" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3867:4070" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3952:4038" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="4202:4448" ph="..." />
           </folding>
         </state>
       </provider>
@@ -642,8 +760,6 @@
           <caret line="179" column="24" lean-forward="true" selection-start-line="179" selection-start-column="24" selection-end-line="179" selection-end-column="24" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <marker date="1498713615948" expanded="true" signature="5959:6018" ph="UPDATE KitSt... " />
-            <marker date="1498713615948" expanded="true" signature="6636:6736" ph="UPDATE KitSt... " />
           </folding>
         </state>
       </provider>
@@ -652,7 +768,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
           <caret line="42" column="21" lean-forward="false" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -660,7 +775,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="684">
           <caret line="42" column="51" lean-forward="false" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -669,21 +783,27 @@
         <state relative-caret-position="990">
           <caret line="60" column="4" lean-forward="false" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
           <folding>
-            <element signature="e#0#16#0" expanded="true" />
-            <marker date="1498659036000" expanded="true" signature="383:514" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="556:780" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="849:1293" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1336:1666" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1720:3304" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1966:2971" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2068:2582" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2097:2325" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="2356:2428" ph="UPDATE KitPr... " />
-            <marker date="1498659036000" expanded="true" signature="2596:2857" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2625:2763" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="2998:3201" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="3083:3169" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="3333:3559" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="465:596" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="638:862" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="931:1375" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="1418:1748" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="1802:4173" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2048:3840" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2150:3134" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2188:2556" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2221:2554" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="2574:2879" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2607:2877" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="2908:2980" ph="UPDATE KitPr... " />
+            <marker date="1499535003870" expanded="true" signature="3148:3726" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3186:3422" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3219:3420" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3440:3634" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3473:3632" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3565:3632" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3867:4070" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3952:4038" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="4202:4448" ph="..." />
           </folding>
         </state>
       </provider>
@@ -694,8 +814,6 @@
           <caret line="63" column="54" lean-forward="false" selection-start-line="63" selection-start-column="54" selection-end-line="63" selection-end-column="54" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <marker date="1498713615948" expanded="true" signature="5959:6018" ph="UPDATE KitSt... " />
-            <marker date="1498713615948" expanded="true" signature="6636:6736" ph="UPDATE KitSt... " />
           </folding>
         </state>
       </provider>
@@ -704,7 +822,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -714,8 +831,6 @@
           <caret line="147" column="21" lean-forward="false" selection-start-line="147" selection-start-column="21" selection-end-line="147" selection-end-column="21" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <marker date="1498713615948" expanded="true" signature="5959:6018" ph="UPDATE KitSt... " />
-            <marker date="1498713615948" expanded="true" signature="6636:6736" ph="UPDATE KitSt... " />
           </folding>
         </state>
       </provider>
@@ -724,7 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="19" column="105" lean-forward="false" selection-start-line="19" selection-start-column="105" selection-end-line="19" selection-end-column="105" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -734,8 +848,6 @@
           <caret line="122" column="18" lean-forward="false" selection-start-line="122" selection-start-column="18" selection-end-line="122" selection-end-column="18" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <marker date="1498713615948" expanded="true" signature="5959:6018" ph="UPDATE KitSt... " />
-            <marker date="1498713615948" expanded="true" signature="6636:6736" ph="UPDATE KitSt... " />
           </folding>
         </state>
       </provider>
@@ -744,21 +856,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="666">
           <caret line="41" column="61" lean-forward="false" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/strategy/dshomework.py" />
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/pika/adapters/blocking_connection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="433" column="68" lean-forward="false" selection-start-line="433" selection-start-column="49" selection-end-line="433" selection-end-column="68" />
-          <folding>
-            <element signature="e#660#701#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Strategy/sandbox/CMakeLists.txt" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/551ab67e-e20d-4510-a428-1cd102b62d5b/console.sql">
       <provider selected="true" editor-type-id="text-editor">
@@ -767,59 +868,160 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../deamon/deamon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1062">
-          <caret line="66" column="32" lean-forward="false" selection-start-line="66" selection-start-column="32" selection-end-line="66" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-            <marker date="1498659036000" expanded="true" signature="383:514" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="556:780" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="849:1293" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1336:1666" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1720:3304" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="1966:2971" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2068:2582" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2097:2325" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="2356:2428" ph="UPDATE KitPr... " />
-            <marker date="1498659036000" expanded="true" signature="2596:2857" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="2625:2763" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="2998:3201" ph="..." />
-            <marker date="1498659036000" expanded="true" signature="3083:3169" ph="UPDATE KitSt... " />
-            <marker date="1498659036000" expanded="true" signature="3333:3559" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tmp/35-1000-compile-2f311c48-5ad9-11e7-aad5-1002b50b4c17/code.cpp" />
     <entry file="file://$PROJECT_DIR$/tmp/35-1000-compile-2f311c48-5ad9-11e7-aad5-1002b50b4c17/error_compile.txt" />
     <entry file="file://$PROJECT_DIR$/tmp/35-1000-1-2f311c49-5ad9-11e7-aad5-1002b50b4c17/input.txt" />
     <entry file="file://$PROJECT_DIR$/tmp/35-1000-1-2f311c49-5ad9-11e7-aad5-1002b50b4c17/error.txt" />
+    <entry file="file:///usr/lib/python2.7/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="1036" column="4" lean-forward="false" selection-start-line="1036" selection-start-column="4" selection-end-line="1036" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/492df12c-d527-46b7-852d-910f306d6593/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/pika/adapters/twisted_connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="319" column="8" lean-forward="false" selection-start-line="319" selection-start-column="8" selection-end-line="319" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Strategy/DefaultStrategy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1746">
-          <caret line="103" column="20" lean-forward="false" selection-start-line="103" selection-start-column="20" selection-end-line="103" selection-end-column="20" />
+        <state relative-caret-position="72">
+          <caret line="10" column="50" lean-forward="false" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/eff7af7a/492df12c-d527-46b7-852d-910f306d6593/KitJudge.KitStatus">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/pika/heartbeat.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-486">
+          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/pika/adapters/base_connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="95" column="58" lean-forward="false" selection-start-line="95" selection-start-column="58" selection-end-line="95" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/pika/adapters/select_connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="45" column="28" lean-forward="false" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/pika/connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-30">
+          <caret line="1572" column="8" lean-forward="false" selection-start-line="1572" selection-start-column="8" selection-end-line="1572" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Strategy/Strategy.py">
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/pika/channel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="16" column="17" lean-forward="false" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        <state relative-caret-position="402">
+          <caret line="1149" column="30" lean-forward="false" selection-start-line="1149" selection-start-column="30" selection-end-line="1149" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/socketIO_client/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="343" column="8" lean-forward="false" selection-start-line="343" selection-start-column="8" selection-end-line="343" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/pika/adapters/blocking_connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27824">
+          <caret line="1787" column="31" lean-forward="false" selection-start-line="1787" selection-start-column="21" selection-end-line="1787" selection-end-column="31" />
           <folding>
-            <element signature="e#0#16#0" expanded="true" />
-            <marker date="1498713615948" expanded="true" signature="5959:6018" ph="UPDATE KitSt... " />
-            <marker date="1498713615948" expanded="true" signature="6636:6736" ph="UPDATE KitSt... " />
+            <element signature="e#660#701#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/judger.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="234">
+          <caret line="13" column="18" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Strategy/OIStrategy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1465">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../deamon/deamon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="70" column="37" lean-forward="false" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
+          <folding>
+            <marker date="1499535003870" expanded="true" signature="465:596" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="638:862" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="931:1375" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="1418:1748" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="1802:4173" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2048:3840" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2150:3134" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2188:2556" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2221:2554" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="2574:2879" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="2607:2877" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="2908:2980" ph="UPDATE KitPr... " />
+            <marker date="1499535003870" expanded="true" signature="3148:3726" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3186:3422" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3219:3420" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3440:3634" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3473:3632" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3565:3632" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="3867:4070" ph="..." />
+            <marker date="1499535003870" expanded="true" signature="3952:4038" ph="UPDATE KitSt... " />
+            <marker date="1499535003870" expanded="true" signature="4202:4448" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Strategy/Strategy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="692">
+          <caret line="77" column="56" lean-forward="false" selection-start-line="77" selection-start-column="56" selection-end-line="77" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+            <marker date="1499535003862" expanded="true" signature="6688:6747" ph="UPDATE KitSt... " />
+            <marker date="1499535003862" expanded="true" signature="7202:7302" ph="UPDATE KitSt... " />
+          </folding>
         </state>
       </provider>
     </entry>

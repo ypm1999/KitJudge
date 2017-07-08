@@ -10,9 +10,14 @@ class KitStatus extends CI_Model
 
     public function kitBoard($time, $contestId)
     {
-        $sql = "SELECT kitContestStart FROM KitContest WHERE kitContestId=$contestId";
-        $time = $time - strtotime($this->db->query($sql)->row()->kitContestStart);
-        $sql = "SELECT kitStatusId AS rid,kitStatusUser AS user,kitStatusContestTime AS rtime,kitStatusVerdict AS verdict,kitStatusContestTag AS tag,kitStatusTime as time FROM KitStatus WHERE kitStatusContestTime<=$time AND kitStatusContestId=$contestId";
+        $sql = "SELECT kitContestStart,kitContestType FROM KitContest WHERE kitContestId=$contestId";
+        $sql = $this->db->query($sql)->row();
+        $time = $time - strtotime($sql->kitContestStart);
+        if ($sql->kitContestType == 'ICPC') {
+            $sql = "SELECT kitStatusId AS rid,kitStatusUser AS user,kitStatusContestTime AS rtime,kitStatusVerdict AS verdict,kitStatusContestTag AS tag,kitStatusTime as time FROM KitStatus WHERE kitStatusContestTime<=$time AND kitStatusContestId=$contestId";
+        } else if ($sql->kitContestType == 'ICPC/OI') {
+            $sql = "SELECT kitStatusId AS rid,kitStatusUser AS user,kitStatusContestTime AS rtime,kitStatusVerdict AS verdict,kitStatusContestTag AS tag,kitStatusTime as time,kitStatusScore as score FROM KitStatus WHERE kitStatusContestTime<=$time AND kitStatusContestId=$contestId";
+        }
         return $this->db->query($sql)->result_array();
     }
 
