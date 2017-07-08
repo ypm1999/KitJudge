@@ -1,5 +1,6 @@
 from Strategy.DefaultStrategy import DefaultStrategy
 from Strategy.OIStrategy import OIStrategy
+from Strategy.Strategy import Strategy
 
 import pika
 import sys
@@ -7,6 +8,7 @@ import datetime
 import socketIO_client
 import json
 import time
+import traceback
 
 kitSocketHost = '**'
 kitSocketPort = **
@@ -44,38 +46,42 @@ def kitConnectRabbitMQ(host, port, username, password, heartbeat):
     kitConsole('RabbitMQ connected.')
     return connection
 
-def kitGetRabbitMQChannel(connection, queue_name):
+def kitGetRabbitMQChannel(connection, queue_name, consumer):
     kitConsole('creating RabbitMQ.Channel(queue={})'.format(queue_name))
     channel = connection.channel()
     channel.queue_declare(queue=queue_name, durable=True)
     channel.basic_qos(prefetch_count=1)
-    channel.basic_consume(kitConsumer, queue=queue_name)
+    channel.basic_consume(consumer, queue=queue_name)
     kitConsole('channel created.')
     return channel
 
-def kitTaskEnded(channel, method):
+def kitTaskEnded(method):
+    global rabbitMQChannel
+    global rabbitMQConnection
     kitConsole('telling server the task is processed...')
     while True:
         try:
-            channel.basic_ack(delivery_tag=method.delivery_tag)
+            if rabbitMQConnection.is_closed or rabbitMQChannel.is_closed:
+                raise Exception('closed connection')
+            rabbitMQChannel.basic_ack(delivery_tag=method.delivery_tag)
             kitConsole('told.')
             break
         except:
+            traceback.print_exc()
             kitConsole('failed to execute channel.basic_ack, trying to recreate channel...')
             while True:
                 try:
-                    channel = kitGetRabbitMQChannel(rabbitMQ, kitMQQueueName)
-                    kitConsole('channel recreated.')
+                    rabbitMQChannel = kitGetRabbitMQChannel(rabbitMQConnection, kitMQQueueName, kitConsumer)
                     break
                 except:
+                    traceback.print_exc()
                     kitConsole('failed to recreate channel, trying to reconnect server...')
                     while True:
                         try:
-                            global rabbitMQ
-                            rabbitMQ = kitMQConnector()
-                            kitConsole('server reconnected.')
+                            rabbitMQConnection = kitMQConnector()
                             break
                         except:
+                            traceback.print_exc()
                             kitConsole('failed to reconnect server, waiting to reconnect again in 5 second(s)...')
                             time.sleep(5)
 
@@ -83,16 +89,17 @@ def kitTaskEnded(channel, method):
 def kitConsumer(channel, method, properites, body):
     data = json.loads(body)
     if data['type'] == 'default':
-        strategy = DefaultStrategy(socket, rabbitMQ, kitConsole, kitMQConnector)
+        DefaultStrategy(socket, rabbitMQConnection, kitConsole).process(data)
     elif data['type'] == 'OI':
-        strategy = OIStrategy(socket, rabbitMQ, kitConsole, kitMQConnector)
+        OIStrategy(socket, rabbitMQConnection, kitConsole).process(data)
     else:
-        strategy = None
-    if strategy is not None:
-        strategy.start(period=20.0)
-        strategy.process(data)
-        strategy.end()
-    kitTaskEnded(channel, method)
+        Strategy(socket, rabbitMQConnection, kitConsole).process(data)
+    kitTaskEnded(method)
+
+
+def kitErrorConsumer(channel, method, properites, body):
+    kitTaskEnded(method)
+    channel.stop_consuming()
 
 
 def kitMQConnector():
@@ -103,7 +110,24 @@ def kitSocketConnector():
     return kitConnectSocket(kitSocketHost, kitSocketPort, {'author': 'judger'})
 
 if __name__ == '__main__':
+    global rabbitMQChannel
+    global rabbitMQConnection
     socket = kitSocketConnector()
-    rabbitMQ = kitMQConnector()
-    channel = kitGetRabbitMQChannel(rabbitMQ, kitMQQueueName)
-    channel.start_consuming()
+    while True:
+        failed_last_time = False
+        try:
+            rabbitMQConnection = kitMQConnector()
+            if not failed_last_time:
+                rabbitMQChannel = kitGetRabbitMQChannel(rabbitMQConnection, kitMQQueueName, kitConsumer)
+                rabbitMQChannel.start_consuming()
+            else:
+                rabbitMQChannel = kitGetRabbitMQChannel(rabbitMQConnection, kitMQQueueName, kitErrorConsumer)
+                rabbitMQChannel.start_consuming()
+                rabbitMQChannel = kitGetRabbitMQChannel(rabbitMQConnection, kitMQQueueName, kitConsumer)
+                rabbitMQChannel.start_consuming()
+                failed_last_time = False
+        except Exception as e:
+            failed_last_time = True
+            kitConsole('connection lost, waiting to reconnect in 5 second(s)...')
+            traceback.print_exc()
+            time.sleep(5)

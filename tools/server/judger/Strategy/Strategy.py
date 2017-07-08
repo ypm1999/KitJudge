@@ -29,12 +29,11 @@ kitDBName = '**'
 
 
 class Strategy:
-    def __init__(self, socket, connection, console, connector):
+    def __init__(self, socket, connection, console):
         self.__last_emit_case = 0
         self.__connection = connection
         self.__socket = socket
         self.__console = console
-        self.__connector = connector
         self._buffer = {}
 
     @staticmethod
@@ -139,15 +138,33 @@ class Strategy:
         self._console('running command ' + command)
         return commands.getoutput(command).split('\n')
 
+    def __database_execute(self, sql):
+        while True:
+            try:
+                connection = MySQLdb.connect(kitDBHost, kitDBUsername, kitDBPassword, kitDBName)
+                connection.cursor().execute(sql)
+                connection.commit()
+                connection.close()
+                break
+            except:
+                self._console('cannot connect to database, waiting to reconnect in 5 second(s)')
+                time.sleep(5)
+
+    def __socket_emit(self, message):
+        while True:
+            try:
+                self.__socket.emit('pub', message)
+                break
+            except:
+                self._console('cannot connect to socket, waiting to reconnect in 5 second(s)')
+                time.sleep(5)
+
     def _emit_case(self, case):
         if case == 'RESET':
             self.__last_emit_case = 0
         if case == 'COMPILING':
-            connection = MySQLdb.connect(kitDBHost, kitDBUsername, kitDBPassword, kitDBName)
-            connection.cursor().execute("UPDATE KitStatus SET kitStatusVerdict=12 WHERE kitStatusId=" + str(self._kitRunId))
-            connection.commit()
-            connection.close()
-            self.__socket.emit('pub', {'runid': self._kitRunId, 'case': 'COMPILING'})
+            self.__database_execute("UPDATE KitStatus SET kitStatusVerdict=12 WHERE kitStatusId=" + str(self._kitRunId))
+            self.__socket_emit({'runid': self._kitRunId, 'case': 'COMPILING'})
             return
         if self.__last_emit_case == 0:
             self.__last_emit_stamp = time.time()
@@ -156,11 +173,8 @@ class Strategy:
             if now_time - self.__last_emit_stamp <= 3.0 or case - self.__last_emit_case < 5:
                 return
             self.__last_emit_stamp = now_time
-        connection = MySQLdb.connect(kitDBHost, kitDBUsername, kitDBPassword, kitDBName)
-        connection.cursor().execute("UPDATE KitStatus SET kitStatusVerdict=9,kitStatusExtraMessage='" + str(case) + "' WHERE kitStatusId=" + str(self._kitRunId))
-        connection.commit()
-        connection.close()
-        self.__socket.emit('pub', {'runid': self._kitRunId, 'case': case})
+        self.__database_execute("UPDATE KitStatus SET kitStatusVerdict=9,kitStatusExtraMessage='" + str(case) + "' WHERE kitStatusId=" + str(self._kitRunId))
+        self.__socket_emit({'runid': self._kitRunId, 'case': case})
         self.__last_emit_case = case
 
     def _consume(self, data):
@@ -238,32 +252,6 @@ class Strategy:
         self._buffer.setdefault('user', data['user'])
         self.__send_report()
         self.__console('Data consumed.')
-
-    def __periodACK(self, period):
-        self.__timer = Timer(period, self.__periodACK, [period])
-        self.__timer.daemon = True
-        while True:
-            try:
-                self.__connection.process_data_events()
-                self.__console('client has processed an heart beat with server.')
-                break
-            except:
-                self.__console('connection lost, trying to re-connect...')
-                while True:
-                    try:
-                        self.__connection = self.__connector()
-                        break
-                    except:
-                        self.__console('failed to connect with server, retried in 5 seconds.')
-                        time.sleep(5)
-                self.__console('re-connected.')
-        self.__timer.start()
-
-    def start(self, period):
-        self.__periodACK(period)
-
-    def end(self):
-        self.__timer.cancel()
 
     def __send_report(self):
         while True:

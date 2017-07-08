@@ -8,8 +8,8 @@ import stat
 
 
 class DefaultStrategy(Strategy):
-    def __init__(self, socket, connection, console, connector):
-        Strategy.__init__(self, socket, connection, console, connector)
+    def __init__(self, socket, connection, console):
+        Strategy.__init__(self, socket, connection, console)
 
     def _consume(self, data):
         try:

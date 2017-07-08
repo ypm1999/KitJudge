@@ -8,8 +8,8 @@ import stat
 
 
 class OIStrategy(Strategy):
-    def __init__(self, socket, connection, console, connector):
-        Strategy.__init__(self, socket, connection, console, connector)
+    def __init__(self, socket, connection, console):
+        Strategy.__init__(self, socket, connection, console)
 
     def _consume(self, data):
         try:
@@ -68,7 +68,7 @@ class OIStrategy(Strategy):
                         self._buffer.setdefault('report-' + str(case_id), result[2])
                     if runcode != 0:
                         self._buffer.setdefault('verdict', runcode)
-                        return
+                        continue
                     self._move_judger(case_id, test['judger'], run_path)
                     os.chmod(run_path + '/__judger', stat.S_IXUSR)
                     result = self._execute(runcmd='./__judger ' + test['stdout'] + ' ' + test['output'],

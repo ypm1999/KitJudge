@@ -100,5 +100,5 @@ def kitConsumer(channel, method, properites, body):
 
 if __name__ == '__main__':
     socket = kitConnectSocket(kitSocketHost, kitSocketPort, {'author': 'judger'})
-    rabbitMQ = kitConnectRabbitMQ(kitMQHost, kitMQPort, kitMQUsername, kitMQPassword, kitMQHeartBeat)
-    kitMQListen(rabbitMQ, kitMQQueueName)
+    rabbitMQConnection = kitConnectRabbitMQ(kitMQHost, kitMQPort, kitMQUsername, kitMQPassword, kitMQHeartBeat)
+    kitMQListen(rabbitMQConnection, kitMQQueueName)
