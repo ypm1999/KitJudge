@@ -11,6 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <tr>
             <th>#</th>
             <th>Name</th>
+            <th>Type</th>
             <th>Source</th>
             <th>Start</th>
             <th>End</th>
@@ -24,12 +25,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <tbody>
         <?php foreach ($kitContests->result() as $contest) { ?>
             <tr>
-                <td class="col-md-1"><a
-                            href="<?= $kitBasePath ?>/contests/show/<?= $contest->kitContestId ?>"><?= $contest->kitContestId ?></a>
-                </td>
-                <td class="col-md-2"><a
-                            href="<?= $kitBasePath ?>/contests/show/<?= $contest->kitContestId ?>"><?= $contest->kitContestName ?></a>
-                </td>
+                <td class="col-md-1"><a href="<?= $kitBasePath ?>/contests/show/<?= $contest->kitContestId ?>"><?= $contest->kitContestId ?></a></td>
+                <td class="col-md-2"><a href="<?= $kitBasePath ?>/contests/show/<?= $contest->kitContestId ?>"><?= $contest->kitContestName ?></a></td>
+                <td class="col-md-1"><?= $contest->kitContestType ?></td>
                 <td class="col-md-2"><?= $contest->kitContestSource ?></td>
                 <td class="col-md-2"><?= $contest->kitContestStart ?></td>
                 <td class="col-md-2"><?= date('Y-m-d H:i:s', strtotime($contest->kitContestStart) + $contest->kitContestDuration) ?></td>

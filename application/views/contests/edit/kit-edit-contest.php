@@ -20,6 +20,14 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-sm-2 control-label">Type</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="kit-edit-contest-type"
+                           placeholder="Enter contest title here"
+                           value="<?= isset($kitContest) ? $kitContest['kitContestType'] : '' ?>">
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-sm-2 control-label"></label>
                 <div class="col-sm-1">
                     <?php if (!isset($kitContest) || $kitContest['kitContestHidden']) { ?>
@@ -72,6 +80,7 @@
                 e.preventDefault();
                 var data = "session=<?=$kitSessionId?><?=isset($kitContest) ? '&contest=' . $kitContest['kitContestId'] : ''?>&title="
                     + encodeURIComponent($('#kit-edit-contest-title').val())
+                    + "&type=" + encodeURIComponent($('#kit-edit-contest-type'))
                     + "&source=" + encodeURIComponent($('#kit-edit-contest-source').val())
                     + "&start=" + encodeURIComponent($('#kit-edit-contest-start').val())
                     + "&duration=" + encodeURIComponent($('#kit-edit-contest-duration').val());
