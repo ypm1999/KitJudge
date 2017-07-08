@@ -310,6 +310,9 @@ class Contests extends CI_Controller
             if (empty($result) || $data == null) {
                 show_404();
             }
+            if (time() < strtotime($result->kitContestStart)) {
+                show_404();
+            }
             $this->load->model('KitContestProblem');
             $probdata = $this->KitContestProblem->kitGetProblemByContestId($contestId, $data);
             if (empty($probdata->result_array())) {
