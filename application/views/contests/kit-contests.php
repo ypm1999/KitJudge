@@ -3,14 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div class="container">
     <?php if (isset($_SESSION['kitUser']) && $_SESSION['kitUser']['priority'] >= 2) { ?>
-        <a href="<?= $kitBasePath ?>/contests/edit" class="btn btn-success btn-sm"><span
-                    class="glyphicon glyphicon-plus"></span></a>
+        <a href="<?= $kitBasePath ?>/contests/edit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a>
     <?php } ?>
     <table class="table table-hover">
         <thead>
         <tr>
             <th>#</th>
             <th>Name</th>
+            <th>Type</th>
             <th>Source</th>
             <th>Start</th>
             <th>End</th>
@@ -30,6 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <td class="col-md-2"><a
                             href="<?= $kitBasePath ?>/contests/show/<?= $contest->kitContestId ?>"><?= $contest->kitContestName ?></a>
                 </td>
+                <td class="col-md-2"><?= $contest->kitContestType ?></td>
                 <td class="col-md-2"><?= $contest->kitContestSource ?></td>
                 <td class="col-md-2"><?= $contest->kitContestStart ?></td>
                 <td class="col-md-2"><?= date('Y-m-d H:i:s', strtotime($contest->kitContestStart) + $contest->kitContestDuration) ?></td>

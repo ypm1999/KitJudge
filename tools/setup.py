@@ -35,6 +35,7 @@ def kitInitDBContest(cursor):
 		"CREATE TABLE `KitJudge`.`KitContest` (\
 		  `kitContestId` INT NOT NULL AUTO_INCREMENT,\
 		  `kitContestName` VARCHAR(64) NULL,\
+		  `kitContestType` VARCHAR(64) NULL,\
 		  `kitContestSource` VARCHAR(64) NULL,\
 		  `kitContestStart` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\
 		  `kitContestDuration` INT NOT NULL,\
