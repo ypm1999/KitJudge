@@ -7,7 +7,8 @@ class Contests extends CI_Controller
     {
         if (!isset($_POST) || !isset($_POST['title']) || !isset($_POST['start'])
             || !isset($_POST['source']) || !isset($_POST['hidden'])
-            || !isset($_POST['duration']) || !isset($_POST['session'])
+            || !isset($_POST['type']) || !isset($_POST['duration'])
+            || !isset($_POST['session'])
         ) {
             exit(json_encode(array(
                 'verdict' => false,
@@ -33,7 +34,7 @@ class Contests extends CI_Controller
         $this->load->database(KitInfo::$kitInfo['kitDatabase']);
         $isHidden = ($_POST['hidden'] == '1');
         if (!isset($_POST['contest'])) {
-            if (($contestId = $this->KitContest->kitInsertContest($_POST['title'], $_POST['source'], $_POST['start'], $_POST['duration'], $isHidden)) < 0) {
+            if (($contestId = $this->KitContest->kitInsertContest($_POST['title'], $_POST['source'], $_POST['start'], $_POST['duration'], $_POST['type'], $isHidden)) < 0) {
                 exit(json_encode(array(
                     'verdict' => false,
                     'message' => 'Cannot insert such contest.'
@@ -47,7 +48,7 @@ class Contests extends CI_Controller
                     'message' => 'Invalid request.'
                 )));
             }
-            $this->KitContest->kitUpdateContest($contestId, $_POST['title'], $_POST['source'], $_POST['start'], $_POST['duration'], $isHidden);
+            $this->KitContest->kitUpdateContest($contestId, $_POST['title'], $_POST['source'], $_POST['start'], $_POST['duration'], $_POST['type'], $isHidden);
         }
         echo json_encode(array('verdict' => true));
     }
