@@ -123,7 +123,7 @@
             <tr style="height: 1cm">
                 <th style="width: 5%"></th>
                 <th><strong>User</strong></th>
-                <?php $width = 1.0 * (100 - 26) / count($kitProbTags);?>
+                <?php $width = max(9, 1.0 * (100 - 26) / (count($kitProbTags) + 1));?>
                 <?php foreach ($kitProbTags as $tag) { ?>
                     <th style="width: <?=$width?>%"><strong><?= $tag ?></strong></th>
                 <?php } ?>
