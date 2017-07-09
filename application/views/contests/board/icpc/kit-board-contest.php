@@ -123,11 +123,12 @@
             <tr style="height: 1cm">
                 <th style="width: 5%"></th>
                 <th><strong>User</strong></th>
+                <?php $width = 1.0 * (100 - 26) / count($kitProbTags);?>
                 <?php foreach ($kitProbTags as $tag) { ?>
-                    <th style="width: 9%"><strong><?= $tag ?></strong></th>
+                    <th style="width: <?=$width?>%"><strong><?= $tag ?></strong></th>
                 <?php } ?>
-                <th style="width: 8%"><strong>Total</strong></th>
-                <th style="width: 8%"><strong>Penalty</strong></th>
+                <th style="width: 7%"><strong>Total</strong></th>
+                <th style="width: 7%"><strong>Penalty</strong></th>
             </tr>
             </thead>
             <tbody id="kit-board-tbody" valign="middle" style="font-size: 120%">
