@@ -248,7 +248,7 @@
                         } else {
                             tbHTML = tbHTML + performance[1]['probinf']['<?=$tag?>']['submission'];
                         }
-                        tbHTML = tbHTML + '<br />' + toString(performance[1]['probinf']['<?=$tag?>']['score']);
+                        tbHTML = tbHTML + '<br />' + performance[1]['probinf']['<?=$tag?>']['score'].toString();
                         tbHTML = tbHTML + '</td>';
                     } else {
                         tbHTML = tbHTML + '<td class="kit-cell-0"></td>';
