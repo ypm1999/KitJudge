@@ -68,7 +68,7 @@ class OIStrategy(Strategy):
                         continue
                     self._move_judger(case_id, test['judger'], run_path)
                     open(run_path + '/score.in', 'w').write(str(test['score']))
-                    result = self._execute(runcmd='./__judger ' + test['stdout'] + ' ' + test['output'] + ' score.in score.out',
+                    result = self._execute(runcmd='./__judger ' + test['input'] + ' ' + test['stdout'] + ' ' + test['output'] + ' score.in score.out',
                                            sout="__judge.out",
                                            work_path=run_path,
                                            tl=10,

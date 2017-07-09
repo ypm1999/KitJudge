@@ -38,8 +38,8 @@ long getFileSize(FILE *stream, int exitcode) {
 }
 
 double getScore(int argc, char **argv, int exitcode)  {
-	if (argc == 5) {
-		FILE *inscr = fopen(argv[3], "r");
+	if (argc == 6) {
+		FILE *inscr = fopen(argv[4], "r");
 		if (!inscr) {
 			throw SPJException("Failed to read the score file.", exitcode);
 		}
@@ -52,8 +52,8 @@ double getScore(int argc, char **argv, int exitcode)  {
 }
 
 void putScore(int argc, char **argv, double score, int exitcode) {
-	if (argc == 5) {
-		FILE *ouscr = fopen(argv[4], "w");
+	if (argc == 6) {
+		FILE *ouscr = fopen(argv[5], "w");
 		if (!ouscr) {
 			throw SPJException("Failed to write the score file.", exitcode);
 		}
