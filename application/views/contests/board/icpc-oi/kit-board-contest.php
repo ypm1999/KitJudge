@@ -200,6 +200,7 @@
                             }
                         }
                         performances[user]['score'] += maxscore;
+                        performances[user]['probinf'][tag]['score'] = maxscore;
                         if (actime !== undefined) {
                             performances[user]['penalty'] += actime;
                             for (var submission in performances[user]['probinf'][tag]['inf']) {
@@ -247,6 +248,7 @@
                         } else {
                             tbHTML = tbHTML + performance[1]['probinf']['<?=$tag?>']['submission'];
                         }
+                        tbHTML = tbHTML + '<br />' + toString(performance[1]['probinf']['<?=$tag?>']['score']);
                         tbHTML = tbHTML + '</td>';
                     } else {
                         tbHTML = tbHTML + '<td class="kit-cell-0"></td>';
