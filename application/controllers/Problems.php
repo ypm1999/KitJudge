@@ -396,7 +396,7 @@ class Problems extends CI_Controller
             exit('Invalid request');
         }
         $this->load->database(KitInfo::$kitInfo['kitDatabase']);
-        $message = $this->isProblemIdValid($problemId);
+        $message = $this->isProblemIdValid($problemId, $_SESSION['kitUser']['priority']);
         if ($message != null) {
             exit($message);
         } else if (!isset($_GET) || !isset($_GET['url']) || !$this->isUrlValid($_GET['url'])) {
@@ -493,7 +493,7 @@ class Problems extends CI_Controller
         $this->load->library('KitInfo');
         $this->load->model('KitProblem');
         $this->load->database(KitInfo::$kitInfo['kitDatabase']);
-        $message = $this->isProblemIdValid($problemId);
+        $message = $this->isProblemIdValid($problemId, $_SESSION['kitUser']['priority']);
         if ($message != null) {
             exit(json_encode(array(
                 'verdict' => false,
