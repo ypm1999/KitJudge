@@ -58,7 +58,7 @@
                                 $LAB.script('<?=$kitBasePath?>/utility/js/markdown.min.js')
                                     .wait(function () {
                                         var text = $('#mod-<?=$key?>').html();
-                                        text = text.replace(/\[\$PATH]/g, "<?=$kitBasePath?>/problems/file/<?=$kitProblem->kitProbId?>")
+                                        text = text.replace(/\[\$PATH]/g, "<?=$kitBasePath?>/files/probfile/<?=$kitProblem->kitProbId?>")
                                             .replace(/_/g, "\\_")
                                             .replace(/{/g, "\\{")
                                             .replace(/}/g, "\\}");
