@@ -581,7 +581,7 @@ class Problems extends CI_Controller
                             exit(json_encode(array()));
                         }
                     } else {
-                        if (!move_uploaded_file($_FILES['file_data']['tmp_name'], "files/probfile/$problemId" . $_POST['url'] . '/' . $_FILES['file_data']['name'])) {
+                        if (!move_uploaded_file($_FILES['file_data']['tmp_name'], "files/probfile/$problemId" . $_POST['url'])) {
                             exit(json_encode(array('error' => 'Cannot move the uploaded file')));
                         } else if (!KitFile:: kitCommitChange()) {
                             exit(json_encode(array('error' => 'Commitment failed')));
