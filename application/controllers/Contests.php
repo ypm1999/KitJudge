@@ -452,9 +452,30 @@ class Contests extends CI_Controller
         session_start();
         session_write_close();
         $problemId = $probdata->row()->kitProbId;
-        if (!$this->isProblemIdValid($problemId, isset($_SESSION['kitUser']) ? $_SESSION['kitUser']['priority'] : 0)) {
-            show_404();
+        $message = $this->isProblemIdValid($problemId, $_SESSION['kitUser']['priority']);
+        if ($message != null) {
+            exit($message);
+        } else {
+            $array = $this->uri->segment_array();
+            array_shift($array);
+            array_shift($array);
+            array_shift($array);
+            array_shift($array);
+            $url = join('/', $array);
+            if (!$this->isUrlValid($url) || !file_exists("files/probfile/$problemId/share/" . $url)) {
+                exit('Invalid request');
+            } else {
+                $handle = fopen("files/probfile/$problemId/" . $url, "r") or exit("Invalid request");
+                header('Content-Type:application/octet-stream');
+                header('Content-Disposition: attachment; filename="' . pathinfo("files/probfile/$problemId/share/" . $url)['basename'] . '"');
+                if ($handle) {
+                    while (!feof($handle)) {
+                        $buffer = fgets($handle, 1048576);
+                        echo $buffer;
+                    }
+                    fclose($handle);
+                }
+            }
         }
-        print_r($this->uri->total_segments());
     }
 }

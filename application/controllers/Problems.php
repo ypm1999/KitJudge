@@ -607,21 +607,27 @@ class Problems extends CI_Controller
         session_write_close();
         $this->load->database(KitInfo::$kitInfo['kitDatabase']);
         $message = $this->isProblemIdValid($problemId, $_SESSION['kitUser']['priority']);
-        $url = join('/', array_shift(array_shift($this->uri->segment_array())));
         if ($message != null) {
             exit($message);
-        } else if (!$this->isUrlValid($url) || !file_exists("files/probfile/$problemId/" . $url)) {
-            exit('Invalid request');
         } else {
-            $handle = fopen("files/probfile/$problemId/" . $url, "r") or exit("Invalid request");
-            header('Content-Type:application/octet-stream');
-            header('Content-Disposition: attachment; filename="' . pathinfo("files/probfile/$problemId/share/" . $url)['basename'] . '"');
-            if ($handle) {
-                while (!feof($handle)) {
-                    $buffer = fgets($handle, 1048576);
-                    echo $buffer;
+            $array = $this->uri->segment_array();
+            array_shift($array);
+            array_shift($array);
+            array_shift($array);
+            $url = join('/', $array);
+            if (!$this->isUrlValid($url) || !file_exists("files/probfile/$problemId/share/" . $url)) {
+                exit('Invalid request');
+            } else {
+                $handle = fopen("files/probfile/$problemId/" . $url, "r") or exit("Invalid request");
+                header('Content-Type:application/octet-stream');
+                header('Content-Disposition: attachment; filename="' . pathinfo("files/probfile/$problemId/share/" . $url)['basename'] . '"');
+                if ($handle) {
+                    while (!feof($handle)) {
+                        $buffer = fgets($handle, 1048576);
+                        echo $buffer;
+                    }
+                    fclose($handle);
                 }
-                fclose($handle);
             }
         }
     }
