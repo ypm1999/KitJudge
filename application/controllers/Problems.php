@@ -572,7 +572,7 @@ class Problems extends CI_Controller
         } else {
             if (file_exists("files/probfile/$problemId" . $_POST['url'])) {
                 if (isset($_FILES['file_data']['tmp_name'])) {
-                    if ($_POST['new']) {
+                    if ($_POST['new'] == 'true') {
                         if (!move_uploaded_file($_FILES['file_data']['tmp_name'], "files/probfile/$problemId" . $_POST['url'] . '/' . $_FILES['file_data']['name'])) {
                             exit(json_encode(array('error' => 'Cannot move the uploaded file')));
                         } else if (!KitFile:: kitCommitChange()) {
