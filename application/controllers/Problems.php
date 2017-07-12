@@ -607,16 +607,15 @@ class Problems extends CI_Controller
         session_write_close();
         $this->load->database(KitInfo::$kitInfo['kitDatabase']);
         $message = $this->isProblemIdValid($problemId, $_SESSION['kitUser']['priority']);
+        $url = join('/', array_shift(array_shift($this->uri->segment_array())));
         if ($message != null) {
             exit($message);
-        } else if (!isset($_GET) || !isset($_GET['url']) || !$this->isUrlValid($_GET['url'])) {
-            exit('Invalid request');
-        } else if (!file_exists("files/probfile/$problemId/" . $_GET['url'])) {
+        } else if (!$this->isUrlValid($url) || !file_exists("files/probfile/$problemId/" . $url)) {
             exit('Invalid request');
         } else {
-            $handle = fopen("files/probfile/$problemId/" . $_GET['url'], "r") or exit("Invalid request");
+            $handle = fopen("files/probfile/$problemId/" . $url, "r") or exit("Invalid request");
             header('Content-Type:application/octet-stream');
-            header('Content-Disposition: attachment; filename="' . pathinfo("files/probfile/$problemId/share/" . $_GET['url'])['basename'] . '"');
+            header('Content-Disposition: attachment; filename="' . pathinfo("files/probfile/$problemId/share/" . $url)['basename'] . '"');
             if ($handle) {
                 while (!feof($handle)) {
                     $buffer = fgets($handle, 1048576);
