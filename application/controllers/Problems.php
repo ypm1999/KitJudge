@@ -595,4 +595,35 @@ class Problems extends CI_Controller
             }
         }
     }
+
+    public function file($problemId=null)
+    {
+        if ($problemId == null || !is_numeric($problemId)) {
+            show_404();
+        }
+        $this->load->library('KitInfo');
+        $this->load->model('KitProblem');
+        session_start();
+        session_write_close();
+        $this->load->database(KitInfo::$kitInfo['kitDatabase']);
+        $message = $this->isProblemIdValid($problemId, $_SESSION['kitUser']['priority']);
+        if ($message != null) {
+            exit($message);
+        } else if (!isset($_GET) || !isset($_GET['url']) || !$this->isUrlValid($_GET['url'])) {
+            exit('Invalid request');
+        } else if (!file_exists("files/probfile/$problemId/" . $_GET['url'])) {
+            exit('Invalid request');
+        } else {
+            $handle = fopen("files/probfile/$problemId/" . $_GET['url'], "r") or exit("Invalid request");
+            header('Content-Type:application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . pathinfo("files/probfile/$problemId/share/" . $_GET['url'])['basename'] . '"');
+            if ($handle) {
+                while (!feof($handle)) {
+                    $buffer = fgets($handle, 1048576);
+                    echo $buffer;
+                }
+                fclose($handle);
+            }
+        }
+    }
 }

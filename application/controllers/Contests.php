@@ -417,4 +417,44 @@ class Contests extends CI_Controller
             show_404();
         }
     }
+
+    private function isProblemIdValid($problemId, $priority)
+    {
+        if (!is_numeric($problemId)) {
+            return "Invalid request.";
+        }
+        if (!$this->KitProblem->kitIsExistProblemById($problemId, $priority)) {
+            return "Invalid request.";
+        }
+        if (!file_exists("files/probfile/$problemId/problem.json")) {
+            return "Invalid request.";
+        }
+        return null;
+    }
+
+    public function file($contestId, $probTag)
+    {
+        $this->load->library('KitInfo');
+        if (!is_numeric($contestId)) {
+            show_404();
+        }
+        $this->load->model('KitContest');
+        $this->load->database(KitInfo::$kitInfo['kitDatabase']);
+        if (empty($this->KitContest->kitGetContestById($contestId)->result_array())) {
+            show_404();
+        }
+        $this->load->model('KitContestProblem');
+        $probdata = $this->KitContestProblem->kitGetProblemByContestId($contestId, $probTag);
+        if (empty($probdata->result_array())) {
+            show_404();
+        }
+        $this->load->model('KitProblem');
+        session_start();
+        session_write_close();
+        $problemId = $probdata->row()->kitProbId;
+        if (!$this->isProblemIdValid($problemId, isset($_SESSION['kitUser']) ? $_SESSION['kitUser']['priority'] : 0)) {
+            show_404();
+        }
+        print_r($this->uri->total_segments());
+    }
 }

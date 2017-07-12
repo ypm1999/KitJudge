@@ -57,7 +57,7 @@
                                     .wait(function () {
                                         var text = $('#mod-<?=$key?>').html();
                                         <?php if (isset($kitContestId)) {?>
-                                        text = text.replace(/\[\$PATH]/g, "<?=$kitBasePath?>/contests/problems/file/<?=$kitContestId?>/<?=$kitProblemTag?>")
+                                        text = text.replace(/\[\$PATH]/g, "<?=$kitBasePath?>/contests/file/<?=$kitContestId?>/<?=$kitProblemTag?>")
                                             .replace(/_/g, "\\_")
                                             .replace(/{/g, "\\{")
                                             .replace(/}/g, "\\}");
