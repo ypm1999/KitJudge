@@ -69,7 +69,7 @@ class DefaultStrategy(Strategy):
                         return
                     self._move_judger(case_id, test['judger'], run_path)
                     os.chmod(run_path + '/__judger', stat.S_IXUSR)
-                    result = self._execute(runcmd='./__judger ' + test['stdout'] + ' ' + test['output'],
+                    result = self._execute(runcmd='./__judger ' + test['input'] + ' ' + test['stdout'] + ' ' + test['output'],
                                            sout="__judge.out",
                                            work_path=run_path,
                                            tl=10,

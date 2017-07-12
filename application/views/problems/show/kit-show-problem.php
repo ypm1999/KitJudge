@@ -45,23 +45,28 @@
                             <p class="text-default text-left"><strong style="font-size: medium;"><?= $key ?></strong>
                             </p>
                         <?php if ($mod['loader'] == 'html') { ?>
-                            <p id="mod-<?= $key ?>" style="text-indent:1em;"><?= $mod['content'] ?></p>
+                            <p id="mod-<?= $key ?>"><?= $mod['content'] ?></p>
                         <?php } else if ($mod['loader'] == 'markdown') { ?>
                         <?php if (file_exists("files/probfile/" . $kitProblem->kitProbId . "/" . $mod["content"])) { ?>
-                            <p id="mod-<?= $key ?>"
-                               style="text-indent:1em;"><?= file_get_contents("files/probfile/" . $kitProblem->kitProbId . "/" . $mod["content"]); ?></p>
+                            <p id="mod-<?= $key ?>"><?= file_get_contents("files/probfile/" . $kitProblem->kitProbId . "/" . $mod["content"]); ?></p>
                         <?php } else { ?>
-                            <p id="mod-<?= $key ?>" style="text-indent:1em;"><strong class="text-warning">File
-                                    "<?= $mod["content"] ?>" doesn't exists.</strong></p>
+                            <p id="mod-<?= $key ?>"><strong class="text-warning">File "<?= $mod["content"] ?>" doesn't exists.</strong></p>
                         <?php } ?>
                             <script type="application/javascript">
                                 $LAB.script('<?=$kitBasePath?>/utility/js/markdown.min.js')
                                     .wait(function () {
                                         var text = $('#mod-<?=$key?>').html();
+                                        <?php if (isset($kitContestId)) {?>
+                                        text = text.replace(/\[\$PATH]/g, "<?=$kitBasePath?>/contests/file/<?=$kitContestId?>/<?=$kitProblemTag?>")
+                                            .replace(/_/g, "\\_")
+                                            .replace(/{/g, "\\{")
+                                            .replace(/}/g, "\\}");
+                                        <?php } else {?>
                                         text = text.replace(/\[\$PATH]/g, "<?=$kitBasePath?>/problems/file/<?=$kitProblem->kitProbId?>")
                                             .replace(/_/g, "\\_")
                                             .replace(/{/g, "\\{")
                                             .replace(/}/g, "\\}");
+                                        <?php }?>
                                         $('#mod-<?=$key?>').html(markdown.toHTML(text));
                                     });
                             </script>

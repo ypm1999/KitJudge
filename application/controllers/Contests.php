@@ -417,4 +417,70 @@ class Contests extends CI_Controller
             show_404();
         }
     }
+
+    private function isProblemIdValid($problemId, $priority)
+    {
+        if (!is_numeric($problemId)) {
+            return "Invalid request.";
+        }
+        if (!$this->KitProblem->kitIsExistProblemById($problemId, $priority)) {
+            return "Invalid request.";
+        }
+        if (!file_exists("files/probfile/$problemId/problem.json")) {
+            return "Invalid request.";
+        }
+        return null;
+    }
+
+    private static function isUrlValid($str)
+    {
+        return !strpos($str, '../');
+    }
+
+    public function file($contestId, $probTag)
+    {
+        $this->load->library('KitInfo');
+        if (!is_numeric($contestId)) {
+            show_404();
+        }
+        $this->load->model('KitContest');
+        $this->load->database(KitInfo::$kitInfo['kitDatabase']);
+        if (empty($this->KitContest->kitGetContestById($contestId)->result_array())) {
+            show_404();
+        }
+        $this->load->model('KitContestProblem');
+        $probdata = $this->KitContestProblem->kitGetProblemByContestId($contestId, $probTag);
+        if (empty($probdata->result_array())) {
+            show_404();
+        }
+        $this->load->model('KitProblem');
+        session_start();
+        session_write_close();
+        $problemId = $probdata->row()->kitProbId;
+        $message = $this->isProblemIdValid($problemId, $_SESSION['kitUser']['priority']);
+        if ($message != null) {
+            exit($message);
+        } else {
+            $array = $this->uri->segment_array();
+            array_shift($array);
+            array_shift($array);
+            array_shift($array);
+            array_shift($array);
+            $url = join('/', $array);
+            if (!$this->isUrlValid($url) || !file_exists("files/probfile/$problemId/share/" . $url)) {
+                exit('Invalid request');
+            } else {
+                $handle = fopen("files/probfile/$problemId/" . $url, "r") or exit("Invalid request");
+                header('Content-Type:application/octet-stream');
+                header('Content-Disposition: attachment; filename="' . pathinfo("files/probfile/$problemId/share/" . $url)['basename'] . '"');
+                if ($handle) {
+                    while (!feof($handle)) {
+                        $buffer = fgets($handle, 1048576);
+                        echo $buffer;
+                    }
+                    fclose($handle);
+                }
+            }
+        }
+    }
 }

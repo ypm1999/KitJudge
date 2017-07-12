@@ -187,7 +187,7 @@ class Problems extends CI_Controller
                     KitInfo::$kitInfo['kitProblemsPERPage'],
                     isset($_SESSION['kitUser']) ? $_SESSION['kitUser']['priority'] : 0
                 ),
-                'kitProblemsTotalPages' => max((int)ceil(
+                'kitProblemsTotalPages' => max((int)floor(
                     (
                         $this->KitProblem->kitCountProblems(isset($_SESSION['kitUser']) ? $_SESSION['kitUser']['priority'] : 0)
                         + KitInfo::$kitInfo['kitProblemsPERPage'] - 1
@@ -396,7 +396,7 @@ class Problems extends CI_Controller
             exit('Invalid request');
         }
         $this->load->database(KitInfo::$kitInfo['kitDatabase']);
-        $message = $this->isProblemIdValid($problemId);
+        $message = $this->isProblemIdValid($problemId, $_SESSION['kitUser']['priority']);
         if ($message != null) {
             exit($message);
         } else if (!isset($_GET) || !isset($_GET['url']) || !$this->isUrlValid($_GET['url'])) {
@@ -493,7 +493,7 @@ class Problems extends CI_Controller
         $this->load->library('KitInfo');
         $this->load->model('KitProblem');
         $this->load->database(KitInfo::$kitInfo['kitDatabase']);
-        $message = $this->isProblemIdValid($problemId);
+        $message = $this->isProblemIdValid($problemId, $_SESSION['kitUser']['priority']);
         if ($message != null) {
             exit(json_encode(array(
                 'verdict' => false,
@@ -572,7 +572,7 @@ class Problems extends CI_Controller
         } else {
             if (file_exists("files/probfile/$problemId" . $_POST['url'])) {
                 if (isset($_FILES['file_data']['tmp_name'])) {
-                    if ($_POST['new']) {
+                    if ($_POST['new'] == 'true') {
                         if (!move_uploaded_file($_FILES['file_data']['tmp_name'], "files/probfile/$problemId" . $_POST['url'] . '/' . $_FILES['file_data']['name'])) {
                             exit(json_encode(array('error' => 'Cannot move the uploaded file')));
                         } else if (!KitFile:: kitCommitChange()) {
@@ -581,7 +581,7 @@ class Problems extends CI_Controller
                             exit(json_encode(array()));
                         }
                     } else {
-                        if (!move_uploaded_file($_FILES['file_data']['tmp_name'], "files/probfile/$problemId" . $_POST['url'] . '/' . $_FILES['file_data']['name'])) {
+                        if (!move_uploaded_file($_FILES['file_data']['tmp_name'], "files/probfile/$problemId" . $_POST['url'])) {
                             exit(json_encode(array('error' => 'Cannot move the uploaded file')));
                         } else if (!KitFile:: kitCommitChange()) {
                             exit(json_encode(array('error' => 'Commitment failed')));
@@ -591,6 +591,42 @@ class Problems extends CI_Controller
                     }
                 } else {
                     exit(json_encode(array('error' => 'Cannot move the uploaded file')));
+                }
+            }
+        }
+    }
+
+    public function file($problemId=null)
+    {
+        if ($problemId == null || !is_numeric($problemId)) {
+            show_404();
+        }
+        $this->load->library('KitInfo');
+        $this->load->model('KitProblem');
+        session_start();
+        session_write_close();
+        $this->load->database(KitInfo::$kitInfo['kitDatabase']);
+        $message = $this->isProblemIdValid($problemId, $_SESSION['kitUser']['priority']);
+        if ($message != null) {
+            exit($message);
+        } else {
+            $array = $this->uri->segment_array();
+            array_shift($array);
+            array_shift($array);
+            array_shift($array);
+            $url = join('/', $array);
+            if (!$this->isUrlValid($url) || !file_exists("files/probfile/$problemId/share/" . $url)) {
+                exit('Invalid request');
+            } else {
+                $handle = fopen("files/probfile/$problemId/" . $url, "r") or exit("Invalid request");
+                header('Content-Type:application/octet-stream');
+                header('Content-Disposition: attachment; filename="' . pathinfo("files/probfile/$problemId/share/" . $url)['basename'] . '"');
+                if ($handle) {
+                    while (!feof($handle)) {
+                        $buffer = fgets($handle, 1048576);
+                        echo $buffer;
+                    }
+                    fclose($handle);
                 }
             }
         }

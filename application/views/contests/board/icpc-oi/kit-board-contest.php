@@ -123,12 +123,13 @@
             <tr style="height: 1cm">
                 <th style="width: 5%"></th>
                 <th><strong>User</strong></th>
+                <?php $width = min(9, 1.0 * (100 - 26) / (count($kitProbTags) + 1));?>
                 <?php foreach ($kitProbTags as $tag) { ?>
-                    <th style="width: 9%"><strong><?= $tag ?></strong></th>
+                    <th style="width: <?=$width?>%"><strong><?= $tag ?></strong></th>
                 <?php } ?>
-                <th style="width: 8%"><strong>Total</strong></th>
-                <th style="width: 8%"><strong>Penalty</strong></th>
-                <th style="width: 8%"><strong>Score</strong></th>
+                <th style="width: 7%"><strong>Total</strong></th>
+                <th style="width: 7%"><strong>Penalty</strong></th>
+                <th style="width: 7%"><strong>Score</strong></th>
             </tr>
             </thead>
             <tbody id="kit-board-tbody" valign="middle" style="font-size: 120%">
@@ -194,9 +195,12 @@
                                     performances[user]['probinf'][tag]['status'] = 2;
                                 }
                             }
-                            maxscore = Math.max(maxscore, submission['score']);
+                            if (submission['score'] !== undefined) {
+                                maxscore = Math.max(maxscore, submission['score']);
+                            }
                         }
                         performances[user]['score'] += maxscore;
+                        performances[user]['probinf'][tag]['score'] = maxscore;
                         if (actime !== undefined) {
                             performances[user]['penalty'] += actime;
                             for (var submission in performances[user]['probinf'][tag]['inf']) {
@@ -244,6 +248,7 @@
                         } else {
                             tbHTML = tbHTML + performance[1]['probinf']['<?=$tag?>']['submission'];
                         }
+                        tbHTML = tbHTML + '<br />' + performance[1]['probinf']['<?=$tag?>']['score'].toString();
                         tbHTML = tbHTML + '</td>';
                     } else {
                         tbHTML = tbHTML + '<td class="kit-cell-0"></td>';
