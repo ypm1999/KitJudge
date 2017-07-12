@@ -432,6 +432,11 @@ class Contests extends CI_Controller
         return null;
     }
 
+    private static function isUrlValid($str)
+    {
+        return !strpos($str, '../');
+    }
+
     public function file($contestId, $probTag)
     {
         $this->load->library('KitInfo');
