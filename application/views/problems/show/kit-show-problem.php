@@ -45,14 +45,12 @@
                             <p class="text-default text-left"><strong style="font-size: medium;"><?= $key ?></strong>
                             </p>
                         <?php if ($mod['loader'] == 'html') { ?>
-                            <p id="mod-<?= $key ?>" style="text-indent:1em;"><?= $mod['content'] ?></p>
+                            <p id="mod-<?= $key ?>"><?= $mod['content'] ?></p>
                         <?php } else if ($mod['loader'] == 'markdown') { ?>
                         <?php if (file_exists("files/probfile/" . $kitProblem->kitProbId . "/" . $mod["content"])) { ?>
-                            <p id="mod-<?= $key ?>"
-                               style="text-indent:1em;"><?= file_get_contents("files/probfile/" . $kitProblem->kitProbId . "/" . $mod["content"]); ?></p>
+                            <p id="mod-<?= $key ?>"><?= file_get_contents("files/probfile/" . $kitProblem->kitProbId . "/" . $mod["content"]); ?></p>
                         <?php } else { ?>
-                            <p id="mod-<?= $key ?>" style="text-indent:1em;"><strong class="text-warning">File
-                                    "<?= $mod["content"] ?>" doesn't exists.</strong></p>
+                            <p id="mod-<?= $key ?>"><strong class="text-warning">File "<?= $mod["content"] ?>" doesn't exists.</strong></p>
                         <?php } ?>
                             <script type="application/javascript">
                                 $LAB.script('<?=$kitBasePath?>/utility/js/markdown.min.js')
