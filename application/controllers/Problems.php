@@ -187,7 +187,7 @@ class Problems extends CI_Controller
                     KitInfo::$kitInfo['kitProblemsPERPage'],
                     isset($_SESSION['kitUser']) ? $_SESSION['kitUser']['priority'] : 0
                 ),
-                'kitProblemsTotalPages' => max((int)ceil(
+                'kitProblemsTotalPages' => max((int)floor(
                     (
                         $this->KitProblem->kitCountProblems(isset($_SESSION['kitUser']) ? $_SESSION['kitUser']['priority'] : 0)
                         + KitInfo::$kitInfo['kitProblemsPERPage'] - 1
