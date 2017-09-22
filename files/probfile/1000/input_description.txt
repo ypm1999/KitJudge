@@ -1,1 +1,0 @@
-Each line will contain two integers $A$ and $B$. Process to the end of file.
