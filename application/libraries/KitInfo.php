@@ -105,12 +105,12 @@ class KitInfo
         'kitTitle' => 'SJTU Online Judge',
         'kitWelcomeMessage' => 'Enjoy the exciting moments when thinking, coding and solving problems!',
         'kitBasePath' => '/KitJudge',
-        'kitAdminEmail' => 'kipsora@gmail.com',
+		'kitAdminEmail' => '**',
         'kitDatabase' => array(
-                'hostname' => 'localhost',
-                'username' => 'kitJudge',
-                'password' => 'acmclass_mysql',
-                'database' => 'KitJudge',
+			'hostname' => '**',
+			'username' => '**',
+			'password' => '**',
+			'database' => '**',
                 'dbdriver' => 'mysqli',
                 'dbprefix' => '',
                 'pconnect' => false,
@@ -125,8 +125,8 @@ class KitInfo
             'connection' => array(
                 'host' => 'localhost', // To be deterimed
                 'port' => 5672,
-                'login' => 'kitJudge',
-                'password' => 'acmclass_rabbitmq'
+				'login' => '**',
+				'password' => '**'
             ),
             'exchange' => 'kitMQ',
             'route' => 'kitMQ',
@@ -135,10 +135,10 @@ class KitInfo
         ),
         'kitCompileMQ' => array(
             'connection' => array(
-                'host' => 'localhost',
+				'host' => '**',
                 'port' => 5672,
-                'login' => 'kitJudge',
-                'password' => 'acmclass_rabbitmq'
+				'login' => '**',
+				'password' => '**'
             ),
             'exchange' => 'kitCompileMQ',
             'route' => 'kitCompileMQ',
@@ -146,7 +146,7 @@ class KitInfo
             'admin_port' => 15672
         ),
         'kitSocket' => array(
-            'host' => 'oj.kipsora.com',
+			'host' => '**',
             'port' => 15485
         )
     );
