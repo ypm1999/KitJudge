@@ -102,6 +102,8 @@ class Problems extends CI_Controller
             $probtype = $problem->row()->kitProbType;
             $problem = json_decode(file_get_contents('files/probfile/' . $_POST['prob'] . '/problem.json'));
             $commit_data['probid'] = $_POST['prob'];
+            $probtype = 'default';
+
         }
         $submit_lang = null;
         $submit_length = 0;

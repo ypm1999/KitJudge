@@ -105,12 +105,12 @@ class KitInfo
         'kitTitle' => 'SJTU Online Judge',
         'kitWelcomeMessage' => 'Enjoy the exciting moments when thinking, coding and solving problems!',
         'kitBasePath' => '/KitJudge',
-		'kitAdminEmail' => '**',
+		'kitAdminEmail' => '"root@acm.sjtu.edu.cn"',
         'kitDatabase' => array(
-			'hostname' => '**',
-			'username' => '**',
-			'password' => '**',
-			'database' => '**',
+			'hostname' => 'localhost',
+			'username' => 'root',
+			'password' => 'acmclass',
+			'database' => 'KitJudge',
                 'dbdriver' => 'mysqli',
                 'dbprefix' => '',
                 'pconnect' => false,
@@ -125,8 +125,8 @@ class KitInfo
             'connection' => array(
                 'host' => 'localhost', // To be deterimed
                 'port' => 5672,
-				'login' => '**',
-				'password' => '**'
+				'login' => 'KitOJ',
+				'password' => 'acmclass'
             ),
             'exchange' => 'kitMQ',
             'route' => 'kitMQ',
@@ -135,10 +135,10 @@ class KitInfo
         ),
         'kitCompileMQ' => array(
             'connection' => array(
-				'host' => '**',
+				'host' => 'localhost',
                 'port' => 5672,
-				'login' => '**',
-				'password' => '**'
+				'login' => 'KitOJ',
+				'password' => 'acmclass'
             ),
             'exchange' => 'kitCompileMQ',
             'route' => 'kitCompileMQ',
@@ -146,7 +146,7 @@ class KitInfo
             'admin_port' => 15672
         ),
         'kitSocket' => array(
-			'host' => '**',
+			'host' => 'localhost', // To be deterimed 
             'port' => 15485
         )
     );

@@ -14,19 +14,19 @@ from threading import Timer
 
 import time, MySQLdb
 
-kitReportMQHost = '**'
-kitReportMQPort = **
-kitReportMQUsername = '**'
-kitReportMQPassword = '**'
-kitReportMQQueueName = '**'
+kitReportMQHost = 'localhost'
+kitReportMQPort = 5672
+kitReportMQUsername = 'KitOJ'
+kitReportMQPassword = 'acmclass'
+kitReportMQQueueName = 'kitReportMQ'
 kitReportMQHeartBeat = 20
-kitGitHost = '**'
-kitGitUser = '**'
-kitDBHost = '**'
-kitDBPort = **
-kitDBUsername = '**'
-kitDBPassword = '**'
-kitDBName = '**'
+kitGitHost = 'localhost'
+kitGitUser = 'root'
+kitDBPort = 3306
+kitDBHost = "localhost"
+kitDBName = "KitJudge"
+kitDBUsername = "root"
+kitDBPassword = "acmclass"
 
 
 class Strategy:
@@ -180,7 +180,7 @@ class Strategy:
         self.__last_emit_case = case
 
     def _consume(self, data):
-        assert False
+        # assert False
         pass
 
     def _console(self, message):
@@ -199,9 +199,13 @@ class Strategy:
             self.__console('Updating probfile repository...')
             try:
                 if not os.path.exists('probfile'):
-                    git.Git().clone(kitGitUser + "@" + kitGitHost + ":probfile")
+                    # git.Git().clone(kitGitUser + "@" + kitGitHost + ":/home/KitOJ/KitJudge/files/probfile")
+                    shutil.copytree('../../../files/probfile', 'probfile')
                 else:
-                    git.Repo('probfile').remotes.origin.pull()
+                    # git.Repo('probfile').remotes.origin.pull()
+                    shutil.rmtree('probfile')
+                    shutil.copytree('../../../files/probfile', 'probfile')
+                
             except Exception as e:
                 self.__console(e.__doc__)
                 self.__console(e.message)

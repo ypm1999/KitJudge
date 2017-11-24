@@ -10,7 +10,7 @@ def sha256(content) :
 KitDBHost = "localhost"
 KitDBName = "KitJudge"
 KitDBUserName = "root"
-KitDBUserPassword = "7PrayStar"
+KitDBUserPassword = "acmclass"
 
 KitAdminUserName = "root"
 KitAdminUserPassword = sha256("acmclass")

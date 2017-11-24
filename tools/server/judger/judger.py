@@ -10,13 +10,13 @@ import json
 import time
 import traceback
 
-kitSocketHost = '**'
+kitSocketHost = 'localhost'
 kitSocketPort = 15485
-kitMQHost = '**'
-kitMQPort = **
-kitMQUsername = '**'
-kitMQPassword = '**'
-kitMQQueueName = '**'
+kitMQHost = 'localhost'
+kitMQPort = 5672
+kitMQUsername = 'KitOJ'
+kitMQPassword = 'acmclass'
+kitMQQueueName = 'kitMQ'
 kitMQHeartBeat = 20
 
 
@@ -88,6 +88,7 @@ def kitTaskEnded(method):
 
 def kitConsumer(channel, method, properites, body):
     data = json.loads(body)
+    kitConsole('data = [{}]'.format(body))
     if data['type'] == 'default':
         DefaultStrategy(socket, rabbitMQConnection, kitConsole).process(data)
     elif data['type'] == 'OI':

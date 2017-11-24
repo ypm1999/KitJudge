@@ -51,6 +51,7 @@ class DefaultStrategy(Strategy):
                                            serr='error.txt',
                                            tl=test['limit'][language]['time'],
                                            ml=test['limit'][language]['memory'])
+                    self._console('result = {}'.format(result))
                     self._buffer.setdefault('input-' + str(case_id), self._readfile(run_path + '/' + test['input']))
                     self._buffer.setdefault('output-' + str(case_id), self._readfile(run_path + '/' + test['output']))
                     self._copy_at_stage(index + 1, test, run_path, 1)

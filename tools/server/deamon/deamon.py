@@ -11,14 +11,15 @@ kitSocketHost = 'localhost'
 kitSocketPort = 15485
 kitMQHost = 'localhost'
 kitMQPort = 5672
-kitMQUsername = 'kitJudge'
-kitMQPassword = 'acmclass_rabbitmq'
+kitMQUsername = 'KitOJ'
+kitMQPassword = 'acmclass'
 kitMQQueueName = 'kitReportMQ'
 kitMQHeartBeat = None
+# kitMQHeartBeat = 0
 kitDBHost = 'localhost'
 kitDBPort = 3306
-kitDBUsername = 'kitJudge'
-kitDBPassword = 'acmclass_mysql'
+kitDBUsername = 'KitJudge'
+kitDBPassword = 'acmclass'
 kitDBName = 'KitJudge'
 
 
