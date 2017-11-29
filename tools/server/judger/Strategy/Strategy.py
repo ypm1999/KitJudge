@@ -1,5 +1,6 @@
 import traceback
 from abc import abstractmethod
+from xml.etree import ElementTree as xmlps
 
 import json
 import uuid
@@ -36,6 +37,22 @@ class Strategy:
         self.__socket = socket
         self.__console = console
         self._buffer = {}
+
+    def kitValgrindXMLHasError(self, filename) :
+        root = xmlps.parse(filename)
+        return root.find('error') != None
+
+    def get_git_dir(self, git_repo):
+        if not git_repo.endswith(".git"):
+            self._buffer.setdefault('report', 'Compilation failure: isn\'t a git repo.')
+            self._buffer.setdefault('verdict', 10)
+            return False
+        if not git_repo.startswith("git@"):
+            self._buffer.setdefault('report', 'Compilation failure: isn\'t a SSH git link.')
+            self._buffer.setdefault('verdict', 10)
+            return False
+        git_dirs = git_repo.split("/")
+        return git_dirs[len(git_dirs) - 1][:-4]
 
     @staticmethod
     def _readfile(filepath, byte=200):
@@ -77,7 +94,7 @@ class Strategy:
             shutil.copy(pre_judge_path + '/' + judge_conf['path'], run_path + '/__judger')
         os.system('chmod 777 ' + run_path + '/__judger')
 
-    def _compile(self, command, lang, tmpdir, verbose=True):
+    def _compile(self, command, lang, tmpdir, args=None, verbose=True):
         rtype = None
         if lang == 'C++':
             rtype = 'compiler-c++'
@@ -89,13 +106,15 @@ class Strategy:
             rtype = 'compiler-c++'
         elif lang == 'Java':
             rtype = 'compiler-java'
+        elif lang == "Git":
+            rtype = 'makefile'
         if rtype is None:
             if verbose:
                 self._buffer.setdefault('report', 'Compilation failure: unknown programming language')
                 self._buffer.setdefault('verdict', 10)
             return False
         else:
-            result = self._execute(rtype=rtype, serr="error_compile.txt", work_path=tmpdir, runcmd=command)
+            result = self._execute(rtype=rtype, serr="error_compile.txt", work_path=tmpdir, runcmd=command, tl=10000)
             runcode = int(result[0].split(' ')[0])
             if runcode != 0 or int(result[2].split(' ')[2]) != 0:
                 if verbose:
@@ -180,7 +199,7 @@ class Strategy:
         self.__last_emit_case = case
 
     def _consume(self, data):
-        # assert False
+        assert False
         pass
 
     def _console(self, message):
@@ -250,8 +269,8 @@ class Strategy:
                 self._conf = json.load(open('probfile/' + self._kitProbId + '/problem.json', 'r'))
                 self._console('Judge started.')
                 self._consume(data)
-                if os.path.exists('tmp'):
-                    shutil.rmtree('tmp')
+                # if os.path.exists('tmp'):
+                #     shutil.rmtree('tmp')
                 self._console('Judge ended.')
         self._buffer.setdefault('runid', self._kitRunId)
         self._buffer.setdefault('probid', self._kitProbId)

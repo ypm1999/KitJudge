@@ -1,7 +1,7 @@
 import traceback
 
 from Strategy import Strategy
-
+import git
 import shutil
 import os
 import stat
@@ -13,30 +13,50 @@ class DefaultStrategy(Strategy):
 
     def _consume(self, data):
         try:
-            self._emit_case('COMPILING')
-            compile_path = self._gen_tmp_dir('compile')
-            self._save_code(data, compile_path)
-            self._copy_includes(compile_path)
-            executable = []
-            language = data[self._conf['main'] + 'lang']
-            if language == 'C++':
-                if not self._compile('/usr/bin/g++ code.cpp -o code -O2', language, compile_path):
-                    return
-                executable.append('code')
-            elif language == 'Java':
-                if not self._compile('/usr/bin/javac Main.java', language, compile_path):
-                    return
-                executable.append('Main.class')
-            else:
-                self._buffer.setdefault('compile', 'Compilation failure: unknown programming language')
-                self._buffer.setdefault('verdict', 10)
-                return
-
             used_time = 0
             used_memo = 0
             case_id = 0
 
             for tid, test in enumerate(self._conf['tests']):
+                self._emit_case('COMPILING')
+                compile_path = self._gen_tmp_dir('compile')
+                self._save_code(data, compile_path)
+                self._copy_includes(compile_path)
+                executable = []
+                language = data[self._conf['main'] + 'lang']
+                if language == 'C++':
+                    compile_cmd = test['compiler']['C++']
+                    for cmd in compile_cmd:
+                        if not self._compile(cmd, language, compile_path):
+                            return
+                    executable.append('code')
+                elif language == 'Java':
+                    compile_cmd = test['compiler']['Java']
+                    for cmd in compile_cmd:
+                        if not self._compile(cmd, language, compile_path):
+                            return
+                    executable.append('Main.class')
+                elif language == "Git":
+                    compile_cmd = test['compiler']['Git']
+                    if len(self._conf['files']) > 1:
+                        raise Exception("Have more than one code in Git judge.") 
+                    for code in self._conf['files']:
+                        if 'name' not in self._conf['files'][code]:
+                            self._buffer.setdefault('verdict', 6)
+                        git_repo = data[code].strip()
+                    git_dir = self.get_git_dir(git_repo)
+                    if git_dir == False:
+                        return
+                    git.Git(compile_path).clone(git_repo)
+                    compile_path = compile_path + '/' + git_dir
+                    for cmd in compile_cmd:
+                        if not self._compile(cmd, language, compile_path):
+                            return
+                    executable.append('code')
+                else:
+                    self._buffer.setdefault('compile', 'Compilation failure: unknown programming language')
+                    self._buffer.setdefault('verdict', 10)
+                    return
                 for index in xrange(test['repeat']):
                     case_id += 1
                     self._emit_case(case_id)
@@ -45,7 +65,10 @@ class DefaultStrategy(Strategy):
                     for path in executable:
                         shutil.copy(compile_path + '/' + path, run_path + '/')
                     self._copy_at_stage(index + 1, test, run_path, 0)
-                    result = self._execute(runcmd='./code', work_path=run_path,
+                    runcmd = test['command']
+                    valgrind_type = 'valgrind' if 'valgrind' in test else None
+                    result = self._execute(runcmd=runcmd, rtype = valgrind_type,
+                                           work_path=run_path,
                                            sin=test['input'],
                                            sout=test['output'],
                                            serr='error.txt',
@@ -111,6 +134,11 @@ class DefaultStrategy(Strategy):
                         self._buffer.update({'verdict': 7})
                         self._buffer.update({'verdict-' + str(case_id): 7})
                         self._buffer.update({'report-' + str(case_id): self._readfile(run_path + '/__judge.out')})
+                        return
+                    elif valgrind_type != None and self.kitValgrindXMLHasError(run_path + '/' + test['valgrind']):
+                        self._buffer.update({'verdict': 13})
+                        self._buffer.update({'verdict-' + str(case_id): 13})
+                        self._buffer.update({'report-' + str(case_id): self._readfile(run_path + '/' + test['valgrind'], 5000)})
                         return
                     else:
                         self._buffer.update({'report-' + str(case_id): self._readfile(run_path + '/__judge.out')})

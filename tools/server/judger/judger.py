@@ -88,7 +88,6 @@ def kitTaskEnded(method):
 
 def kitConsumer(channel, method, properites, body):
     data = json.loads(body)
-    kitConsole('data = [{}]'.format(body))
     if data['type'] == 'default':
         DefaultStrategy(socket, rabbitMQConnection, kitConsole).process(data)
     elif data['type'] == 'OI':

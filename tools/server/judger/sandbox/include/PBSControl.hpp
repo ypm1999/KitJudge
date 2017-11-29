@@ -37,6 +37,11 @@ bool pbsIsWritableFile(const std::string &filename) {
 	if (verdictFileInSet(filename, pbsConfig.writableFiles)) {
 		return true;
 	} else {
+#ifdef DEBUG2
+		if (pbsConfig.debugMode) {
+			flog("IsWritableFile %s.\n", filename.c_str());
+		}
+#endif
 		return false;
 	}
 }
@@ -48,6 +53,11 @@ bool pbsIsReadableFile(const std::string &filename) {
 	if (verdictFileInSet(filename, pbsConfig.readableFiles)) {
 		return true;
 	} else {
+#ifdef DEBUG2
+		if (pbsConfig.debugMode) {
+			flog("IsReadableFile %s.\n", filename.c_str());
+		}
+#endif
 		return false;
 	}
 }
@@ -59,6 +69,11 @@ bool pbsIsStatableFile(const std::string &filename) {
 	if (verdictFileInSet(filename, pbsConfig.statableFiles)) {
 		return true;
 	} else {
+#ifdef DEBUG2
+		if (pbsConfig.debugMode) {
+			flog("IsStatableFile %s.\n", filename.c_str());
+		}
+#endif
 		return false;
 	}
 }
@@ -67,6 +82,11 @@ bool pbsIsUnacsbleFile(const std::string &filename) {
 	if (verdictFileInSet(filename, pbsConfig.unacsbleFiles)) {
 		return true;
 	} else {
+#ifdef DEBUG2
+		if (pbsConfig.debugMode) {
+			flog("IsUnacsbleFile %s.\n", filename.c_str());
+		}
+#endif
 		return false;
 	}
 }

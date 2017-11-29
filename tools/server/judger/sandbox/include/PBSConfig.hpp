@@ -50,6 +50,23 @@ void pbsCPPCompilerConfig() {
 	pbsConfig.writableFiles.insert("/tmp/*");
 }
 
+void pbsMakefileConfig() {
+	pbsConfig.syscallCounter[__NR_getpid  ] = -1;
+	pbsConfig.syscallCounter[__NR_vfork   ] = -1;
+	pbsConfig.syscallCounter[__NR_execve  ] = -1;
+	pbsConfig.syscallCounter[__NR_wait4   ] = -1;
+	pbsConfig.syscallCounter[__NR_sysinfo ] = -1;
+	pbsConfig.syscallCounter[__NR_umask   ] = -1;
+	pbsConfig.syscallCounter[__NR_chmod   ] = -1;
+	pbsConfig.readableFiles.insert("*/bin/as");
+	pbsConfig.statableFiles.insert("/*");
+	pbsConfig.readableFiles.insert("/usr/*");
+	pbsConfig.writableFiles.insert("/tmp/*");
+	pbsConfig.writableFiles.insert("/lib/*");
+	pbsConfig.writableFiles.insert("/usr/lib/*");
+	pbsConfig.writableFiles.insert("/etc/*");
+}
+
 void pbsJAVACompilerConfig() {
 	pbsConfig.syscallCounter[__NR_set_tid_address  ] = -1;
 	pbsConfig.syscallCounter[__NR_set_robust_list  ] = -1;
@@ -187,6 +204,8 @@ void initParentPBSConfig(PBSConfig &pbsConfig) {
 		pbsJAVARunnerConfig();
 	} else if (pbsConfig.type == "valgrind") {
 		pbsValgrindConfig();
+	} else if (pbsConfig.type == "makefile") {
+		pbsMakefileConfig();
 	}
 }
 #ifdef DEBUG1

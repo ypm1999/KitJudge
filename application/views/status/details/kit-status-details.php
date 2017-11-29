@@ -27,11 +27,14 @@
             <?php } else if ($kitShowReport && ($kitVerdict != 8 && $kitVerdict != 9 && $kitVerdict != 12)) { ?>
                 <?php $kitReport = (array)(json_decode(file_get_contents("files/userfile/$kitUser/code/$kitId/report"))) ?>
                 <?php $caseId = 0; ?>
-                <?php $flag = true; ?>
+                <?php $flag = false; ?>
                 <?php foreach ($kitConf->tests as $test) { ?>
                     <?php for ($index = 1; $index <= $test->repeat; $index++) { ?>
                         <?php $caseId++; ?>
                         <?php if (array_key_exists("verdict-$caseId", $kitReport)) { ?>
+                            <?php if ($kitVerdictTranslator[$kitReport["verdict-$caseId"]] != "Accepted") { ?>
+                                <?php $flag = true; ?>
+                            <?php } ?>
                             <hr>
                             <div style="line-height: 8.0px">
                                 <p>

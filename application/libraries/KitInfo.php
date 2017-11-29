@@ -83,7 +83,8 @@ class KitInfo
         ),
         'kitSupportedLanguages' => array(
             'C++' => ['text/x-c++src', 'cpp'],
-            'Java' => ['text/x-java', 'java']
+            'Java' => ['text/x-java', 'java'],
+            'Git' => ['text/plain', 'plain']
         ),
         'kitSupportedVerdicts' => array(
             'Accepted',

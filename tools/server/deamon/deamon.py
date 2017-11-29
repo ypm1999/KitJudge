@@ -62,6 +62,7 @@ def kitMQListen(connection, queue_name):
 
 def kitConsumer(channel, method, properites, body):
     data = json.loads(body)
+    kitConsole('body = {}'.format(body))
     runid = data['runid']
     kitConsole('[{}] Receive completed judgement'.format(runid))
     connection = MySQLdb.connect(kitDBHost, kitDBUsername, kitDBPassword, kitDBName)
