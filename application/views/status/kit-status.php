@@ -56,12 +56,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     '<span class="kit-ce">Compilation Error</span>',
                     '<span class="kit-pe">Presentation Error</span>',
                     "<span class='kit-ing'>Compiling</span><img src='$kitBasePath/utility/img/ajax-loader.gif'>",
-                    '<span class="kit-mlk">Memory leaked</span>',
+                    '<span class="kit-mlk">Memory Error</span>',
                 );
                 ?>
-                <?php foreach ($kitStatus->result() as $status) { ?>
+                <?php foreach ($kitStatus as $status) { ?>
                     <tr id="status<?= $status->kitStatusId ?>">
-                        <td><a href="<?= $kitBasePath ?>/status/details/<?= $status->kitStatusId ?>"><?= $status->kitStatusId ?></a></td>
+                        <?php if ($status->valid){ ?>
+                            <td><a href="<?= $kitBasePath ?>/status/details/<?= $status->kitStatusId ?>"><?= $status->kitStatusId ?></a></td>
+                        <?php }else {?>
+                            <td><?= $status->kitStatusId ?></a></td>
+                        <?php } ?>
                         <td><?= $status->kitStatusTime ?></td>
                         <td><?= $status->kitStatusUser ?></td>
                         <td><?= isset($status->kitStatusContestId) ? "<a href='$kitBasePath/contests/show/$status->kitStatusContestId'>$status->kitStatusContestId</a>" : '' ?></td>
@@ -92,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     '<span class="kit-ce">Compilation Error</span>',
                     '<span class="kit-pe">Presentation Error</span>',
                     "<span class='kit-ing'>Compiling</span><img src='$kitBasePath/utility/img/ajax-loader.gif'>",
-                    '<span class="kit-mlk">Memory leaked</span>'
+                    '<span class="kit-mlk">Memory Error</span>'
                 ];
                 $LAB.script('<?=$kitBasePath?>/utility/js/socket.io.js')
                     .wait(function () {

@@ -51,6 +51,10 @@ class Strategy:
             self._buffer.setdefault('report', 'Compilation failure: isn\'t a SSH git link.')
             self._buffer.setdefault('verdict', 10)
             return False
+        if git_repo.lower().find('bitbucket') == -1:
+            self._buffer.setdefault('report', 'Compilation failure: only support bitbucket link.')
+            self._buffer.setdefault('verdict', 10)
+            return False
         git_dirs = git_repo.split("/")
         return git_dirs[len(git_dirs) - 1][:-4]
 
@@ -94,7 +98,7 @@ class Strategy:
             shutil.copy(pre_judge_path + '/' + judge_conf['path'], run_path + '/__judger')
         os.system('chmod 777 ' + run_path + '/__judger')
 
-    def _compile(self, command, lang, tmpdir, args=None, verbose=True):
+    def _compile(self, command, lang, tmpdir, serr='error_compile.txt', sout='out_compile.txt', args=None, verbose=True):
         rtype = None
         if lang == 'C++':
             rtype = 'compiler-c++'
@@ -114,13 +118,13 @@ class Strategy:
                 self._buffer.setdefault('verdict', 10)
             return False
         else:
-            result = self._execute(rtype=rtype, serr="error_compile.txt", work_path=tmpdir, runcmd=command, tl=10000)
+            result = self._execute(rtype=rtype, serr=serr, sout=sout, work_path=tmpdir, runcmd=command, tl=10000)
             runcode = int(result[0].split(' ')[0])
             if runcode != 0 or int(result[2].split(' ')[2]) != 0:
                 if verbose:
                     self._buffer.setdefault('verdict', 10)
                     if runcode == 0:
-                        self._buffer.setdefault('report', self._readfile(tmpdir + '/error_compile.txt').decode('utf-8', 'ignore'))
+                        self._buffer.setdefault('report', self._readfile(tmpdir + '/error_compile.txt', 5000).decode('utf-8', 'ignore'))
                     elif runcode == 1:
                         self._buffer.setdefault('report', 'Compilation failure: compilation time limit exceed.')
                     elif runcode == 2:
@@ -139,6 +143,32 @@ class Strategy:
                 return False
         return True
 
+    def _gitclone(self, command, work_path=None, tl=None, ml=None, verbose=True):
+        result = self._execute(runcmd=command, serr="error_gitclone.txt", work_path=work_path, tl=30000)
+        runcode = int(result[0].split(' ')[0])
+        if runcode != 0 or int(result[2].split(' ')[2]) != 0:
+            if verbose:
+                self._buffer.setdefault('verdict', 10)
+                if runcode == 0:
+                    self._buffer.setdefault('report', self._readfile(work_path + '/error_gitclone.txt', 5000).decode('utf-8', 'ignore'))
+                elif runcode == 1:
+                    self._buffer.setdefault('report', 'Compilation failure: gitclone time limit exceed.')
+                elif runcode == 2:
+                    self._buffer.setdefault('report', 'Compilation failure: git crashed("{}").'.format(
+                        result[1].rstrip('\n')))
+                elif runcode == 3:
+                    self._buffer.setdefault('report', 'Compilation failure: git output limit exceed')
+                elif runcode == 4:
+                    self._buffer.setdefault('report', 'Compilation failure: git memory limit exceed.')
+                elif runcode == 5:
+                    self._buffer.setdefault('report', 'Compilation failure: dangerous git clone')
+                elif runcode == 6:
+                    self._buffer.setdefault('report', 'Compilation failure: failed to execute the git')
+                else:
+                    self._buffer.setdefault('report', 'Compilation failure: unknown reason with code {}'.format(runcode))
+            return False
+        return True
+    
     def _execute(self, runcmd, rtype=None, sin=None, sout=None, serr=None, work_path=None, tl=None, ml=None):
         command = "./sandbox/pbsbox"
         if rtype is not None:
@@ -269,8 +299,8 @@ class Strategy:
                 self._conf = json.load(open('probfile/' + self._kitProbId + '/problem.json', 'r'))
                 self._console('Judge started.')
                 self._consume(data)
-                # if os.path.exists('tmp'):
-                #     shutil.rmtree('tmp')
+                if os.path.exists('tmp'):
+                    shutil.rmtree('tmp')
                 self._console('Judge ended.')
         self._buffer.setdefault('runid', self._kitRunId)
         self._buffer.setdefault('probid', self._kitProbId)

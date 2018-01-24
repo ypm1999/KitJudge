@@ -141,7 +141,7 @@ class Status extends CI_Controller
                     isset($_SESSION['status-filter']['verdict']) ? $_SESSION['status-filter']['verdict'] : null,
                     isset($_GET['page']) ? (int)($_GET['page']) : 1,
                     KitInfo::$kitInfo['kitStatusPERPage']
-                ),
+                )->result(),
                 'kitStatusTotalPages' => max((int)floor(
                     (
                         $this->KitStatus->kitCountStatus(
@@ -158,6 +158,13 @@ class Status extends CI_Controller
                 )
             )
         );
+        foreach ($info['kitStatus'] as $status) {
+            $status->valid = ((!isset($_SESSION['kitUser']) || ($_SESSION['kitUser']['priority'] < 2
+                    && $_SESSION['kitUser']['name'] != $status->kitStatusUser)
+                || ($status->kitStatusContestId != null
+                    && !$this->isContestStart($this->KitContest->kitGetContestById($status->kitStatusContestId)))
+                )) ? false : true;
+        }
         setcookie('session', $info['kitSessionId']);
         $this->load->view('kit-common-header', $info);
         $this->load->view('kit-navbar');

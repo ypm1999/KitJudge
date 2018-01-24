@@ -33,8 +33,8 @@ class KitStatus extends CI_Model
                 (kitStatusUser='" . $login_user['name'] . "' AND kitStatusContestId IN (SELECT kitContestId FROM KitContest WHERE '$time' >= kitContestStart)) 
                 OR 
                 (kitStatusContestId IN (SELECT kitContestId FROM KitContest WHERE '$time' > kitContestEnd)) 
-                AND 
-                (kitStatusContestId IS NOT NULL OR kitStatusProbId IN (SELECT kitProbId FROM KitProblem WHERE kitProbHidden=FALSE))
+                OR 
+                (kitStatusContestId IS NULL AND kitStatusProbId IN (SELECT kitProbId FROM KitProblem WHERE kitProbHidden=FALSE))
               )";
             $first = false;
         }

@@ -56,6 +56,7 @@
                                 $LAB.script('<?=$kitBasePath?>/utility/js/markdown.min.js')
                                     .wait(function () {
                                         var text = $('#mod-<?=$key?>').html();
+                                        console.log("%s", text);
                                         <?php if (isset($kitContestId)) {?>
                                         text = text.replace(/\[\$PATH]/g, "<?=$kitBasePath?>/contests/file/<?=$kitContestId?>/<?=$kitProblemTag?>")
                                             .replace(/_/g, "\\_")

@@ -414,10 +414,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             notEmpty: {
                                                 message: "The field username is empty."
                                             },
-                                            stringLength: {
-                                                min: 4,
-                                                max: 16,
-                                                message: "The length of the username should be between 6 and 16."
+                                            regexp: {
+                                                regexp: "51[6-7]0[0-9]{8,8}$",
+                                                message: "The username must be your student id."
                                             }
                                         }
                                     },

@@ -47,7 +47,9 @@ class DefaultStrategy(Strategy):
                     git_dir = self.get_git_dir(git_repo)
                     if git_dir == False:
                         return
-                    git.Git(compile_path).clone(git_repo)
+                    if not self._gitclone('--unsafe /usr/bin/git clone ' + git_repo, work_path=compile_path, tl=120000):
+                        return
+                    # git.Git(compile_path).clone(git_repo)
                     compile_path = compile_path + '/' + git_dir
                     for cmd in compile_cmd:
                         if not self._compile(cmd, language, compile_path):
