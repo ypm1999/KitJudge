@@ -1,0 +1,85 @@
+{
+	"include": [
+		"cppfiles/BasicTest.cpp",
+		"cppfiles/SpeedTest.cpp"
+	],
+	"tests": [{
+		"repeat": 1,
+		"judger": {
+			"type": "default",
+			"path": "spjByte",
+			"lang": "exec"
+		},
+		"compiler": {
+			"C++": [
+				"/usr/bin/g++ BasicTest.cpp -o code -O2 -std=c++14"
+			]
+		},
+		"valgrind": "result.xml",
+		"command": "/usr/bin/valgrind --xml=yes --xml-file=result.xml ./code",
+		"require": {
+			"data/blank.in": {
+				"stage": 0,
+				"target": "input.txt"
+			},
+			"data/BasicTest.out": {
+				"stage": 1,
+				"target": "output_std.txt"
+			}
+		},
+		"input" : "input.txt",
+		"stdout": "output_std.txt",
+		"output": "output.txt",
+		"limit": {
+			"C++": {
+				"time": 1000,
+				"memory": 65536
+			}
+		}
+	},
+	{
+		"repeat": 1,
+		"judger": {
+			"type": "costume",
+			"path": "SpeedSPJ.cpp",
+			"lang": "C++"
+		},
+		"compiler": {
+			"C++": [
+				"--unsafe /usr/bin/g++ -o code SpeedTest.cpp -lopenblas -O2 -std=c++14"
+			]
+		},
+		"command": "--unsafe ./code",
+		"require": {
+			"data/blank.in": {
+				"stage": 0,
+				"target": "input.txt"
+			},
+			"data/blank.out": {
+				"stage": 1,
+				"target": "output_std.txt"
+			}
+		},
+		"input" : "input.txt",
+		"stdout": "output_std.txt",
+		"output": "output.txt",
+		"limit": {
+			"C++": {
+				"time": 1000,
+				"memory": 65536
+			}
+		}
+	}],
+	"files": {
+		"Code": {
+			"name": "matrix.hpp",
+			"lang": ["C++"]
+		}
+	},
+	"main": "Code",
+	"Module": {
+        "Limits": {
+            "style": "limits"
+        }
+	}
+}

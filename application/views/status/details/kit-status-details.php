@@ -20,8 +20,7 @@
             );
             ?>
             <?php foreach ($kitConf->files as $caption => $data) { ?>
-                <!-- <pre class="prettyprint lang-<?= $kitSupportedLanguages[file_get_contents("files/userfile/$kitUser/code/$kitId/$caption" . 'lang')][1]?> linenums"><?= htmlspecialchars(file_get_contents("files/userfile/$kitUser/code/$kitId/$caption")); ?></pre> -->
-                <pre class="prettyprint lang-raw linenums"><?= htmlspecialchars(file_get_contents("files/userfile/$kitUser/code/$kitId/$caption")); ?></pre>
+                <pre class="prettyprint lang-<?= $kitSupportedLanguages[file_get_contents("files/userfile/$kitUser/code/$kitId/$caption" . 'lang')][1]?> linenums"><?= htmlspecialchars(file_get_contents("files/userfile/$kitUser/code/$kitId/$caption")); ?></pre>
             <?php } ?>
             <?php if ($kitVerdict == 10 || $kitVerdict == 6) { ?>
                 <pre class="prettyprint"><?= htmlspecialchars(json_decode(file_get_contents("files/userfile/$kitUser/code/$kitId/report"))->report) ?></pre>

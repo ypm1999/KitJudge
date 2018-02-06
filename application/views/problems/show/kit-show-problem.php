@@ -175,9 +175,11 @@
                                                 'Java': 'text/x-java'
                                             }
                                         </script>
+                                        <?php $kitUser = $_SESSION['kitUser']['name'];?>
+                                        <?php $kitId = $this->KitStatus->kitGetLastStatus($kitUser, $kitProblem->kitProbId);?>
+                                        <?php $preCode = htmlspecialchars(file_get_contents("files/userfile/$kitUser/code/$kitId/$caption"));?>
                                         <textarea class="form-control" id="kit-code-<?= $fileid ?>"
-                                                  placeholder="Enter your code here" rows="20"
-                                                  style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 54px; "></textarea>
+                                                  style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 100px; "><?=$preCode ?></textarea>
                                         <script type="application/javascript">
                                             $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
                                                 $LAB.script('<?=$kitBasePath?>/utility/js/codemirror.js')

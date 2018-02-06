@@ -329,6 +329,7 @@ class Problems extends CI_Controller
     {
         $this->load->library('KitInfo');
         $this->load->model('KitProblem');
+        $this->load->model('KitStatus');
         session_start();
         session_write_close();
         $priority = isset($_SESSION['kitUser']) ? $_SESSION['kitUser']['priority'] : 0;

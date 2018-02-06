@@ -1,0 +1,55 @@
+{
+	"include": [
+	],
+	"tests": [{
+		"repeat": 100,
+		"judger": {
+			"type": "default",
+			"path": "spjByte",
+			"lang": "exec"
+		},
+		"compiler": {
+			"Git": [
+				"--unsafe /usr/bin/make -s -f makefile-for-judge clean",
+				"--unsafe /usr/bin/make -s -f makefile-for-judge"
+			]
+		},
+		"command": "./code",
+		"require": {
+			"data/data[$INDEX].in": {
+				"stage": 0,
+				"target": "input.txt"
+			},
+			"data/data[$INDEX].out": {
+				"stage": 1,
+				"target": "output_std.txt"
+			}
+		},
+		"input" : "input.txt",
+		"stdout": "output_std.txt",
+		"output": "output.txt",
+		"limit": {
+			"Git": {
+				"time": 1000,
+				"memory": 65536
+			}
+		}
+	}],
+	"files": {
+		"Code": {
+			"name": "gitpath.txt",
+			"lang": ["Git"]
+		}
+	},
+	"main": "Code",
+	"Module": {
+		"Submit":{
+			"loader": "markdown",
+            "style": "default",
+            "content": "submit.md"
+		},
+        "Limits": {
+            "style": "limits"
+        }
+	}
+}

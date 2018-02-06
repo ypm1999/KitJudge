@@ -126,6 +126,7 @@ class Status extends CI_Controller
         session_start();
         session_write_close();
         $this->load->database(KitInfo::$kitInfo['kitDatabase']);
+        print_r($this->KitStatus->kitGetLastStatus('root', 1004));
         $info = array_merge(KitInfo::$kitInfo,
             array(
                 'kitView' => 'status',

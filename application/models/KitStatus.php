@@ -7,6 +7,13 @@ class KitStatus extends CI_Model
     {
         return $this->db->query("SELECT * FROM KitStatus WHERE kitStatusId={$runId}");
     }
+    
+    public function kitGetLastStatus($user, $prob)
+    {
+        $sql = "SELECT kitStatusId FROM KitStatus WHERE (kitStatusProbId=$prob AND kitStatusUser='$user') ORDER BY kitStatusId DESC";
+        $sql = $this->db->query($sql);
+        return count($sql->result()) ? $sql->row()->kitStatusId : null;
+    }
 
     public function kitBoard($time, $contestId)
     {
