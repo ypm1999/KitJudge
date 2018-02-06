@@ -32,4 +32,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 files/*
 files/probfile/*
 tools/server/judger/.idea/*
-tools/server/judger/profile/*
+tools/server/judger/probfile/*
