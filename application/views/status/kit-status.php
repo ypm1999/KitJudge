@@ -76,7 +76,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td><?= $status->kitStatusVerdict == 9 ? "<span class='kit-ing'>Running on test $status->kitStatusExtraMessage</span><img src='$kitBasePath/utility/img/ajax-loader.gif'>" : $kitVerdictTranslator[(int)($status->kitStatusVerdict)] ?></td>
                         <td><?= $status->kitStatusUsedTime != null ? $status->kitStatusUsedTime . ' MS' : '' ?></td>
                         <td><?= $status->kitStatusUsedMemory != null ? $status->kitStatusUsedMemory . ' KB' : '' ?></td>
-                        <td><?= $status->kitStatusLength ?> B</td>
+                        <?php if ($status->kitStatusLanguage != 'Git') { ?>
+                            <td><?= $status->kitStatusLength ?> B</td>
+                        <?php } else { ?>
+                            <td></td>
+                        <?php } ?>
                     </tr>
                 <?php } ?>
                 </tbody>

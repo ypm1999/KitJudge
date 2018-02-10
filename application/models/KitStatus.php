@@ -37,11 +37,12 @@ class KitStatus extends CI_Model
         } else {
             $sql = "SELECT * FROM KitStatus WHERE 
               (
-                (kitStatusUser='" . $login_user['name'] . "' AND kitStatusContestId IN (SELECT kitContestId FROM KitContest WHERE '$time' >= kitContestStart)) 
+                ((kitStatusUser='" . $login_user['name'] . "' AND kitStatusContestId IN (SELECT kitContestId FROM KitContest WHERE '$time' >= kitContestStart)) 
                 OR 
                 (kitStatusContestId IN (SELECT kitContestId FROM KitContest WHERE '$time' > kitContestEnd)) 
                 OR 
-                (kitStatusContestId IS NULL AND kitStatusProbId IN (SELECT kitProbId FROM KitProblem WHERE kitProbHidden=FALSE))
+                (kitStatusContestId IS NULL AND kitStatusProbId IN (SELECT kitProbId FROM KitProblem WHERE kitProbHidden=FALSE)))
+                AND kitStatusUser != 'root'
               )";
             $first = false;
         }
@@ -118,11 +119,12 @@ class KitStatus extends CI_Model
         } else {
             $sql = "SELECT count(*) FROM KitStatus WHERE 
               (
-                (kitStatusUser='" . $login_user['name'] . "' AND kitStatusContestId IN (SELECT kitContestId FROM KitContest WHERE '$time' >= kitContestStart)) 
+                ((kitStatusUser='" . $login_user['name'] . "' AND kitStatusContestId IN (SELECT kitContestId FROM KitContest WHERE '$time' >= kitContestStart)) 
                 OR 
                 (kitStatusContestId IN (SELECT kitContestId FROM KitContest WHERE '$time' > kitContestEnd)) 
-                AND 
-                (kitStatusContestId IS NOT NULL OR kitStatusProbId IN (SELECT kitProbId FROM KitProblem WHERE kitProbHidden=FALSE))
+                OR 
+                (kitStatusContestId IS NULL AND kitStatusProbId IN (SELECT kitProbId FROM KitProblem WHERE kitProbHidden=FALSE)))
+                AND kitStatusUser != 'root'
               )";
             $first = false;
         }
