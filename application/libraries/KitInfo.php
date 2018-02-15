@@ -75,6 +75,11 @@ class KitInfo
                     'modals' => array()
                 )
             ),
+            'user' => array(
+                'resources' => array(
+                    'modals' => array()
+                )
+            ),
             'board-contest' => array(
                 'resources' => array(
                     'modals' => array()

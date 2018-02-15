@@ -47,4 +47,57 @@ class KitUser extends CI_Model
             }
         }
     }
+
+    public function kitUpdateUser($username, $password, $email)
+    {
+        $sql = "UPDATE KitUser SET ";
+        $first = true;
+        if ($email) {
+            if (!$first) $sql = "$sql, ";
+            $sql = "$sql kitUserEmail='$email'";
+            $first = false;
+        }
+        if ($password) {
+            if (!$first) $sql = "$sql, ";
+            $sql = "$sql kitUserPassword='$password'";
+            $first = false;
+        }
+        $sql = "$sql WHERE `kitUserName`='$username'";
+        // echo json_encode(array(
+        //     "sql"  => $sql
+        // ));
+        if (!$this->db->query($sql)) {
+            return array(
+                'verdict' => false,
+                'message' => 'Cannot update userinfo.'
+            );
+        } else {
+            return array('verdict' => true);
+        }
+    }
+
+    public function kitUserInfo($username)
+    {
+        $result = $this->db->query("SELECT * FROM KitUser WHERE kitUserName='$username'")->result_array();
+        if (empty($result)) {
+            return array(
+                'verdict' => false,
+                'message' => 'cannot find this user.'
+            );
+        } else {
+            if (count($result) > 1) {
+                return array(
+                    'verdict' => false,
+                    'message' => 'find more than one user.'
+                );
+            }
+            else {
+                return array(
+                    'verdict' => true,
+                    'kitUsername' => $result[0]['kitUserName'],
+                    'kitEmail' => $result[0]['kitUserEmail']
+                );
+            }
+        }
+    }
 }

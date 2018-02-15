@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <h3>F.A.Qs</h3>
                             <p>There are severl frequently asked questions, you should learn it to solve problems
                                 better.</p>
-                            <p><a class="btn btn-warning" href="faq">See F.A.Qs</a></p>
+                            <p><a class="btn btn-warning" href="#">See F.A.Qs</a></p>
                         </div>
                     </div>
                 </div>

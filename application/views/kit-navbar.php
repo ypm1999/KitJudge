@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= $_SESSION['kitUser']['name'] ?>
                             <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
+                            <li><a href="<?= $kitBasePath ?>/user">Profile</a></li>
                             <li><a href="#">Submissions</a></li>
                             <li><a href="#">Settings</a></li>
                             <?php if ($_SESSION['kitUser']['priority'] >= 3) { ?>
