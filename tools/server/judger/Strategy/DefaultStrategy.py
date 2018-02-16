@@ -39,7 +39,7 @@ class DefaultStrategy(Strategy):
                 elif language == "Git":
                     compile_cmd = test['compiler']['Git']
                     if len(self._conf['files']) > 1:
-                        raise Exception("Have more than one code in Git judge.") 
+                        raise Exception("Have more than one url in Git judge.") 
                     for code in self._conf['files']:
                         if 'name' not in self._conf['files'][code]:
                             self._buffer.setdefault('verdict', 6)
