@@ -7,14 +7,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="row">
                 <div class="col-md-12">
                     <div class="body-footer">
-                        <span><a href="https://github.com/Kipsora/KitJudge/blob/master/README.md"
+                        <!-- <span><a href="https://github.com/Kipsora/KitJudge/blob/master/README.md"
                                  target="_blank">About</a>
                             | <a href="<?= $kitBasePath ?>/faq">F.A.Qs</a>
                             | <a href="https://github.com/Kipsora/KitJudge/blob/master/LICENSE"
                                  target="_blank">License</a>
                             | <a href="https://github.com/Kipsora/KitJudge" target="_blank">GitHub Project</a>
-                            | <a href="mailto:kipsora@gmail.com">Author</a></span><br>All Copyright Reserved ©2010-2016
-                        Kipsora<br>
+                            | <a href="mailto:kipsora@gmail.com">Author</a></span><br>-->
+                            All Copyright Reserved ©2010-<?= date("Y")?> ACM Class<br>
                         <p id="kitServerTime"></p>
                         <script>
                             function kitGetServerTime() {
