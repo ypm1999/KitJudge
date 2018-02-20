@@ -102,7 +102,6 @@ class Problems extends CI_Controller
             $probtype = $problem->row()->kitProbType;
             $problem = json_decode(file_get_contents('files/probfile/' . $_POST['prob'] . '/problem.json'));
             $commit_data['probid'] = $_POST['prob'];
-            $probtype = 'default';
 
         }
         $submit_lang = null;
@@ -135,7 +134,9 @@ class Problems extends CI_Controller
             'user' => $_SESSION['kitUser']['name'],
             'version' => KitFile::kitGetVersion()
         ));
-        $this->KitProblem->kitIncreaseSubmitted($commit_data['probid']);
+        if ($_SESSION['kitUser']['name'] != 'root') {
+            $this->KitProblem->kitIncreaseSubmitted($commit_data['probid']);
+        }
         if (!is_dir('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'])) {
             mkdir('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'], 0777, true);
             chmod('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'], 0777);
@@ -312,7 +313,8 @@ class Problems extends CI_Controller
         } else {
             $this->load->model('KitProblem');
             $this->load->database(KitInfo::$kitInfo['kitDatabase']);
-            $problemId = 1000 + $this->KitProblem->kitCountProblems($_SESSION['kitUser']['priority']);
+            $problemId = $this->KitProblem->kitNextProblemId($_SESSION['kitUser']['priority']);
+            // $problemId = 1000 + $this->KitProblem->kitCountProblems($_SESSION['kitUser']['priority']);
             $info = array_merge($info, array('kitProbId' => $problemId));
         }
         $this->load->view('kit-common-header', $info);

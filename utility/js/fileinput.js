@@ -2227,7 +2227,8 @@
             self._initSortable();
         },
         _slugDefault: function (text) {
-            return isEmpty(text) ? '' : String(text).replace(/[\-\[\]\/\{}:;#%=\(\)\*\+\?\\\^\$\|<>&"']/g, '_');
+            return isEmpty(text) ? '' : String(text);
+            // return isEmpty(text) ? '' : String(text).replace(/[\-\[\]\/\{}:;#%=\(\)\*\+\?\\\^\$\|<>&"']/g, '_');
         },
         _readFiles: function (files) {
             this.reader = new FileReader();

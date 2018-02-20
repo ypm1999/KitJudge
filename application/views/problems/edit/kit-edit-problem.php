@@ -151,7 +151,7 @@
                                             type="text/javascript"></script>
                                     <script src="<?= $kitBasePath ?>/utility/js/plugins/purify.min.js"
                                             type="text/javascript"></script>
-                                    <script src="<?= $kitBasePath ?>/utility/js/fileinput.min.js"></script>
+                                    <script src="<?= $kitBasePath ?>/utility/js/fileinput.js"></script>
                                     <script src="<?= $kitBasePath ?>/utility/js/themes/fa/theme.js"></script>
                                     <script src="<?= $kitBasePath ?>/utility/js/locales/LANG.js"></script>
                                     <div class="col-sm-12" id="kit-file-input-div"></div>

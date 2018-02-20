@@ -123,6 +123,7 @@ class Status extends CI_Controller
     {
         $this->load->library('KitInfo');
         $this->load->model('KitStatus');
+        $this->load->model('KitContest');
         session_start();
         session_write_close();
         $this->load->database(KitInfo::$kitInfo['kitDatabase']);

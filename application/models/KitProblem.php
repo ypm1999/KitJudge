@@ -24,6 +24,16 @@ class KitProblem extends CI_Model
         }
     }
 
+    public function kitNextProblemId($priority = 0)
+    {
+        if ($priority >= 2) {
+            $sqlstr = "SELECT max(kitProbId) FROM KitProblem";
+            return ((array)($this->db->query($sqlstr)->row()))['max(kitProbId)'] + 1;
+        } else {
+            return -1;
+        }
+    }
+
     public function kitIsExistProblemById($pid, $priority = 0)
     {
         if ($priority >= 2) {

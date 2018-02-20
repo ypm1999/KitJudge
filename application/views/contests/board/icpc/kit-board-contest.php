@@ -136,6 +136,7 @@
         </table>
         <script type="application/javascript">
             function kitRenderBoard(data) {
+                console.log(data);
                 var performances = [];
                 for (var i = 0; i < data.length; i++) {
                     var rid = data[i].rid;

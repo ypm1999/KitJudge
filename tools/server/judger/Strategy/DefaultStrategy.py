@@ -22,6 +22,7 @@ class DefaultStrategy(Strategy):
                 compile_path = self._gen_tmp_dir('compile')
                 self._save_code(data, compile_path)
                 self._copy_includes(compile_path)
+                self._copy_at_stage(0, test, compile_path, -1)
                 executable = []
                 language = data[self._conf['main'] + 'lang']
                 if language == 'C++':

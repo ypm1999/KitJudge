@@ -177,7 +177,7 @@
                                         </script>
                                         <?php $kitUser = $_SESSION['kitUser']['name'];?>
                                         <?php $kitId = $this->KitStatus->kitGetLastStatus($kitUser, $kitProblem->kitProbId);?>
-                                        <?php $preCode = htmlspecialchars(file_get_contents("files/userfile/$kitUser/code/$kitId/$caption"));?>
+                                        <?php $preCode = $kitId ? htmlspecialchars(file_get_contents("files/userfile/$kitUser/code/$kitId/$caption")) : "";?>
                                         <textarea class="form-control" id="kit-code-<?= $fileid ?>"
                                                   style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 100px; "><?=$preCode ?></textarea>
                                         <script type="application/javascript">

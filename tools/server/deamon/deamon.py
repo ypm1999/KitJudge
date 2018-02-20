@@ -79,7 +79,8 @@ def kitConsumer(channel, method, properites, body):
                 cursor.execute("UPDATE KitStatus SET kitStatusExtraMessage='',kitStatusVerdict=" + str(
                     data['verdict']) + ",kitStatusUsedTime=" + str(data['time']) + ",kitStatusUsedMemory=" + str(
                     data['memo']) + " WHERE kitStatusId='" + str(data['runid']) + "'")
-            cursor.execute("UPDATE KitProblem SET kitProbAccepted=kitProbAccepted+1 WHERE kitProbId=" + str(data['probid']))
+            if data['user'] != 'root':
+                cursor.execute("UPDATE KitProblem SET kitProbAccepted=kitProbAccepted+1 WHERE kitProbId=" + str(data['probid']))
             socket.emit('pub', {'runid': runid, 'case': 'END', 'verdict': data['verdict'], 't': data['time'], 'm': data['memo']})
         else:
             if data.has_key('score'):

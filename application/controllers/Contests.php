@@ -297,6 +297,7 @@ class Contests extends CI_Controller
     public function problems($method = null, $contestId = null, $data = null)
     {
         $this->load->library('KitInfo');
+        $this->load->model('KitStatus');
         session_start();
         session_write_close();
         $info = array(
