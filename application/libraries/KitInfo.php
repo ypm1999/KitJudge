@@ -152,7 +152,7 @@ class KitInfo
             'admin_port' => 15672
         ),
         'kitSocket' => array(
-			'host' => 'localhost', // To be deterimed 
+			'host' => '106.15.192.159', // used in JS. Do not use 'localhost'
             'port' => 15485
         )
     );

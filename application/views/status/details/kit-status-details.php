@@ -49,14 +49,22 @@
                                         verdict: <?= $kitVerdictTranslator[$kitReport["verdict-$caseId"]] ?>
                                     </strong>
                                 </p>
-                                <p style="font-size: small">Input</p>
-                                <pre class="prettyprint"><span class="nocode"><?= htmlspecialchars($kitReport["input-$caseId"]) ?></span></pre>
-                                <p style="font-size: small">Output</p>
-                                <pre class="prettyprint"><span class="nocode"><?= htmlspecialchars($kitReport["output-$caseId"]) ?></span></pre>
-                                <p style="font-size: small">Answer</p>
-                                <pre class="prettyprint"><span class="nocode"><?= htmlspecialchars($kitReport["stdout-$caseId"]) ?></span></pre>
-                                <p style="font-size: small">Report</p>
-                                <pre class="prettyprint"><span class="nocode"><?= isset($kitReport["report-$caseId"]) ? htmlspecialchars($kitReport["report-$caseId"]) : '' ?></span></pre>
+                                <?php if (array_key_exists("input-$caseId", $kitReport)) { ?>
+                                    <p style="font-size: small">Input</p>
+                                    <pre class="prettyprint"><span class="nocode"><?= htmlspecialchars($kitReport["input-$caseId"]) ?></span></pre>
+                                <?php } ?>
+                                <?php if (array_key_exists("output-$caseId", $kitReport)) { ?>
+                                    <p style="font-size: small">Output</p>
+                                    <pre class="prettyprint"><span class="nocode"><?= htmlspecialchars($kitReport["output-$caseId"]) ?></span></pre>
+                                <?php } ?>
+                                <?php if (array_key_exists("stdout-$caseId", $kitReport)) { ?>
+                                    <p style="font-size: small">Answer</p>
+                                    <pre class="prettyprint"><span class="nocode"><?= htmlspecialchars($kitReport["stdout-$caseId"]) ?></span></pre>
+                                <?php } ?>
+                                <?php if (array_key_exists("report-$caseId", $kitReport)) { ?>
+                                    <p style="font-size: small">Report</p>
+                                    <pre class="prettyprint"><span class="nocode"><?= isset($kitReport["report-$caseId"]) ? htmlspecialchars($kitReport["report-$caseId"]) : '' ?></span></pre>
+                                <?php } ?>
                             </div>
                         <?php } ?>
                     <?php } ?>

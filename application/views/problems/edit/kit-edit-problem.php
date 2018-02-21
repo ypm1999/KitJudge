@@ -121,7 +121,15 @@
                                         .html(result.message)
                                         .show();
                                 } else {
-                                    window.location.reload();
+                                    $LAB.script('//cdn.bootcss.com/jquery-jgrowl/1.4.5/jquery.jgrowl.js')
+                                            .wait(function () {
+                                                $.jGrowl('Successfully edit the problem', {
+                                                    position: 'bottom-right'
+                                                });
+                                            });
+                                    setTimeout(function(){
+                                        window.location.reload();
+                                    }, 1000);
                                 }
                             },
                             error: function () {

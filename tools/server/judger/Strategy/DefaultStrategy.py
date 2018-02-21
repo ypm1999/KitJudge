@@ -68,7 +68,7 @@ class DefaultStrategy(Strategy):
                     for path in executable:
                         shutil.copy(compile_path + '/' + path, run_path + '/')
                     self._copy_at_stage(index + 1, test, run_path, 0)
-                    runcmd = test['command']
+                    runcmd = test['command'][language]
                     valgrind_type = 'valgrind' if 'valgrind' in test else None
                     result = self._execute(runcmd=runcmd, rtype = valgrind_type,
                                            work_path=run_path,
@@ -144,6 +144,9 @@ class DefaultStrategy(Strategy):
                         self._buffer.update({'report-' + str(case_id): self._readfile(run_path + '/' + test['valgrind'], 5000)})
                         return
                     else:
+                        self._buffer.pop('input-' + str(case_id))
+                        self._buffer.pop('output-' + str(case_id))
+                        self._buffer.pop('stdout-' + str(case_id))
                         self._buffer.update({'report-' + str(case_id): self._readfile(run_path + '/__judge.out')})
             self._buffer.setdefault('verdict', 0)
             self._buffer.setdefault('time', used_time)

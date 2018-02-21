@@ -61,10 +61,10 @@ class KitFile
         $fp = fopen("files/probfile/version", "w");
         fwrite($fp, $version + 1);
         fclose($fp);
-        $now = shell_exec("python files/probfile/gitcommit.py");
-        if ($now != "Commited.\n") {
-            die("Commit Failed.: Message = " . $now);
-        }
+        // $now = shell_exec("python files/probfile/gitcommit.py");
+        // if ($now != "Commited.\n") {
+        //     die("Commit Failed.: Message = " . $now);
+        // }
         return true;
     }
 
