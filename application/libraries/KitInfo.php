@@ -102,13 +102,14 @@ class KitInfo
             'Wrong Answer',
             'Queueing',
             'Running',
-            'Compilation Error'
+            'Compilation Error',
+            'Memory Error'
         ),
         'kitProblemsPERPage' => 12,
         'kitStatusPERPage' => 20,
         'kitContestPERPage' => 12,
         /* Here are some custom configuration */
-        'kitTitle' => 'SJTU Online Judge',
+        'kitTitle' => 'ACM Online Judge',
         'kitWelcomeMessage' => 'Enjoy the exciting moments when thinking, coding and solving problems!',
         'kitBasePath' => '/KitJudge',
 		'kitAdminEmail' => '"root@acm.sjtu.edu.cn"',

@@ -258,6 +258,7 @@
                                                     position: 'bottom-right'
                                                 });
                                             });
+                                        setTimeout("window.location.href='<?=$kitBasePath?>/status'",800);
                                     }
                                 },
                                 error: function () {

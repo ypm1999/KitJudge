@@ -1,14 +1,15 @@
 <div class="container">
-    <?php if (isset($_SESSION['kitUser']) && $_SESSION['kitUser']['priority'] >= 2) { ?>
-        <a href="<?= $kitBasePath ?>/contests/problems/edit/<?= $kitContestId ?>" class="btn btn-success btn-sm"><span
-                    class="glyphicon glyphicon-plus"></span></a>
-        <a href="<?= $kitBasePath ?>/contests/edit/<?= $kitContestId ?>" class="btn btn-primary btn-sm"><span
-                    class="glyphicon glyphicon-edit"></span></a>
-    <?php } ?>
+    
     <?php if ($kitStartTime < $kitTime || (isset($_SESSION['kitUser']) && $_SESSION['kitUser']['priority'] >= 2)) { ?>
         <?php if ($kitStartTime < $kitTime) { ?>
             <h1 style="text-align: center"><?= $kitContest->kitContestName ?></h1>
             <h2 style="text-align: center" id="kit-contest-time-countdown"></h2>
+        <?php } ?>
+        <?php if (isset($_SESSION['kitUser']) && $_SESSION['kitUser']['priority'] >= 2) { ?>
+            <a href="<?= $kitBasePath ?>/contests/problems/edit/<?= $kitContestId ?>" class="btn btn-success btn-sm"><span
+                        class="glyphicon glyphicon-plus"></span></a>
+            <a href="<?= $kitBasePath ?>/contests/edit/<?= $kitContestId ?>" class="btn btn-primary btn-sm"><span
+                        class="glyphicon glyphicon-edit"></span></a>
         <?php } ?>
         <a href="<?= $kitBasePath ?>/contests/show/<?= $kitContestId ?>" class="btn btn-success btn-sm">Problems</a>
         <a href="<?= $kitBasePath ?>/contests/board/<?= $kitContestId ?>" class="btn btn-danger btn-sm">Board</a>

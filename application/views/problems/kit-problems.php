@@ -1,50 +1,56 @@
 <div class="container">
-    <?php if (isset($_SESSION['kitUser']) && $_SESSION['kitUser']['priority'] >= 2) { ?>
-        <a href="<?= $kitBasePath ?>/problems/edit" class="btn btn-success btn-sm"><span
-                    class="glyphicon glyphicon-plus"></span></a>
-    <?php } ?>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>Source</th>
-            <?php if (isset($_SESSION['kitUser']) && $_SESSION['kitUser']['priority'] >= 2) { ?>
-                <th>Visibility</th>
-            <?php } ?>
-            <th>Ratio (Accepted / Submitted)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($kitProblems->result() as $problem) { ?>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
             <tr>
-                <td class="col-md-1"><a
-                            href="<?= $kitBasePath ?>/problems/show/<?= $problem->kitProbId ?>"><?= $problem->kitProbId ?></a>
-                </td>
-                <td class="col-lg-3"><a
-                            href="<?= $kitBasePath ?>/problems/show/<?= $problem->kitProbId ?>"><?= $problem->kitProbName ?></a>
-                </td>
-                <td class="col-lg-3"><?= $problem->kitProbSource ?></td>
+                <th>
                 <?php if (isset($_SESSION['kitUser']) && $_SESSION['kitUser']['priority'] >= 2) { ?>
-                    <td><i><?= $problem->kitProbHidden ? 'Invisible' : 'Visible' ?></i></td>
+                    <a href="<?= $kitBasePath ?>/problems/edit" class="btn btn-success btn-xs"><span
+                                class="glyphicon glyphicon-plus"></span></a>
+                <?php } else { ?>
+                    # 
+                <?php }?>
+                </th>
+                <th>Title</th>
+                <th class="hidden-xs">Source</th>
+                <?php if (isset($_SESSION['kitUser']) && $_SESSION['kitUser']['priority'] >= 2) { ?>
+                    <th>Visibility</th>
                 <?php } ?>
-                <td>
-                    <?php
-                    $ratio = $problem->kitProbSubmitted == 0 ? 0.0 :
-                        100.0 * $problem->kitProbAccepted / $problem->kitProbSubmitted;
-                    ?>
-                    <div class="progress" style="text-align: center; margin-bottom: 0 !important;">
-                        <div class="progress-bar progress-bar-info" style="width: <?= $ratio ?>%;">
-                                <span class="progress-value" style="position: 50%; color: #0f0f0f;">
-                                    <?php echo sprintf("%.2f", $ratio); ?>%(<?= $problem->kitProbAccepted ?>/<?= $problem->kitProbSubmitted ?>)
-                                </span>
-                        </div>
-                    </div>
-                </td>
+                <th class="hidden-xs">Ratio (Accepted / Submitted)</th>
+                <th class="visible-xs">Ratio</th>
             </tr>
-        <?php } ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <?php foreach ($kitProblems->result() as $problem) { ?>
+                <tr>
+                    <td class="col-md-1"><a
+                                href="<?= $kitBasePath ?>/problems/show/<?= $problem->kitProbId ?>"><?= $problem->kitProbId ?></a>
+                    </td>
+                    <td class="col-lg-3 hidden-xs"><a
+                                href="<?= $kitBasePath ?>/problems/show/<?= $problem->kitProbId ?>"><?= $problem->kitProbName ?></a>
+                    </td>
+                    <td class="col-lg-3"><?= $problem->kitProbSource ?></td>
+                    <?php if (isset($_SESSION['kitUser']) && $_SESSION['kitUser']['priority'] >= 2) { ?>
+                        <td><i><?= $problem->kitProbHidden ? 'Invisible' : 'Visible' ?></i></td>
+                    <?php } ?>
+                    <td>
+                        <?php
+                        $ratio = $problem->kitProbSubmitted == 0 ? 0.0 :
+                            100.0 * $problem->kitProbAccepted / $problem->kitProbSubmitted;
+                        ?>
+                        <div class="progress" style="text-align: center; margin-bottom: 0 !important;">
+                            <div class="progress-bar progress-bar-info" style="width: <?= $ratio ?>%;">
+                                    <span class="progress-value" style="position: 50%; color: #0f0f0f;">
+                                        <?php echo sprintf("%.2f", $ratio); ?>%(<?= $problem->kitProbAccepted ?>/<?= $problem->kitProbSubmitted ?>)
+                                    </span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
     <div class="text-center">
         <ul class="pagination justify-content-center" id="kit-problem-list-pagination">
             <?php if ($kitCurPage == 1) { ?>

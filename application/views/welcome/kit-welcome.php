@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php } ?>
     </div>
 </div>
-<div class="container">
+<div class="container hidden-xs">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <div class="row">

@@ -40,7 +40,7 @@
                                 <?php $flag = true; ?>
                             <?php } ?>
                             <hr>
-                            <div style="line-height: 8.0px">
+                            <div>
                                 <p>
                                     <strong style="font-size: small">
                                         Test: #<?= $caseId ?>, time: <?= $kitReport["time-$caseId"] ?> MS,

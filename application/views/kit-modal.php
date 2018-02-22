@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <div class="modal-body">
                     <form id="kit-login-modal-form" class="form-horizontal" role="form" method="post">
-                        <div id="kit-login-modal-messsage" style="display: none;"></div>
+                        <div id="kit-login-modal-messsage" style="display: none;"></div><div id="kit-login-modal-messsage" style="display: none;"></div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Username</label>
                             <div class="col-sm-10">
@@ -243,7 +243,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php if (array_key_exists('status-filter', $kitPages[$kitView]['resources']['modals'])) { ?>
     <div class="modal fade" id="kit-status-filter-modal" tabindex="-1" role="dialog" aria-labelledby="Status Filter"
          aria-hidden="true">
-        <div class="modal-dialog" style="width:800px;">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -256,8 +256,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="modal-body">
                     <form id="kit-status-filter-modal-form" class="form-horizontal" role="form">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Problem Id</label>
-                            <div class="col-sm-9">
+                            <label class="col-sm-2 control-label">Problem</label>
+                            <div class="col-sm-10">
                                 <input id="kit-status-filter-modal-probid" type="text" class="form-control"
                                        placeholder="Enter the problem id here"
                                        value="<?= isset($_SESSION['status-filter']['prob']) ? $_SESSION['status-filter']['prob'] : '' ?>">
@@ -265,7 +265,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Username</label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-10">
                                 <input id="kit-status-filter-modal-username" type="text" class="form-control"
                                        placeholder="Enter the username id here"
                                        value="<?= isset($_SESSION['status-filter']['user']) ? $_SESSION['status-filter']['user'] : '' ?>">
@@ -273,7 +273,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Result</label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-10">
                                 <select id="kit-status-filter-modal-verdict" class="selectpicker show-tick form-control"
                                         data-live-search="false">
                                     <option value="*">Any Verdicts</option>
@@ -289,7 +289,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Language</label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-10">
                                 <select id="kit-status-filter-modal-language"
                                         class="selectpicker show-tick form-control" data-live-search="false">
                                     <option value="*">Any Languages</option>
