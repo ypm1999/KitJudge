@@ -55,8 +55,13 @@ class Status extends CI_Controller
             exit(json_encode(array(
                 'verdict' => false,
                 'message' => 'session expired.',
+                'user' => $_SESSION,
+                'post' => $_POST['session'],
+                'cookie' => $_COOKIE['session']
             )));
         }
+        $this->load->database(KitInfo::$kitInfo['kitDatabase']);
+        $result = $this->KitStatus->kitGetStatusById($_POST['id']);
         if (!isset($_SESSION['kitUser']) || $_SESSION['kitUser']['priority'] < 2
             || !isset($_POST['session']) || !isset($_POST['id']) || !is_numeric($_POST['id'])
             || empty($result->result_array())) {
@@ -65,41 +70,20 @@ class Status extends CI_Controller
                 'message' => 'Invalid request.'
             )));
         }
-        $this->load->database(KitInfo::$kitInfo['kitDatabase']);
-        $result = $this->KitStatus->kitGetStatusExistsById($_POST['id']);
         $result = $result->row();
         if ($result->kitStatusVerdict == 0) {
             $this->KitProblem->kitDecreaseAccepted($result->kitStatusProbId);
         }
-
-        $problem = $this->KitProblem->kitGetProblemById($result->kitStatusProbId, 5);
-        $probtype = $problem->row()->kitProbType;
-        $problem = json_decode(file_get_contents('files/probfile/' . $_POST['prob'] . '/problem.json'));
-        foreach ($problem->files as $caption => $conf) {
-            if (!isset($_POST[$caption]) || !isset($_POST[$caption . 'lang'])) {
-                exit(json_encode(array(
-                    'verdict' => false,
-                    'message' => 'Invalid request.'
-                )));
-            }
-            if ($submit_lang == null) {
-                $submit_lang = $_POST[$caption . 'lang'];
-            } else {
-                $submit_lang = 'Mixed';
-            }
-            $submit_length += strlen($_POST[$caption]);
-        }
-        $commit_data = array_merge($commit_data, array(
+        $problem = $this->KitProblem->kitGetProblemById($result->kitStatusProbId, 5)->row();
+        $probtype = $problem->kitProbType;
+        $problem = json_decode(file_get_contents('files/probfile/' . $problem->kitProbId . '/problem.json'));
+        $commit_data = array(
             'probid' => $result->kitStatusProbId,
             'type' => $probtype,
             'runid' => $result->kitStatusId,
             'user' => $result->kitStatusUser,
             'version' => KitFile::kitGetVersion()
-        ));
-        if (!is_dir('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'])) {
-            mkdir('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'], 0777, true);
-            chmod('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'], 0777);
-        }
+        );
         if ($commit_data['runid'] == -1) {
             exit(json_encode(array(
                 'verdict' => false,
@@ -107,16 +91,15 @@ class Status extends CI_Controller
             )));
         }
         foreach ($problem->files as $caption => $file) {
-            if (!isset($_POST[$caption])) {
+            if (!is_file('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'] . '/' . $caption)
+                || !is_file('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'] . '/' . $caption . 'lang')) {
                 exit(json_encode(array(
                     'verdict' => false,
                     'message' => 'Invalid request.'
                 )));
             }
-            file_get_contents('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'] . '/' . $caption, $_POST[$caption]);
-            file_get_contents('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'] . '/' . $caption . 'lang', $_POST[$caption . 'lang']);
-            $commit_data = array_merge($commit_data, array($caption => file_get_contents('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'] . '/' . $caption, $_POST[$caption])));
-            $commit_data = array_merge($commit_data, array($caption . 'lang' => file_get_contents('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'] . '/' . $caption . 'lang', $_POST[$caption . 'lang'])));
+            $commit_data = array_merge($commit_data, array($caption => file_get_contents('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'] . '/' . $caption)));
+            $commit_data = array_merge($commit_data, array($caption . 'lang' => file_get_contents('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'] . '/' . $caption . 'lang')));
         }
         $this->load->library('KitMQHandler');
         if (!KitMQHandler::publish(KitInfo::$kitInfo['kitMQ'], json_encode($commit_data))) {
@@ -126,8 +109,7 @@ class Status extends CI_Controller
             ));
         } else {
             echo json_encode(array(
-                'verdict' => true,
-                'runid' => $commit_data['runid']
+                'verdict' => true
             ));
         }
     }

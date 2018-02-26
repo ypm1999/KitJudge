@@ -42,6 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <th>Time</th>
                         <th>Memory</th>
                         <th>Length</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -80,7 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     )
                     ?>
                     <?php foreach ($kitStatus as $status) { ?>
-                        <tr id="status<?= $status->kitStatusId ?>">
+                        <tr id="status-<?= $status->kitStatusId ?>">
                             <?php if ($status->valid){ ?>
                                 <td><a href="<?= $kitBasePath ?>/status/details/<?= $status->kitStatusId ?>"><?= $status->kitStatusId ?></a></td>
                             <?php }else {?>
@@ -102,8 +103,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <?php } else { ?>
                                 <td></td>
                             <?php } ?>
+                            <?php if (isset($_SESSION['kitUser']) && $_SESSION['kitUser']['priority'] >= 2) {?>
+                                <td>
+                                    <a href="#" id="rejudge-<?= $status->kitStatusId?>" onclick="rejudge(<?= $status->kitStatusId?>)"><span class="glyphicon glyphicon-refresh"></span></a>
+                                </td>
+                            <?php } ?>
                         </tr>
                     <?php } ?>
+                    <script type="application/javascript">
+                        function rejudge(id) {
+                            var data = 'session=<?=$kitSessionId?>';
+                            data += '&id=' + id.toString();
+                            $.ajax({
+                                type: 'POST',
+                                url: '<?=$kitBasePath?>/status/rejudge',
+                                cache: false,
+                                data: data,
+                                success: function (message) {
+                                    var result = eval('(' + message + ')');
+                                    if (!result.verdict) {
+                                        $LAB.script('//cdn.bootcss.com/jquery-jgrowl/1.4.5/jquery.jgrowl.js')
+                                            .wait(function () {
+                                                $.jGrowl(result.message, {
+                                                    position: 'bottom-right',
+                                                    sticky: true
+                                                });
+                                            });
+                                    } else {
+                                        $LAB.script('//cdn.bootcss.com/jquery-jgrowl/1.4.5/jquery.jgrowl.js')
+                                            .wait(function () {
+                                                $.jGrowl('Successfully rejudge the code', {
+                                                    position: 'bottom-right'
+                                                });
+                                            });
+                                    }
+                                },
+                                error: function () {
+                                    $LAB.script('//cdn.bootcss.com/jquery-jgrowl/1.4.5/jquery.jgrowl.js')
+                                        .wait(function () {
+                                            $.jGrowl('Fatal error occured, please contact the administrator.', {
+                                                position: 'bottom-right'
+                                            });
+                                        });
+                                }
+                            })
+                        };
+                    </script>
                     </tbody>
                 </table>
             </div>
