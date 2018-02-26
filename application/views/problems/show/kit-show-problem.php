@@ -220,8 +220,8 @@
                             var data = 'session=<?=$kitSessionId?>';
                             <?php $fileid = 0?>
                             <?php foreach ($kitProblemConf['files'] as $caption => $conf) {?>
-                            data = data + '&<?=$caption?>=' + encodeURIComponent($('#kit-code-<?=++$fileid?>').next('.CodeMirror')[0].CodeMirror.getValue());
-                            data = data + '&<?=$caption?>lang=' + encodeURIComponent($('#kit-code-lang-<?=$fileid?>').val());
+                                data = data + '&<?=$caption?>=' + encodeURIComponent($('#kit-code-<?=++$fileid?>').next('.CodeMirror')[0].CodeMirror.getValue());
+                                data = data + '&<?=$caption?>lang=' + encodeURIComponent($('#kit-code-lang-<?=$fileid?>').val());
                             <?php }?>
                             <?php if (isset($kitContestId)) {?>
                             data = data + '&cid=<?=$kitContestId?>';

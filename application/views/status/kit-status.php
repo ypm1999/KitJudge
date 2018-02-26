@@ -5,9 +5,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12">
-            <!-- <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kit-status-filter-modal"><span
-                        class="glyphicon glyphicon-filter"></span></button> -->
-            
             <div class="table-responsive">
                 <table id='kit-status-form' class="table table-striped table-hover table-curved">
                     <thead>
@@ -34,9 +31,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </script>
                         <?php } ?>
                         </th>
-                        <th class="hidden-xs">Submission Time</th>
+                        <th class="hidden-xs hidden-sm">Submission Time</th>
                         <th>User</th>
-                        <th class="hidden-xs">Contest</th>
+                        <th class="hidden-xs hidden-sm">Contest</th>
                         <th class="hidden-xs">Problem</th>
                         <th class="visible-xs">Prob</th>
                         <th class="hidden-xs">Language</th>
@@ -89,9 +86,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <?php }else {?>
                                 <td><?= $status->kitStatusId ?></a></td>
                             <?php } ?>
-                            <td class="hidden-xs"><?= $status->kitStatusTime ?></td>
+                            <td class="hidden-xs hidden-sm"><?= $status->kitStatusTime ?></td>
                             <td><?= $status->kitStatusUser ?></td>
-                            <td class="hidden-xs"><?= isset($status->kitStatusContestId) ? "<a href='$kitBasePath/contests/show/$status->kitStatusContestId'>$status->kitStatusContestId</a>" : '' ?></td>
+                            <td class="hidden-xs hidden-sm"><?= isset($status->kitStatusContestId) ? "<a href='$kitBasePath/contests/show/$status->kitStatusContestId'>$status->kitStatusContestId</a>" : '' ?></td>
                             <td>
                                 <a href="<?= isset($status->kitStatusContestId) ? $kitBasePath . "/contests/problems/show/$status->kitStatusContestId/$status->kitStatusContestTag" : $kitBasePath . "/problems/show/$status->kitStatusProbId" ?>"><?= isset($status->kitStatusContestId) ? "$status->kitStatusContestId-$status->kitStatusContestTag" : $status->kitStatusProbId ?></a>
                             </td>
