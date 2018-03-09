@@ -213,19 +213,20 @@ class Strategy:
     def _emit_case(self, case):
         if case == 'RESET':
             self.__last_emit_case = 0
-        if case == 'COMPILING':
-            self.__database_execute("UPDATE KitStatus SET kitStatusVerdict=12 WHERE kitStatusId=" + str(self._kitRunId))
-            self.__socket_emit({'runid': self._kitRunId, 'case': 'COMPILING'})
-            return
         if self.__last_emit_case == 0:
             self.__last_emit_stamp = time.time()
         else:
             now_time = time.time()
-            if now_time - self.__last_emit_stamp <= 3.0 or case - self.__last_emit_case < 5:
+            # if now_time - self.__last_emit_stamp <= 3.0 or case - self.__last_emit_case < 5:
+            if now_time - self.__last_emit_stamp <= 1.5:
                 return
             self.__last_emit_stamp = now_time
+        if case == 'COMPILING':
+            self.__database_execute("UPDATE KitStatus SET kitStatusVerdict=12 WHERE kitStatusId=" + str(self._kitRunId))
+            self.__socket_emit({'runid': self._kitRunId, 'case': 'Compiling'})
+            return
         self.__database_execute("UPDATE KitStatus SET kitStatusVerdict=9,kitStatusExtraMessage='" + str(case) + "' WHERE kitStatusId=" + str(self._kitRunId))
-        self.__socket_emit({'runid': self._kitRunId, 'case': case})
+        self.__socket_emit({'runid': self._kitRunId, 'case': 'Running on test ' + str(case)})
         self.__last_emit_case = case
 
     def _consume(self, data):

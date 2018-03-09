@@ -59,14 +59,14 @@
                                         console.log("%s", text);
                                         <?php if (isset($kitContestId)) {?>
                                         text = text.replace(/\[\$PATH]/g, "<?=$kitBasePath?>/contests/file/<?=$kitContestId?>/<?=$kitProblemTag?>")
-                                            .replace(/_/g, "\\_")
-                                            .replace(/{/g, "\\{")
-                                            .replace(/}/g, "\\}");
+                                            .replace(/_/g, "\_")
+                                            .replace(/{/g, "\{")
+                                            .replace(/}/g, "\}");
                                         <?php } else {?>
                                         text = text.replace(/\[\$PATH]/g, "<?=$kitBasePath?>/problems/file/<?=$kitProblem->kitProbId?>")
-                                            .replace(/_/g, "\\_")
-                                            .replace(/{/g, "\\{")
-                                            .replace(/}/g, "\\}");
+                                            .replace(/_/g, "\_")
+                                            .replace(/{/g, "\{")
+                                            .replace(/}/g, "\}");
                                         <?php }?>
                                         $('#mod-<?=$key?>').html(markdown.toHTML(text));
                                     });
@@ -81,6 +81,7 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Caption</th>
                                     <th>Time Limits</th>
                                     <th>Memory Limits</th>
                                     <th>Comparator</th>
@@ -94,6 +95,7 @@
                                         <?php for ($tmp = 0; $tmp < $test['repeat']; $tmp++) { ?>
                                             <tr>
                                                 <td><?= ++$testId ?></td>
+                                                <td><?= array_key_exists('caption', $test) ? $test['caption'] : ''?></td>
                                                 <td><?= $test['limit'][$lang]['time'] ?> MS</td>
                                                 <td><?= $test['limit'][$lang]['memory'] >> 10 ?> MB</td>
                                                 <td><?= $test['judger']['type'] == 'default' ? $test['judger']['path'] : '<i>Special Judge</i>' ?></td>
@@ -109,6 +111,7 @@
                                     <?php } else { ?>
                                         <tr>
                                             <td><?= $testId + 1; ?>~<?= ($testId += $test['repeat']); ?></td>
+                                            <td><?= array_key_exists('caption', $test) ? $test['caption'] : ''?></td>
                                             <td><?= $test['limit'][$lang]['time'] ?> MS</td>
                                             <td><?= $test['limit'][$lang]['memory'] >> 10 ?> MB</td>
                                             <td><?= $test['judger']['type'] == 'default' ? $test['judger']['path'] : '<i>Special Judge</i>' ?></td>

@@ -69,8 +69,8 @@ class DefaultStrategy(Strategy):
                         shutil.copy(compile_path + '/' + path, run_path + '/')
                     self._copy_at_stage(index + 1, test, run_path, 0)
                     runcmd = test['command'][language]
-                    valgrind_type = 'valgrind' if 'valgrind' in test else None
-                    result = self._execute(runcmd=runcmd, rtype = valgrind_type,
+                    run_type = test.get('type', None)
+                    result = self._execute(runcmd=runcmd, rtype = run_type,
                                            work_path=run_path,
                                            sin=test['input'],
                                            sout=test['output'],
@@ -138,7 +138,7 @@ class DefaultStrategy(Strategy):
                         self._buffer.update({'verdict-' + str(case_id): 7})
                         self._buffer.update({'report-' + str(case_id): self._readfile(run_path + '/__judge.out')})
                         return
-                    elif valgrind_type != None and self.kitValgrindXMLHasError(run_path + '/' + test['valgrind']):
+                    elif run_type != None and self.kitValgrindXMLHasError(run_path + '/' + test['valgrind']):
                         self._buffer.update({'verdict': 13})
                         self._buffer.update({'verdict-' + str(case_id): 13})
                         self._buffer.update({'report-' + str(case_id): self._readfile(run_path + '/' + test['valgrind'], 5000)})

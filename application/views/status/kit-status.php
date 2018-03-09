@@ -135,6 +135,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 $.jGrowl('Successfully rejudge the code', {
                                                     position: 'bottom-right'
                                                 });
+                                                setTimeout("location.reload()", 1000);
                                             });
                                     }
                                 },
@@ -193,10 +194,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 console.log(data);
                                 $('#kit-status-form').find('tr').each(function (index) {
                                     if ($(this).children('td').eq(0).children('a').text() === data['runid'].toString()) {
-                                        if (data['case'] === 'COMPILING') {
-                                            $(this).children('td').eq(6).html('<span class="kit-ing">Compiling</span><img src="<?=$kitBasePath?>/utility/img/ajax-loader.gif">');
-                                        } else if (data['case'] !== 'END') {
-                                            $(this).children('td').eq(6).html('<span class="kit-ing">Running on test ' + data['case'].toString() + '</span><img src="<?=$kitBasePath?>/utility/img/ajax-loader.gif">');
+                                        if (data['case'] !== 'END') {
+                                            $(this).children('td').eq(6).html('<span class="kit-ing">' + data['case'].toString() + '</span><img src="<?=$kitBasePath?>/utility/img/ajax-loader.gif">');
                                         } else {
                                             if (data['verdict'] === 0) {
                                                 $(this).children('td').eq(8).html(data['t'] + " MS");

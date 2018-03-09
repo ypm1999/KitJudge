@@ -71,7 +71,7 @@ class Status extends CI_Controller
             )));
         }
         $result = $result->row();
-        if ($result->kitStatusVerdict == 0) {
+        if ($result->kitStatusVerdict == 0 && $result->kitStatusUser != 'root') {
             $this->KitProblem->kitDecreaseAccepted($result->kitStatusProbId);
         }
         $problem = $this->KitProblem->kitGetProblemById($result->kitStatusProbId, 5)->row();
@@ -90,6 +90,7 @@ class Status extends CI_Controller
                 'message' => 'Cannot insert such status.'
             )));
         }
+        $this->db->query("UPDATE KitStatus SET kitStatusVerdict=8 WHERE kitStatusId='$result->kitStatusId'");
         foreach ($problem->files as $caption => $file) {
             if (!is_file('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'] . '/' . $caption)
                 || !is_file('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'] . '/' . $caption . 'lang')) {
