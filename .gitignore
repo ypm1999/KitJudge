@@ -19,15 +19,16 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
 
 ## private settings
-application/libraries/KitFile.php
-tools/server/judger/judger.py
-tools/server/judger/Strategy/Strategy.py
-tools/server/deamon/deamon.py
+application/libraries/KitInfo.php
+tools/server/judger/settings.py
+tools/server/judger/Strategy/settings.py
+tools/server/deamon/settings.py
+tools/setup.py
 
 # IDE Files
 #-------------------------
 /nbproject/
-.idea/*
+*/.idea/*
 
 ## Sublime Text cache files
 *.tmlanguage.cache

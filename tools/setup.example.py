@@ -7,14 +7,14 @@ def sha256(content) :
 	encoder.update(content)
 	return encoder.hexdigest()
 
-KitDBHost = "localhost"
-KitDBName = "KitJudge"
-KitDBUserName = "root"
-KitDBUserPassword = "acmclass"
+KitDBHost = "***"
+KitDBName = "***"
+KitDBUserName = "***"
+KitDBUserPassword = "***"
 
-KitAdminUserName = "root"
-KitAdminUserPassword = sha256("acmclass")
-KitAdminUserEmail = "root@acm.sjtu.edu.cn"
+KitAdminUserName = "***"
+KitAdminUserPassword = sha256("***")
+KitAdminUserEmail = "***"
 
 def kitInitDBProblem(cursor) :
 	cursor.execute(

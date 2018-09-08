@@ -14,20 +14,7 @@ import stat
 from threading import Timer
 
 import time, MySQLdb
-
-kitReportMQHost = '***'
-kitReportMQPort = 5672
-kitReportMQUsername = '***'
-kitReportMQPassword = '***'
-kitReportMQQueueName = '***'
-kitReportMQHeartBeat = 20
-kitGitHost = '***'
-kitGitUser = '***'
-kitDBPort = 3306
-kitDBHost = "***"
-kitDBName = "***"
-kitDBUsername = "***"
-kitDBPassword = "***"
+from settings import *
 
 
 class Strategy:

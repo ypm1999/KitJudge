@@ -9,15 +9,7 @@ import socketIO_client
 import json
 import time
 import traceback
-
-kitSocketHost = '***'
-kitSocketPort = 15485
-kitMQHost = '***'
-kitMQPort = 5672
-kitMQUsername = '***'
-kitMQPassword = '***'
-kitMQQueueName = '***'
-kitMQHeartBeat = 20
+from settings import *
 
 
 def kitConsole(message):
