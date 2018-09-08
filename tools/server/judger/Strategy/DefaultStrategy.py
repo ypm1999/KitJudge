@@ -56,19 +56,29 @@ class DefaultStrategy(Strategy):
                         if not self._compile(cmd, language, compile_path):
                             return
                     executable.append('code')
+                    executable.append('bin/')
+                elif language == 'plain':
+                    executable.append('plain.txt')
                 else:
                     self._buffer.setdefault('compile', 'Compilation failure: unknown programming language')
                     self._buffer.setdefault('verdict', 10)
                     return
+                    
                 for index in xrange(test['repeat']):
                     case_id += 1
                     self._emit_case(case_id)
                     self._console('Running on test {} repeated {} times caseid={}'.format(tid + 1, index + 1, case_id))
                     run_path = self._gen_tmp_dir(case_id)
                     for path in executable:
-                        shutil.copy(compile_path + '/' + path, run_path + '/')
+                        full_path = compile_path + '/' + path
+                        if os.path.exists(full_path):
+                            if (os.path.isdir(full_path)):
+                                shutil.copytree(full_path, run_path + '/' + path)
+                            else:
+                                shutil.copy(full_path, run_path + '/')
                     self._copy_at_stage(index + 1, test, run_path, 0)
                     runcmd = test['command'][language]
+                    runcmd = runcmd.replace('[$INDEX]', str(index + 1))
                     run_type = test.get('type', None)
                     result = self._execute(runcmd=runcmd, rtype = run_type,
                                            work_path=run_path,
@@ -134,8 +144,8 @@ class DefaultStrategy(Strategy):
                         self._buffer.setdefault('report', 'Judge failure: Cannot execute the judger')
                         return
                     elif exitcode != 0:
-                        self._buffer.update({'verdict': 7})
-                        self._buffer.update({'verdict-' + str(case_id): 7})
+                        self._buffer.update({'verdict': exitcode})
+                        self._buffer.update({'verdict-' + str(case_id): exitcode})
                         self._buffer.update({'report-' + str(case_id): self._readfile(run_path + '/__judge.out')})
                         return
                     elif run_type != None and self.kitValgrindXMLHasError(run_path + '/' + test['valgrind']):

@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 class KitInfo
 {
     public static $kitInfo = array(
@@ -88,7 +89,8 @@ class KitInfo
         'kitSupportedLanguages' => array(
             'C++' => ['text/x-c++src', 'cpp'],
             'Java' => ['text/x-java', 'java'],
-            'Git' => ['text/plain', 'plain']
+            'Git' => ['text/plain', 'plain'],
+            'plain' => ['text/plain', 'plain']
         ),
         'kitSupportedVerdicts' => array(
             'Accepted',
@@ -110,13 +112,13 @@ class KitInfo
         /* Here are some custom configuration */
         'kitTitle' => 'ACM Online Judge',
         'kitWelcomeMessage' => 'Enjoy the exciting moments when thinking, coding and solving problems!',
-        'kitBasePath' => '/KitJudge',
-		'kitAdminEmail' => '"root@acm.sjtu.edu.cn"',
+        'kitBasePath' => '',
+		'kitAdminEmail' => '***',
         'kitDatabase' => array(
-			'hostname' => 'localhost',
-			'username' => 'root',
-			'password' => 'acmclass',
-			'database' => 'KitJudge',
+			'hostname' => '***',
+			'username' => '***',
+			'password' => '***',
+			'database' => '***',
                 'dbdriver' => 'mysqli',
                 'dbprefix' => '',
                 'pconnect' => false,
@@ -129,10 +131,10 @@ class KitInfo
         ),
         'kitMQ' => array(
             'connection' => array(
-                'host' => 'localhost', // To be deterimed
+                'host' => '***',
                 'port' => 5672,
-				'login' => 'KitOJ',
-				'password' => 'acmclass'
+				'login' => '***',
+				'password' => '***'
             ),
             'exchange' => 'kitMQ',
             'route' => 'kitMQ',
@@ -141,10 +143,10 @@ class KitInfo
         ),
         'kitCompileMQ' => array(
             'connection' => array(
-				'host' => 'localhost',
+				'host' => '***',
                 'port' => 5672,
-				'login' => 'KitOJ',
-				'password' => 'acmclass'
+				'login' => '***',
+				'password' => '***'
             ),
             'exchange' => 'kitCompileMQ',
             'route' => 'kitCompileMQ',
@@ -152,10 +154,11 @@ class KitInfo
             'admin_port' => 15672
         ),
         'kitSocket' => array(
-			'host' => '106.15.192.159', // used in JS. Do not use 'localhost'
+			'host' => '***', // used in JavaScript. Do not use 'localhost'
             'port' => 15485
         )
     );
+
     public static function getOSInfo()
     {
         return php_uname();

@@ -47,6 +47,9 @@
                                         memory: <?= $kitReport["memo-$caseId"] ?> KB, exit
                                         code: <?= $kitReport["exit-$caseId"] ?>,
                                         verdict: <?= $kitVerdictTranslator[$kitReport["verdict-$caseId"]] ?>
+                                        <?php if (array_key_exists("score-$caseId", $kitReport)) { ?>
+                                            score: <?= $kitReport["score-$caseId"] ?>
+                                        <?php } ?>
                                     </strong>
                                 </p>
                                 <?php if (array_key_exists("input-$caseId", $kitReport)) { ?>

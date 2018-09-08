@@ -415,7 +415,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 message: "The field username is empty."
                                             },
                                             regexp: {
-                                                regexp: "51[6-7]0[0-9]{8,8}$",
+                                                regexp: "51[6-7][0-9]{9,9}$",
                                                 message: "The username must be your student id."
                                             }
                                         }

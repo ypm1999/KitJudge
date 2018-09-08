@@ -5,10 +5,10 @@
 #include <iostream>
 
 #define SPJ_OK 0
-#define SPJ_WA 1
-#define SPJ_STD_IO_ERROR 2
-#define SPJ_SRC_IO_ERROR 3
-#define SPJ_SCR_IO_ERROR 4
+#define SPJ_WA 7
+#define SPJ_STD_IO_ERROR 6
+#define SPJ_SRC_IO_ERROR 6
+#define SPJ_SCR_IO_ERROR 6
 
 struct SPJException{
 	std::string message;

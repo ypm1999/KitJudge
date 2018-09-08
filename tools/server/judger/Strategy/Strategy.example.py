@@ -15,19 +15,19 @@ from threading import Timer
 
 import time, MySQLdb
 
-kitReportMQHost = 'localhost'
+kitReportMQHost = '***'
 kitReportMQPort = 5672
-kitReportMQUsername = 'KitOJ'
-kitReportMQPassword = 'acmclass'
-kitReportMQQueueName = 'kitReportMQ'
+kitReportMQUsername = '***'
+kitReportMQPassword = '***'
+kitReportMQQueueName = '***'
 kitReportMQHeartBeat = 20
-kitGitHost = 'localhost'
-kitGitUser = 'root'
+kitGitHost = '***'
+kitGitUser = '***'
 kitDBPort = 3306
-kitDBHost = "localhost"
-kitDBName = "KitJudge"
-kitDBUsername = "root"
-kitDBPassword = "acmclass"
+kitDBHost = "***"
+kitDBName = "***"
+kitDBUsername = "***"
+kitDBPassword = "***"
 
 
 class Strategy:

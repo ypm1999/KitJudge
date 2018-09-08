@@ -56,7 +56,7 @@ class Problems extends CI_Controller
             }
             $curTime = $curTime - strtotime($contest->kitContestStart);
             $this->load->model('KitContestProblem');
-            $contestProb = $this->KitContestProblem->kitGetProblemByContestId($_POST['cid']);
+            $contestProb = $this->KitContestProblem->kitGetProblemByContestId($_POST['cid'],$_POST['tag']);
             if (empty($contestProb->result_array())) {
                 exit(json_encode(array(
                     'verdict' => false,
@@ -115,7 +115,7 @@ class Problems extends CI_Controller
             }
             if ($submit_lang == null) {
                 $submit_lang = $_POST[$caption . 'lang'];
-            } else {
+            } else if ($submit_lang != $_POST[$caption . 'lang']){
                 $submit_lang = 'Mixed';
             }
             $submit_length += strlen($_POST[$caption]);

@@ -92,15 +92,15 @@ class Status extends CI_Controller
         }
         $this->db->query("UPDATE KitStatus SET kitStatusVerdict=8 WHERE kitStatusId='$result->kitStatusId'");
         foreach ($problem->files as $caption => $file) {
-            if (!is_file('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'] . '/' . $caption)
-                || !is_file('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'] . '/' . $caption . 'lang')) {
+            if (!is_file('files/userfile/' . $result->kitStatusUser . '/code/' . $commit_data['runid'] . '/' . $caption)
+                || !is_file('files/userfile/' . $result->kitStatusUser . '/code/' . $commit_data['runid'] . '/' . $caption . 'lang')) {
                 exit(json_encode(array(
                     'verdict' => false,
-                    'message' => 'Invalid request.'
+                    'message' => 'Invalid request111.'
                 )));
             }
-            $commit_data = array_merge($commit_data, array($caption => file_get_contents('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'] . '/' . $caption)));
-            $commit_data = array_merge($commit_data, array($caption . 'lang' => file_get_contents('files/userfile/' . $_SESSION['kitUser']['name'] . '/code/' . $commit_data['runid'] . '/' . $caption . 'lang')));
+            $commit_data = array_merge($commit_data, array($caption => file_get_contents('files/userfile/' . $result->kitStatusUser . '/code/' . $commit_data['runid'] . '/' . $caption)));
+            $commit_data = array_merge($commit_data, array($caption . 'lang' => file_get_contents('files/userfile/' . $result->kitStatusUser . '/code/' . $commit_data['runid'] . '/' . $caption . 'lang')));
         }
         $this->load->library('KitMQHandler');
         if (!KitMQHandler::publish(KitInfo::$kitInfo['kitMQ'], json_encode($commit_data))) {

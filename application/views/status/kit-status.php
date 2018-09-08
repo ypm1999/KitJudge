@@ -42,7 +42,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <th>Time</th>
                         <th>Memory</th>
                         <th>Length</th>
-                        <th></th>
+                        <?php if (isset($_SESSION['kitUser']) && $_SESSION['kitUser']['priority'] >= 2) {?>
+                            <th></th>
+                        <?php } ?>
                     </tr>
                     </thead>
                     <tbody>

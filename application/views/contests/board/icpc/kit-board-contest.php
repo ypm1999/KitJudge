@@ -100,27 +100,28 @@
             }
 
             .kit-cell-0 {
-                height: 2cm;
+                /* height: 2cm; */
             }
 
             .kit-cell-1 {
-                height: 2cm;
+                /* height: 2cm; */
                 background-color: #98F898;
             }
 
             .kit-cell-2 {
-                height: 2cm;
+                /* height: 2cm; */
                 background-color: #FFDAB9;
             }
 
             .kit-cell-3 {
-                height: 2cm;
+                /* height: 2cm; */
                 background-color: #DDA0DD;
             }
         </style>
         <table class="table table-striped table-hover table-curved table-align">
-            <thead id="kit-board-thead" style="font-size: 120%">
-            <tr style="height: 1cm">
+            <thead id="kit-board-thead">
+            <!-- <tr style="height: 1cm"> -->
+            <tr>
                 <th style="width: 5%"></th>
                 <th><strong>User</strong></th>
                 <?php $width = min(9, 1.0 * (100 - 26) / (count($kitProbTags) + 1));?>
@@ -131,7 +132,7 @@
                 <th style="width: 7%"><strong>Penalty</strong></th>
             </tr>
             </thead>
-            <tbody id="kit-board-tbody" valign="middle" style="font-size: 120%">
+            <tbody id="kit-board-tbody" valign="middle">
             </tbody>
         </table>
         <script type="application/javascript">
@@ -232,7 +233,7 @@
                         console.log(performance[1]['probinf']['<?=$tag?>']['status']);
                         tbHTML = tbHTML + '<td class="kit-cell-' + performance[1]['probinf']['<?=$tag?>']['status'] + '">';
                         if (performance[1]['probinf']['<?=$tag?>']['status'] === 1) {
-                            tbHTML = tbHTML + performance[1]['probinf']['<?=$tag?>']['submission'] + 'Y<br />';
+                            tbHTML = tbHTML + performance[1]['probinf']['<?=$tag?>']['submission'] + 'Y  ';
                             tbHTML = tbHTML + Math.floor(performance[1]['probinf']['<?=$tag?>']['actime'] / 60);
                         } else {
                             tbHTML = tbHTML + performance[1]['probinf']['<?=$tag?>']['submission'];
@@ -250,7 +251,7 @@
             }
             $.ajax({
                 type: "POST",
-                url: "/KitJudge/api/contest/board/<?=$kitContestId?>",
+                url: "<?=$kitBasePath?>/api/contest/board/<?=$kitContestId?>",
                 cache: false,
                 data: {},
                 success: function (data) {

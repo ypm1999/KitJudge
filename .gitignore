@@ -1,5 +1,6 @@
 .DS_Store
 *.pyc
+.vscode/*
 
 application/cache/*
 !application/cache/index.html
@@ -16,6 +17,12 @@ user_guide_src/cilexer/build/*
 user_guide_src/cilexer/dist/*
 user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
+
+## private settings
+application/libraries/KitFile.php
+tools/server/judger/judger.py
+tools/server/judger/Strategy/Strategy.py
+tools/server/deamon/deamon.py
 
 # IDE Files
 #-------------------------

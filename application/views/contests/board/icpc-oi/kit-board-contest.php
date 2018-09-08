@@ -120,10 +120,10 @@
         </style>
         <table class="table table-striped table-hover table-curved table-align">
             <thead id="kit-board-thead" style="font-size: 120%">
-            <tr style="height: 1cm">
+            <tr style="height: 1.0cm">
                 <th style="width: 5%"></th>
                 <th><strong>User</strong></th>
-                <?php $width = min(9, 1.0 * (100 - 26) / (count($kitProbTags) + 1));?>
+                <?php $width = min(15, 1.0 * (100 - 26) / (count($kitProbTags) + 1));?>
                 <?php foreach ($kitProbTags as $tag) { ?>
                     <th style="width: <?=$width?>%"><strong><?= $tag ?></strong></th>
                 <?php } ?>
@@ -243,7 +243,7 @@
                         console.log(performance[1]['probinf']['<?=$tag?>']['status']);
                         tbHTML = tbHTML + '<td class="kit-cell-' + performance[1]['probinf']['<?=$tag?>']['status'] + '">';
                         if (performance[1]['probinf']['<?=$tag?>']['status'] === 1) {
-                            tbHTML = tbHTML + performance[1]['probinf']['<?=$tag?>']['submission'] + 'Y<br />';
+                            tbHTML = tbHTML + performance[1]['probinf']['<?=$tag?>']['submission'] + 'Y ';
                             tbHTML = tbHTML + Math.floor(performance[1]['probinf']['<?=$tag?>']['actime'] / 60);
                         } else {
                             tbHTML = tbHTML + performance[1]['probinf']['<?=$tag?>']['submission'];
@@ -263,7 +263,7 @@
             }
             $.ajax({
                 type: "POST",
-                url: "/KitJudge/api/contest/board/<?=$kitContestId?>",
+                url: "<?=$kitBasePath?>/api/contest/board/<?=$kitContestId?>",
                 cache: false,
                 data: {},
                 success: function (data) {
