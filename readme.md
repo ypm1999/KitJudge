@@ -16,7 +16,7 @@ KitOJ has the following features:
 ## Docs
 
 * [Configuration](docs/configuration.md)
-* [User Guide](docs/guide.md)
+* [Problem Configuration](docs/guide.md)
 * [Furtue Work](docs/future_work.md)
 * [Q&A](docs/Q&A.md)
 
