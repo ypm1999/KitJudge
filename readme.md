@@ -13,9 +13,12 @@ KitOJ has the following features:
 5. Sandbox System: A sandbox is used to run the judge task, which prevent the computer from being attack by spiteful code, even in compilation phase.
 6. WebSocket-based Dynamic Refreshing: A WebSocket-based method is used to dynamically refresh the status.
 
-## Installation
+## Docs
 
-In this project, some of the plug-ins have not been installed by default. However, you can manually install them easily by using the command ```apt-get``` or ```apt``` (>=16.04) in Ubuntu. And here a brief guide is provided.
+* [Configuration](docs/configuration.md)
+* [User Guide](docs/guild.md)
+* [Furtue Work](docs/future_work.md)
+* [Q&A](docs/Q&A.md)
 
 ## License
 

@@ -57,6 +57,7 @@ A default ```JSON``` configuration file for ```A + B Problem``` is listed below:
 		"input": "input.txt",
 		"stdout": "output_std.txt",
 		"output": "output.txt",
+		"score" : 10,
 		"limit": {
 			"C++": {
 				"time": 1000,
@@ -136,9 +137,10 @@ And the API manual is listed below:
       * System instruction such as ```python``` or ```g++``` should use absolute path.
 	  * If some program could not run with the sandbox restrictions, you can type ```--unsafe``` before the instruction. For example 
 	    ```
-	    --unsafe make
+	    --unsafe /usr/bin/g++ code.cpp -o code -O2 -std=c++14
 	    ```
 		There is no doubt that ```--unsafe``` mode may give opptunities to make damage.
+	  * For now, only file with name ```code``` will move to the directory.
 
   * ```command```: Indicate the run command. If you want to use valgrind to check memory, it is necessary to use ```valgrind``` instruction.
     * ATTENTION: The same to ```compiler```
@@ -153,6 +155,8 @@ And the API manual is listed below:
 
   * ```stdout```: Indicate the standard output file.
     * ATTENTION: It is necessary to provide input, output and stdout file, even they will not be used in the judgement.
+
+  * ```score```: Indicate the full score. Can be omitted in ```default``` problems but necessary in ```OI``` problems.
 
   * ```require```: Indicate the required files.
     * ```[$INDEX]```: Indicate the number of 1-based index.
@@ -181,3 +185,9 @@ And the API manual is listed below:
   * ```"style": "default"```: A ```default``` section is usually loaded with a markdown parser and alternative options are ```link``` which shows the ```content``` using ```<a>``` label and ```html``` which will show the content in HTML directly.
   * ```"style": "sample"```: The ```content``` field of ```sample``` section is an array consisting of several elements, the key of which is the title and the value has a field ```path``` to indicate the path to the file.
   * ```"style": "limits"```: The ```content``` field of ```limits``` section is automatically generated with the information filled in the ```tests``` section.
+
+### Language
+KitJudge only supoort ```C++``` and ```git```
+
+### File Download
+KitJudge only supoort download one file for one problem. Update load your **zip file** with name ```download.zip``` to the root directory of the problem.
